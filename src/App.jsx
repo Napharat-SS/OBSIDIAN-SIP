@@ -4,6 +4,7 @@ import Aboutus from "./views/Aboutus";
 import Contact from "./views/Contact";
 import Home from "./views/Home";
 import Menu from "./views/Menu";
+import Login from "./views/login";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: "menu", element: <Menu /> },
       { path: "about", element: <Aboutus /> },
       { path: "contact", element: <Contact /> },
+      { path: "login", element: <Login /> },
     ],
   },
 ]);

@@ -31,7 +31,9 @@ const Navbar = () => {
       </div>
       <div className="hidden md:flex items-center gap-1 m-0">
         <ShoppingBasket className="text-white w-14 h-7" />
-        <button className="getbutton">Get started</button>
+        <Link to="login" className="getbutton inline-block">
+          Get started
+        </Link>
       </div>
 
       {/*mobile toggle nav */}
@@ -55,10 +57,14 @@ const Navbar = () => {
             </Link>
           ))}
 
-          <div className="flex items-center gap-2">
-            <button className="getbutton" onClick={() => setIsMenuOpen(false)}>
+          <div className="flex items-center">
+            <Link
+              to="/login"
+              className="getbutton inline-block"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Get started
-            </button>
+            </Link>
           </div>
         </div>
       )}
