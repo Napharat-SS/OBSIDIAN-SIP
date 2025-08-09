@@ -3,8 +3,8 @@ import MainLayout from "./Layouts/MainLayout";
 import Aboutus from "./views/Aboutus";
 import Contact from "./views/Contact";
 import Home from "./views/Home";
+import Login from "./views/Login";
 import Menu from "./views/Menu";
-import Login from "./views/login";
 
 const router = createBrowserRouter([
   {
