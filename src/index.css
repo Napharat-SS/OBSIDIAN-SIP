@@ -124,3 +124,6 @@
   @apply tracking-wider transition-colors text-white hover:text-amber-400 z-50 cursor-pointer;
   font-family: "Poppins", sans-serif;
 }
+.getbutton {
+  @apply bg-amber-200 py-1.5 px-5 rounded-full border-none font-medium transition-all duration-500 hover:bg-yellow-700 hover:text-white cursor-pointer z-50;
+}
