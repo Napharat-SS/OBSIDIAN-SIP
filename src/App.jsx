@@ -1,14 +1,16 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./components/Layouts/Layout";
-import Register from "./views/Register";
+import MainLayout from "./Layouts/MainLayout";
+import Aboutus from "./views/Aboutus";
+import Contact from "./views/Contact";
 import Home from "./views/Home";
+import Login from "./views/Login";
 import Menu from "./views/Menu";
 import RegisterForm from "./views/Register";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <MainLayout />,
     errorElement: (
       <div>
         <h1>404 - Page Not Found</h1>
@@ -16,7 +18,10 @@ const router = createBrowserRouter([
     ),
     children: [
       { path: "/", element: <Home /> },
-      { path: "menu", element: <Menu/> },
+      { path: "menu", element: <Menu /> },
+      { path: "about", element: <Aboutus /> },
+      { path: "contact", element: <Contact /> },
+      { path: "login", element: <Login /> },
       { path: "register", element: <RegisterForm /> },
     ],
   },
