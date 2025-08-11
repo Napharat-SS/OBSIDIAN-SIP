@@ -5,7 +5,8 @@ import {CheckCircleIcon, XCircleIcon} from "@heroicons/react/24/solid";
 export default function RegisterForm() {
 
   const [password, setPassword] = useState("");
-
+  const [confirmPassword, setConfirmPassword] = useState("");
+  
   const rules = {
     hasUpper: /[A-Z]/.test(password),
     hasLower: /[a-z]/.test(password),
@@ -26,12 +27,23 @@ export default function RegisterForm() {
     </div>
   );
 
+  const match = password && confirmPassword && password === confirmPassword;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!match) {
+      alert("รหัสผ่านไม่ตรงกัน");
+      return;
+    }
+    alert("สมัครสมาชิกสำเร็จ!");
+  };
+
   return (
-    <div
-      className="bg-[url('/bg-register.jpg')] bg-cover bg-center min-h-screen w-full flex items-center justify-center">
-      <div className="bg-[#F8F6F2] p-4 rounded-xl shadow-lg w-full max-w-lg md:p-6">
+    <div className="bg-[url('/bg-register.jpg')] bg-cover bg-center min-h-screen w-full flex items-center justify-center">
+      <div className="bg-[#F8F6F2] p-8 rounded-xl shadow-lg w-full max-w-xl md:p-8 md:max-w-3xl">
         <h2 className="text-4xl font-bold mb-6 text-[#3F3C38]">Register</h2>
-        <Form className="gap-4">
+        <Form onSubmit={handleSubmit} className="gap-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
             <div>
               <label className="block text-[#3F3C38] mb-1 text-2xl font-semibold">
@@ -99,9 +111,10 @@ export default function RegisterForm() {
               Telephone
             </label>
             <input
-              type="number"
+              type="text"
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
               placeholder="0XX-XXX-XXXX"
+              required
             />
           </div>
           <div className="flex flex-col mb-2">
@@ -113,6 +126,7 @@ export default function RegisterForm() {
                 type="text"
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
                 placeholder="Enter your username"
+                required
                 id="username"
                 name="username"
               />
@@ -128,31 +142,80 @@ export default function RegisterForm() {
                 id="password"
                 name="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value )}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
-            <div>
-              <RuleItem condition={rules.hasUpper} text="At least one uppercase letter (A-Z)" />
-              <RuleItem condition={rules.hasLower} text="At least one uppercase letter (a-z)" />
-              <RuleItem condition={rules.hasNumber} text="At least one uppercase letter (0-9)" />
-              <RuleItem condition={rules.hasLength} text="Minimum length of 8 characters" />
+            <div className="flex gap-4 py-2">
+              <div className="">
+                <RuleItem
+                  condition={rules.hasUpper}
+                  text="At least one uppercase letter (A-Z)"
+                />
+                <RuleItem
+                  condition={rules.hasLower}
+                  text="At least one uppercase letter (a-z)"
+                />
+              </div>
+              <div>
+                <RuleItem
+                  condition={rules.hasNumber}
+                  text="At least one uppercase letter (0-9)"
+                />
+                <RuleItem
+                  condition={rules.hasLength}
+                  text="Minimum length of 8 characters"
+                />
+              </div>
+            </div>
+            <div className="">
+              <label className="block text-[#3F3C38] mb-1 text-2xl font-semibold">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
+                placeholder="Confirm your password"
+                id="confirmpassword"
+                name="confirmpassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+              {confirmPassword && (
+                <p
+                  className={`mt-1 text-sm ${
+                    match ? "text-green-600" : "text-red-500"
+                  }`}
+                >
+                  {match ? "รหัสผ่านตรงกัน✔️" : "รหัสผ่านไม่ตรงกัน❌"}
+                </p>
+              )}
             </div>
           </div>
-          <button
-            type="submit"
-            className="w-full bg-[#D4A475] text-white text-2xl fontbold py-2 rounded hover:bg-yellow-600 transition-colors"
-            disabled= {
-              !(
-                rules.hasUpper &&
-                rules.hasLower &&
-                rules.hasNumber &&
-                rules.hasLength
-              )
-            }
-          >
-            Register
-          </button>
+
+          <div className="flex justify-center gap-10">
+            <button
+              type="button"
+              className="w-3/5 bg-[#A69C8E] text-white text-2xl fontbold py-2 rounded hover:bg-yellow-600 transition-colors"
+            >
+              Back
+            </button>
+            <button
+              type="submit"
+              className="w-full bg-[#D4A475] text-white text-2xl fontbold py-2 rounded hover:bg-yellow-600 transition-colors"
+              disabled={
+                !(
+                  rules.hasUpper &&
+                  rules.hasLower &&
+                  rules.hasNumber &&
+                  rules.hasLength
+                )
+              }
+            >
+              Register
+            </button>
+          </div>
         </Form>
         <p className="mt-4 text-center text-[#3F3C38] text-xl font-small">
           Already registered?{" "}
