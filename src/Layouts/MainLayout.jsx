@@ -6,7 +6,7 @@ const Layout = () => {
     <>
       <Navbar />
       <main></main>
-      <RegisterForm></RegisterForm>
+
     </>
   );
 };
