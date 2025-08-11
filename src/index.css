@@ -132,7 +132,7 @@
   }
 }
 .container {
-  @apply p-4 sm:p-8 lg:p-16 2xl:p-24;
+  @apply p-4 md:p-10 xl:p-16 2xl:p-20;
 }
 
 .nav-style {
@@ -142,13 +142,16 @@
 .getbutton {
   @apply bg-amber-200 py-1.5 px-5 rounded-full border-none font-medium transition-all duration-500 hover:bg-yellow-700 hover:text-white cursor-pointer z-50;
 }
+.orderbutton {
+  @apply bg-amber-200 py-2 px-5 rounded-full border-none font-medium transition-all duration-500 hover:bg-yellow-700 hover:text-white cursor-pointer z-50;
+}
 .title {
-  @apply text-3xl lg:text-6xl font-bold text-gray-300;
+  @apply text-3xl lg:text-6xl font-bold;
   font-family: "Libertinus Sans", serif;
 }
 .description {
-  @apply text-sm md:text-xl leading-loose text-gray-300;
+  @apply text-sm md:text-xl leading-loose;
 }
 .list-seprator {
-  @apply flex items-center justify-center text-white  md:justify-start gap-4 md:mt-1.5 mb-10;
+  @apply flex items-center justify-center text-white  md:justify-start gap-4 mt-4 md:mt-4 mb-7;
 }

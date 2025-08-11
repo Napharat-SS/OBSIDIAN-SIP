@@ -1,10 +1,15 @@
-import Herosection from "../components/landingpage/Herosection";
+import { Outlet } from "react-router-dom";
+import Navbar from "../components/landingpage/Navbar";
 
 const Layout = () => {
   return (
     <>
-      <Herosection />
-      <main></main>
+      <Navbar />
+      <main>
+        <Outlet />
+      </main>
+
+      {/* <footer/> */}
     </>
   );
 };
