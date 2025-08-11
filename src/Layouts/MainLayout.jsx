@@ -1,14 +1,16 @@
+import { Outlet } from "react-router-dom";
 import Navbar from "../components/landingpage/Navbar";
-import RegisterForm from "../views/Register";
 
-const Layout = () => {
+
+const MainLayout = () => {
   return (
     <>
       <Navbar />
-      <main></main>
-
+      <main>
+        <Outlet/>
+      </main>
     </>
   );
 };
 
-export default Layout;
+export default MainLayout;
