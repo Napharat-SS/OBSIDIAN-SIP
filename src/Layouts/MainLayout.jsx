@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/landingpage/Navbar";
 import ForgotPassword from "../views/ForgotPassword";
+import { Toaster } from "sonner";
 
 const MainLayout = () => {
   return (
@@ -11,6 +12,7 @@ const MainLayout = () => {
       </main>
 
       {/* <footer/> */}
+      <Toaster richColors position="top-right" />
     </>
   );
 };
