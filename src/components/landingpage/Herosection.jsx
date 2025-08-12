@@ -78,7 +78,7 @@ const Herosection = () => {
                   initial="hidden"
                   animate="show"
                   exit="exit"
-                  className="orderbutton"
+                  className="orderbutton relative z-30"
                 >
                   Order Now
                 </MotionLink>
@@ -91,9 +91,9 @@ const Herosection = () => {
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }}
                 className="list-seprator "
               >
-                <div className="lg:w-60 w-25 h-0.5 bg-white"></div>
+                <div className="xl:w-50 w-25 h-0.5 bg-white"></div>
                 <p className="text-sm lg:text-base">Special Menu</p>
-                <div className="lg:w-60 w-25 h-0.5 bg-white"></div>
+                <div className="xl:w-50 w-25 h-0.5 bg-white"></div>
               </motion.div>
               {/*image switcher */}
               <div className="grid grid-cols-4 gap-10 items-end">
@@ -101,13 +101,14 @@ const Herosection = () => {
                   return (
                     <div
                       onClick={() => handleActiveData(HeroData)}
-                      className="cursor-pointer space-y-3 hover:scale-105 transition-all duration-200"
+                      className="cursor-pointer space-y-3 hover:scale-105 transition-all duration-200 "
+                      style={{ padding: "10px", margin: "-10px" }}
                     >
                       <div className="flex justify-center ">
                         <img
                           src={HeroData.image}
                           alt="product-img"
-                          className={`${
+                          className={`relative z-20 ${
                             HeroData.sizeImg
                           } object-cover img-shadow ${
                             activeData.image === HeroData.image
@@ -128,7 +129,6 @@ const Herosection = () => {
             </div>
           </div>
           {/*Hero img */}
-
           <div className="flex flex-col justify-end items-center relative order-1 md:order-2 w-full h-full">
             <AnimatePresence mode="wait">
               <motion.img
