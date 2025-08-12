@@ -10,8 +10,9 @@ export const HeroList = [
   {
     id: 1,
     image: icelatte,
-    sizeImg: "w-25 h-25 lg:h-35",
-    sizeimgr: "w-2xs md:w-3xl xl:w-7xl",
+    sizeImg: "w-25 h-25 xl:h-35 ",
+    sizeimgr:
+      "w-2xs md:w-5xl md:mb-30 xl:h-[600px] xl:ml-20 xl:mb-0 2xl:h-[700px]",
     title: "ICE LATTE",
     titlecolor: "text-gray-300",
     description: "เย็นสดชื่น กลิ่นหอมกรุ่น ผสานรสเข้มของกาแฟอย่างลงตัว",
@@ -24,7 +25,7 @@ export const HeroList = [
     id: 2,
     image: hotlatte,
     sizeImg: "w-25 h-25 lg:h-35 ",
-    sizeimgr: "w-2xs md:w-3xl xl:w-7xl lg:mb-40",
+    sizeimgr: "w-2xs md:w-3xl md:mb-50 xl:w-[1700px] xl:h-[500px] xl:ml-20",
     title: "HOT LATTE",
     titlecolor: "text-stone-900",
     description: "รสเนียนนุ่ม อบอุ่น หอมหวานติดปลายลิ้น นุ่มนวลละมุนใจในทุกจิบ",
@@ -37,7 +38,7 @@ export const HeroList = [
     id: 3,
     image: pancake,
     sizeImg: "w-40 h-20 md:h-25",
-    sizeimgr: "w-55 md:w-3xl xl:w-xl lg:mb-40",
+    sizeimgr: "w-55 md:w-2xl md:mb-50 xl:w-xl xl:ml-30",
     title: "PANCAKE",
     titlecolor: "text-white",
     description: "ฟูนุ่มละลาย หวานน้ำผึ้งเดือนห้า พร้อมกลิ่นหอมยั่วใจ",
@@ -50,7 +51,8 @@ export const HeroList = [
     id: 4,
     image: bean1,
     sizeImg: "w-20 h-30 lg:h-35",
-    sizeimgr: "w-30 md:w-3xl xl:w-xs lg:mb-40",
+    sizeimgr:
+      "w-30 md:h-xl md:w-55 md:mb-45 xl:w-[300px] xl:h-[600px] xl:ml-30",
     title: "SIGNATURE HOUSE BLEND",
     titlecolor: "text-yellow-500",
     description:
