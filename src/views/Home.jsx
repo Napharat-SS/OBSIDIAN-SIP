@@ -1,9 +1,12 @@
-import MainLayout from "../Layouts/MainLayout";
+import Herosection from "../components/landingpage/Herosection";
+
 const Home = () => {
   return (
-    <>
-      <MainLayout />
-    </>
+    <div>
+      <Herosection />
+      <section></section>
+
+    </div>
   );
 };
 
