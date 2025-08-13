@@ -7,6 +7,7 @@ import Login from "./views/Login";
 import Menu from "./views/Menu";
 import RegisterForm from "./views/Register";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
