@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "menu", element: <Menu /> },
       { path: "about", element: <Aboutus /> },
-      { path: "contact", element: <Contact/> },
+      { path: "contact", element: <Contact /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <RegisterForm /> },
     ],
@@ -31,4 +31,4 @@ const App = () => {
   return <RouterProvider router={router} />;
 };
 
-export default App
+export default App;
