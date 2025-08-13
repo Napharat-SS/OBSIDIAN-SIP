@@ -1,17 +1,20 @@
+import { Outlet } from "react-router-dom";
 import Navbar from "../components/landingpage/Navbar";
-import Aboutus from "../views/Aboutus";
+import ForgotPassword from "../views/ForgotPassword";
+import { Toaster } from "sonner";
 
-
-
-
-const Layout = () => {
+const MainLayout = () => {
   return (
     <>
       <Navbar />
-      <main></main>
-      
+      <main>
+        <Outlet />
+      </main>
+
+      {/* <footer/> */}
+      <Toaster richColors position="top-right" />
     </>
   );
 };
 
-export default Layout;
+export default MainLayout;

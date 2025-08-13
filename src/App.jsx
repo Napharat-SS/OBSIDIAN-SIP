@@ -5,6 +5,7 @@ import Contact from "./views/Contact";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Menu from "./views/Menu";
+import RegisterForm from "./views/Register";
 
 
 const router = createBrowserRouter([
@@ -20,8 +21,9 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "menu", element: <Menu /> },
       { path: "about", element: <Aboutus /> },
-      { path: "contact", element: <Contact /> },
+      { path: "contact", element: <Contact/> },
       { path: "login", element: <Login /> },
+      { path: "register", element: <RegisterForm /> },
     ],
   },
 ]);
@@ -30,4 +32,4 @@ const App = () => {
   return <RouterProvider router={router} />;
 };
 
-export default App;
+export default App
