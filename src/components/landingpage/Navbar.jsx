@@ -65,10 +65,14 @@ const Navbar = () => {
             >
               Get started
             </Link>
+            
           </div>
         </div>
       )}
+  
+
     </nav>
+   
   );
 };
 
