@@ -111,7 +111,7 @@ export const Checkout = () => {
         className="max-w-4xl mx-auto bg-[#fcfbfa] rounded-2xl shadow-lg p-4 sm:p-6 space-y-6"
       >
         {/* แถบหัวข้อ Checkout */}
-        <div className="bg-[#3F3C38] py-4 px-4 rounded-lg space-y-2">
+        <div className="bg-[#472C03] py-4 px-4 rounded-lg space-y-2">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#F5F2EC] text-center">
             🛒 Checkout
           </h1>
@@ -294,7 +294,7 @@ export const Checkout = () => {
                 onChange={
                   (e) =>
                     setCustomerInfo({
-                      ...customerInfo,
+                      ...customerInfo, //ใช้ Spread Operator (...) เพื่อ คัดลอก Properties ทั้งหมดจาก Object customerInfo เดิมมาสร้างเป็น Object ใหม่
                       fullName: e.target.value,
                     }) // อัปเดตแค่ fullName
                 }
@@ -340,7 +340,7 @@ export const Checkout = () => {
                 className="border rounded-lg p-2 text-sm sm:text-base"
                 value={timeNote.time}
                 onChange={(e) =>
-                  setTimeNote({ ...timeNote, time: e.target.value })
+                  setTimeNote({ ...timeNote, time: e.target.value }) //ใช้ Spread Operator เพื่อคัดลอก Properties ทั้งหมดจาก Object timeNote เดิมมาสร้างเป็น Object ใหม่
                 }
               >
                 <option>In 15 minutes</option>
@@ -366,7 +366,7 @@ export const Checkout = () => {
         {/* ปุ่มสำหรับกดยืนยันคำสั่งซื้อ */}
         <button
           type="submit" // กำหนดให้เป็นปุ่ม submit ของฟอร์ม
-          className="w-full sm:w-auto bg-[#3F3C38] text-[#FFFFFF] px-6 py-3 rounded-xl hover:bg-[#E6D9C2] hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
+          className="w-full sm:w-auto bg-[#472C03] text-[#FFFFFF] px-6 py-3 rounded-xl hover:bg-[#E6D9C2] hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
         >
           ✅ Place Order
         </button>

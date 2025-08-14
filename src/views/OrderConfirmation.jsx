@@ -37,7 +37,7 @@ export const OrderConfirmation = () => {
   if (!location.state) {
     return (
       <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center min-h-screen px-4 py-10">
-        <div className="text-center text-[#F5F2EC] p-6 rounded-lg bg-red-900 bg-opacity-70">
+        <div className="text-center text-[#3F3C38] p-6 rounded-lg bg-neutral-300 bg-opacity-70">
           <h1 className="text-4xl font-bold">Error!</h1>
           <p className="mt-4">
             No order data found. Please go back to the checkout page.

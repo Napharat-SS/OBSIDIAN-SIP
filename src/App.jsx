@@ -5,6 +5,8 @@ import Contact from "./views/Contact";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Menu from "./views/Menu";
+import { Checkout } from "./views/Checkout";
+import { OrderConfirmation } from "./views/OrderConfirmation";
 
 const router = createBrowserRouter([
   {
