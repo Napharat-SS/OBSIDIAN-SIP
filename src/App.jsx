@@ -5,6 +5,9 @@ import Contact from "./views/Contact";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Menu from "./views/Menu";
+import Profile from "./views/Profile";
+import Notification from "./views/Notification";
+import Privacy from "./views/Privacy";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,9 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "checkout", element: <Checkout /> },
       { path: "order-confirmation", element: <OrderConfirmation /> },
+      { path: "profile", element: <Profile /> },
+      { path: "profile/notification", element: <Notification /> },
+      { path: "profile/privacy", element: <Privacy /> },
     ],
   },
 ]);
