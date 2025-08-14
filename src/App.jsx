@@ -5,7 +5,9 @@ import Contact from "./views/Contact";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Menu from "./views/Menu";
-import RegisterForm from "./views/Register";
+import Profile from "./views/Profile";
+import Notification from "./views/Notification";
+import Privacy from "./views/Privacy";
 
 const router = createBrowserRouter([
   {
@@ -20,9 +22,13 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "menu", element: <Menu /> },
       { path: "about", element: <Aboutus /> },
-      { path: "contact", element: <Contact/> },
+      { path: "contact", element: <Contact /> },
       { path: "login", element: <Login /> },
-      { path: "register", element: <RegisterForm /> },
+      { path: "checkout", element: <Checkout /> },
+      { path: "order-confirmation", element: <OrderConfirmation /> },
+      { path: "profile", element: <Profile /> },
+      { path: "profile/notification", element: <Notification /> },
+      { path: "profile/privacy", element: <Privacy /> },
     ],
   },
 ]);
@@ -31,4 +37,4 @@ const App = () => {
   return <RouterProvider router={router} />;
 };
 
-export default App
+export default App;
