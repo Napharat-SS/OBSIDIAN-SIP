@@ -40,13 +40,13 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="bg-[url('/bg-register.jpg')] bg-cover bg-center min-h-screen w-full flex items-center justify-center">
-      <div className="bg-[#F8F6F2] p-8 rounded-xl shadow-lg w-full max-w-xl md:p-8 md:max-w-3xl">
+    <div className="bg-[url('/bg-register.jpg')] bg-cover bg-center min-h-screen flex items-center justify-center">
+      <div className="bg-[#FFF0D7] p-8 rounded-xl shadow-lg w-full max-w-xl md:px-6 md:m-10 md:max-w-xl">
         <h2 className="text-4xl font-bold mb-6 text-[#3F3C38]">Register</h2>
         <Form onSubmit={handleSubmit} className="gap-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
             <div>
-              <label className="block text-[#3F3C38] mb-1 text-2xl font-semibold">
+              <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
                 Firstname
               </label>
               <input
@@ -59,7 +59,7 @@ export default function RegisterForm() {
               />
             </div>
             <div>
-              <label className="block text-[#3F3C38] mb-1 text-2xl font-semibold">
+              <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
                 Lastname
               </label>
               <input
@@ -73,7 +73,7 @@ export default function RegisterForm() {
             </div>
           </div>
           <div className="mb-2">
-            <label className="block text-[#3F3C38] mb-1 text-2xl font-semibold">
+            <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
               Email
             </label>
             <input
@@ -86,7 +86,7 @@ export default function RegisterForm() {
             />
           </div>
           <div className="mb-2">
-            <label className="block text-[#3F3C38] mb-1 text-2xl font-semibold">
+            <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
               Address
             </label>
             <input
@@ -107,7 +107,7 @@ export default function RegisterForm() {
             />
           </div>
           <div className="">
-            <label className="block text-[#3F3C38] mb-1 text-2xl font-semibold">
+            <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
               Telephone
             </label>
             <input
@@ -119,7 +119,7 @@ export default function RegisterForm() {
           </div>
           <div className="flex flex-col mb-2">
             <div>
-              <label className="block text-[#3F3C38] mb-1 text-2xl font-semibold">
+              <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
                 Username
               </label>
               <input
@@ -132,7 +132,7 @@ export default function RegisterForm() {
               />
             </div>
             <div className="">
-              <label className="block text-[#3F3C38] mb-1 text-2xl font-semibold">
+              <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
                 Password
               </label>
               <input
@@ -169,7 +169,7 @@ export default function RegisterForm() {
               </div>
             </div>
             <div className="">
-              <label className="block text-[#3F3C38] mb-1 text-2xl font-semibold">
+              <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
                 Confirm Password
               </label>
               <input
@@ -217,7 +217,7 @@ export default function RegisterForm() {
             </button>
           </div>
         </Form>
-        <p className="mt-4 text-center text-[#3F3C38] text-xl font-small">
+        <p className="mt-4 text-center text-[#3F3C38] text-lg">
           Already registered?{" "}
           <a href="#" className="text-[#A69C8E] hover:underline">
             Login

@@ -5,15 +5,15 @@ export const dessertList = [
     description:
       "A flaky and buttery pastry, crispy on the outside and soft on the inside.",
     price: "100฿",
-    img: "/hot-espresso.jpg",
+    img: "/croissant.jpg",
   },
   {
     id: 302,
-    title: "Timberring",
+    title: "Cheese Tart",
     description:
-      "Our trendy round croissant, generously filled with a creamy surprise inside.",
+      "A golden, buttery crust with a decadent, creamy cheese filling. Pure bliss in every bite.",
     price: "120฿",
-    img: "/hot-espresso.jpg",
+    img: "/cheesetart.jpg",
   },
   {
     id: 303,
@@ -21,7 +21,7 @@ export const dessertList = [
     description:
       "Soft, warm, and aromatic with a sweet, comforting cinnamon flavor.",
     price: "100฿",
-    img: "/hot-espresso.jpg",
+    img: "/cinnamon.jpg",
   },
   {
     id: 304,
@@ -29,7 +29,7 @@ export const dessertList = [
     description:
       "Rich, decadent, and intensely chocolatey—a pure indulgence for chocolate lovers.",
     price: "100฿",
-    img: "/hot-espresso.jpg",
+    img: "/chocolatecake.jpg",
   },
   {
     id: 305,
@@ -37,7 +37,7 @@ export const dessertList = [
     description:
       "Fudgy and dense with a deep chocolate flavor that melts in your mouth.",
     price: "80฿",
-    img: "/hot-espresso.jpg",
+    img: "/brownie.jpg",
   },
   {
     id: 306,
@@ -45,15 +45,15 @@ export const dessertList = [
     description:
       "Light, fluffy, and golden-brown. The perfect treat for any time of day.",
     price: "120฿",
-    img: "/hot-espresso.jpg",
+    img: "/pancake.jpg",
   },
   {
     id: 307,
-    title: "Tako",
+    title: "Takoh",
     description:
       "A classic Thai dessert with a sweet and savory coconut cream topping over a soft, flavorful base.",
     price: "60฿",
-    img: "/hot-espresso.jpg",
+    img: "/takoh.jpg",
   },
   {
     id: 308,
@@ -61,6 +61,6 @@ export const dessertList = [
     description:
       "A beautiful traditional Thai steamed cake with sweet, chewy layers and a fragrant pandan aroma.",
     price: "60฿",
-    img: "/hot-espresso.jpg",
+    img: "/khanomchan.jpg",
   },
 ];
