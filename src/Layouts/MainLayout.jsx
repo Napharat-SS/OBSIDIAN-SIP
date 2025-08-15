@@ -14,6 +14,7 @@ const MainLayout = () => {
       {/* <footer/> */}
       <Toaster richColors position="top-right" />
       <main>
+        
       </main>
     </>
   );

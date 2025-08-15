@@ -5,35 +5,35 @@ export const coldCoffeeList = [
     description:
       "Shaken espresso, poured through creamy nonfat milk cold foam.",
     price: "120฿",
-    img: "/hot-espresso.jpg",
+    img: "/iced-espresso.jpg",
   },
   {
     id: 202,
     title: "Iced Americano",
     description: "Rich espresso and pure water poured over ice.",
     price: "120฿",
-    img: "/hot-espresso.jpg",
+    img: "/iced-americano.jpg",
   },
   {
     id: 203,
     title: "Iced Latte",
     description: "Rich espresso and milk poured over ice.",
     price: "130฿",
-    img: "/hot-espresso.jpg",
+    img: "/iced-latte.jpg",
   },
   {
     id: 204,
     title: "Iced Cappuccino",
     description: "Espresso, frothy foam with a crisp, cool undercurrent.",
     price: "130฿",
-    img: "/hot-espresso.jpg",
+    img: "/iced-cappuccino.jpg",
   },
   {
     id: 205,
     title: "Iced Flat White",
     description: "Ristretto shot finished with milk and iced.",
     price: "145฿",
-    img: "/hot-espresso.jpg",
+    img: "/iced-flatwhite.jpg",
   },
   {
     id: 206,
@@ -41,7 +41,7 @@ export const coldCoffeeList = [
     description:
       "Espresso, chocolate sauce and milk served on ice, topped with whipped cream.",
     price: "145฿",
-    img: "/hot-espresso.jpg",
+    img: "/iced-mocha.jpg",
   },
   {
     id: 207,
@@ -49,7 +49,7 @@ export const coldCoffeeList = [
     description:
       "Espresso meets white chocolate sauce, milk, and whipped cream.",
     price: "155฿",
-    img: "/hot-espresso.jpg",
+    img: "/iced-whitechocolatemocha.jpg",
   },
   {
     id: 208,
@@ -57,6 +57,6 @@ export const coldCoffeeList = [
     description:
       "Milk, vanilla syrup and espresso served on ice with caramel drizzle.",
     price: "155฿",
-    img: "/hot-espresso.jpg",
+    img: "/iced-caramelmacchiato.jpg",
   },
 ];

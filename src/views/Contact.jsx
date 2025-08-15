@@ -14,14 +14,14 @@ const Contact = () => {
                 <div className="flex flex-row md:flex items-center space-y-2 ">
                   <img src="./public/phone.png" className="h-12 w-8" />
                   <div className="ml-4">
-                    <p>Tell</p>
+                    <p className="font-bold">Telephone</p>
                     <p>088-888-8888</p>
                   </div>
                 </div>
                 <div className="flex space-y-2 items-center">
                   <img src="./public/pin_address.png" className="h-9 w-8" />
                   <div className="ml-4">
-                    <p>Adress</p>
+                    <p className="font-bold">Address</p>
                     <p>
                       888/8 The generation place,
                       <br /> Star Avenue, Bangkok
@@ -36,14 +36,14 @@ const Contact = () => {
                 <div className="flex items-center space-y-2">
                   <img src="./public/ig.png" className="h-9 w-8" />
                   <div className="ml-4">
-                    <p>Instagram</p>
+                    <p className="font-bold">Instagram</p>
                     <p>@obsidian_sip</p>
                   </div>
                 </div>
                 <div className="flex items-center space-y-2">
                   <img src="./public/fb.png" className="h-9 w-8" />
                   <div className="ml-4">
-                    <p>Facebook</p>
+                    <p className="font-bold">Facebook</p>
                     <p>Obsidain Sip</p>
                   </div>
                 </div>
@@ -52,7 +52,7 @@ const Contact = () => {
                 <div className="flex items-center space-y-2">
                   <img src="./public/tt.png" className="h-9 w-8" />
                   <div className="ml-4">
-                    <p>TikTok</p>
+                    <p className="font-bold">TikTok</p>
                     <p>@obsidian_sip</p>
                   </div>
                 </div>
