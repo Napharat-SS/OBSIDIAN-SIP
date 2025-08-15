@@ -8,6 +8,10 @@ import Menu from "./views/Menu";
 import Profile from "./views/Profile";
 import Notification from "./views/Notification";
 import Privacy from "./views/Privacy";
+import { OrderConfirmation } from "./views/OrderConfirmation";
+import { Checkout } from "./views/Checkout";
+import Register from "./views/Register";
+import ForgotPassword from "./views/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +28,8 @@ const router = createBrowserRouter([
       { path: "about", element: <Aboutus /> },
       { path: "contact", element: <Contact /> },
       { path: "login", element: <Login /> },
+      { path: "register", element: <Register />},
+      { path: "forgotpassword", element: <ForgotPassword />},
       { path: "checkout", element: <Checkout /> },
       { path: "order-confirmation", element: <OrderConfirmation /> },
       { path: "profile", element: <Profile /> },

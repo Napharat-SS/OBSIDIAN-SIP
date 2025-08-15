@@ -4,7 +4,7 @@ export default function AddIconButton({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className="p-2 rounded-full bg-green-500 text-white hover:bg-green-600"
+      className="p-2 rounded-full bg-gray-400 text-white hover:bg-gray-500"
       aria-label="Add to basket"
     >
       <HiPlus size={18} />

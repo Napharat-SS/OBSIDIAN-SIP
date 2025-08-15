@@ -1,6 +1,8 @@
-import { Form } from "react-router-dom"
+import { Form, useNavigate } from "react-router-dom"
 
-const Contact = () => {
+export const Contact = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-[url('/bg_contact2.jpg')] bg-cover bg-center min-h-screen w-full flex items-center justify-center">
       <div className="bg-[#F8F6F2] mx-8 px-10 py-10 text-[#3F3C38] rounded-lg shadow-lg w-full max-w-4xl flex flex-col md:grid-rows gap-6">
@@ -98,7 +100,8 @@ const Contact = () => {
               <div className="flex justify-center gap-10">
                 <button
                   type="button"
-                  className="w-3/5 bg-[#A69C8E] text-white text-xl fontbold py-2 rounded hover:bg-yellow-600 transition-colors"
+                  className="w-3/5 bg-[#A69C8E] text-white text-xl fontbold py-2 rounded hover:bg-[#716a60] transition-colors"
+                  onClick={() => navigate("/login")}
                 >
                   Back
                 </button>
@@ -117,4 +120,4 @@ const Contact = () => {
   );
 }
 
-export default Contact
+

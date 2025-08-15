@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Form } from 'react-router-dom';
+import { Form, Link, useNavigate } from 'react-router-dom';
 import {CheckCircleIcon, XCircleIcon} from "@heroicons/react/24/solid";
 
-export default function RegisterForm() {
+export const RegisterForm =() => {
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -39,11 +39,13 @@ export default function RegisterForm() {
     alert("สมัครสมาชิกสำเร็จ!");
   };
 
+  const navigate  = useNavigate();
+
   return (
     <div className="bg-[url('/bg-register.jpg')] bg-cover bg-center min-h-screen flex items-center justify-center">
       <div className="bg-[#FFF0D7] p-8 rounded-xl shadow-lg w-full max-w-xl md:px-6 md:m-10 md:max-w-xl">
         <h2 className="text-4xl font-bold mb-6 text-[#3F3C38]">Register</h2>
-        <Form onSubmit={handleSubmit} className="gap-4">
+        <Form onSubmit={handleSubmit} className="gap-4 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
             <div>
               <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
@@ -197,7 +199,8 @@ export default function RegisterForm() {
           <div className="flex justify-center gap-10">
             <button
               type="button"
-              className="w-3/5 bg-[#A69C8E] text-white text-2xl fontbold py-2 rounded hover:bg-yellow-600 transition-colors"
+              className="w-3/5 bg-[#A69C8E] text-white text-2xl fontbold py-2 rounded hover:bg-[#716a60] transition-colors"
+              onClick={() => navigate("/login")}
             >
               Back
             </button>
@@ -219,9 +222,9 @@ export default function RegisterForm() {
         </Form>
         <p className="mt-4 text-center text-[#3F3C38] text-lg">
           Already registered?{" "}
-          <a href="#" className="text-[#A69C8E] hover:underline">
+          <Link to="/login" className="text-[#A69C8E] hover:underline">
             Login
-          </a>
+          </Link>
         </p>
       </div>
     </div>
