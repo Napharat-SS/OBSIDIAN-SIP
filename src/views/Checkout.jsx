@@ -380,6 +380,12 @@ export const Checkout = () => {
 // 2. Checkout.jsx - FYI สร้าง ตัวแปร basket ไว้แล้ว รับข้อมูล basket ทั้งก้อน จากหน้า basket ของพี่ตี - connect with P'tee
 // 3. Checkout.jsx - FYI add function delete มา เพื่อลบรายการสินค้าออก หากลูกค้าเปลี่ยนใจไม่เอารายการนี้แล้ว - all ควรเอาออกไหม หรือว่าเอาไว้ดี ถ้าไม่มี function delete ก็คือเมื่อ user กดปุ่ม Go to checkout จากหน้าพี่ตี มาหน้านี้แล้ว ก็สามารถเพิ่มลดจำนวนสินค้าได้อย่างเดียว ลบรายการสินค้าออกไม่ได้
 // 4. OrderConfirmation.jsx - FYI สร้าง Property ชื่อ Image ไว้แล้ว เพื่่อรับค่าของ basket ทั้งก้อน ที่ส่งมาจากหน้า Checkout
-// 5. OrderConfirmation.jsx - FYI สร้างปุ่ม Track Your Order กดแล้วจะ link ไปที่หน้า User Profile เพื่อดูสถานะคำสั่งซื้อ รอใส่ path เพ่ื่อ navigate - Connect with Earth
+// 5. OrderConfirmation.jsx - FYI สร้างปุ่ม Track Your Order กดแล้วจะ link ไปที่หน้า User Profile เพื่อดูสถานะคำสั่งซื้อ รอใส่ path เพ่ื่อ navigate - Connect with Earth รอเรียน Backend
 // 6. OrderConfirmation.jsx - Payment Method ยังไม่แน่ใจว่าจะใส่ไหม เลยตั้งเป็น static ว่า mobile banking ไว้ก่อน จะเอาไว้หรือให้ตัดออกดี - all
-// 7. Both pages - Background Image เอารูปไหนดี หรือเอาเป็นพื้นหลังสี base เปล่าๆ - all
+
+
+// 1. Checkout.jsx - Customer Full Name แก้เป็น 2 ช่อง First Name and Last Name และ เอา email + เบอร์โทรมาไว้ข้างล่าง 
+// 2. Checkout.jsx - add radio button (Use saved profile) ใต้ section customer info เมื่อกดแล้ว จะไปดึงข้อมูล First Name, Last Name, email และ เบอร์โทรมาใส่ในช่องแต่ละช่องให้ auto
+// 3. Both pages - ปรับ bg image ให้ไม่ขยับ เวลากดปุ่ม radio ขึ้นลง
+// 
+// 
