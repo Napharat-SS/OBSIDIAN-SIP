@@ -51,27 +51,15 @@ export default function Privacy() {
               Privacy
             </div>
             <div className="flex flex-col gap-7 my-5">
-              <a
-                href=""
-                target="_blank"
-                className="text-sm text-center mx-5 sm:w-80 px-12 py-2 bg-stone-500 text-white font-semibold rounded-lg shadow-md hover:bg-stone-600 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-opacity-75 transition duration-300 ease-in-out"
-              >
+              <button href="" target="_blank" className="change-button">
                 UPDATE PROFILE
-              </a>
-              <a
-                href=""
-                target="_blank"
-                className="text-sm text-center mx-5 sm:w-80 px-12 py-2 bg-stone-500 text-white font-semibold rounded-lg shadow-md hover:bg-stone-600 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-opacity-75 transition duration-300 ease-in-out"
-              >
+              </button>
+              <button href="" target="_blank" className="change-button">
                 RESET YOUR PASSWORD
-              </a>
-              <a
-                href=""
-                target="_blank"
-                className="text-sm text-center mx-5 sm:w-80 px-12 py-2 bg-stone-500 text-white font-semibold rounded-lg shadow-md hover:bg-stone-600 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-opacity-75 transition duration-300 ease-in-out"
-              >
+              </button>
+              <button href="" target="_blank" className="change-button">
                 CHANGE PAYMENT METHOD
-              </a>
+              </button>
             </div>
           </div>
         </div>

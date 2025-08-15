@@ -155,3 +155,6 @@
 .list-seprator {
   @apply flex items-center justify-center text-white  md:justify-start gap-4 mt-4 md:mt-4 mb-7;
 }
+.change-button {
+  @apply text-sm text-center mx-5 sm:w-80 px-12 py-2 bg-stone-500 text-white font-semibold rounded-lg shadow-md hover:bg-stone-600 focus:outline-none focus:ring-2 focus:ring-stone-400 transition duration-300 ease-in-out;
+}
