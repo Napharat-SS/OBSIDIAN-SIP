@@ -2,14 +2,17 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout";
 import Aboutus from "./views/Aboutus";
 import { Checkout } from "./views/Checkout";
-import Contact from "./views/Contact";
+import { Contact } from "./views/Contact";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Menu from "./views/Menu";
 import Notification from "./views/Notification";
 import { OrderConfirmation } from "./views/OrderConfirmation";
 import Privacy from "./views/Privacy";
+import { RegisterForm } from "./views/Register";
+import { ForgotPassword } from "./views/ForgotPassword";
 import Profile from "./views/Profile";
+
 
 const router = createBrowserRouter([
   {
@@ -26,6 +29,8 @@ const router = createBrowserRouter([
       { path: "about", element: <Aboutus /> },
       { path: "contact", element: <Contact /> },
       { path: "login", element: <Login /> },
+      { path: "register", element: <RegisterForm />},
+      { path: "forgotpassword", element: <ForgotPassword />},
       { path: "checkout", element: <Checkout /> },
       { path: "order-confirmation", element: <OrderConfirmation /> },
       { path: "profile", element: <Profile /> },

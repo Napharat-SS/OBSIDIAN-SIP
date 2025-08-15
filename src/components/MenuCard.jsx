@@ -6,7 +6,7 @@ import { toast } from "sonner";
 export const MenuCard = ({ id,title, description, price, img }) => {
   return (
     <div className="flex justify-center py-2">
-      <Card key={id} className="flex flex-col h-full bg-gray-300">
+      <Card key={id} className="flex flex-col h-full bg-[#dfc6aa]">
         <CardContent className=" flex flex-col justify-between">
           <div className="md:flex md:flex-col md:justify-center">
             <div className=" md:flex md:justify-center mb-4">

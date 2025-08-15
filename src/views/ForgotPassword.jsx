@@ -1,6 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const ForgotPassword = () => {
+
+export const ForgotPassword = () => {
+  const navigate  = useNavigate();
+
   return (
     <div class="bg-[url('/bg-register.jpg')] bg-opacity-50 bg-cover bg-center flex items-center justify-center min-h-screen">
       <div class="bg-[#F8F6F2] p-8 rounded-xl shadow-lg w-full text-[#3F3C38] md:w-2/7 px-10 py-15">
@@ -28,7 +32,8 @@ const ForgotPassword = () => {
           <div className="flex justify-center gap-10">
             <button
               type="button"
-              className="w-3/5 bg-[#A69C8E] text-white text-xl fontbold py-2 rounded hover:bg-yellow-600 transition-colors"
+              className="w-3/5 bg-[#A69C8E] text-white text-xl fontbold py-2 rounded hover:bg-[#716a60] transition-colors"
+              onClick={() => navigate("/login")}
             >
               Back
             </button>
@@ -44,5 +49,3 @@ const ForgotPassword = () => {
     </div>
   );
 }
-
-export default ForgotPassword
