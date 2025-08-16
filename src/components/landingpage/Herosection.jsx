@@ -53,7 +53,7 @@ const Herosection = () => {
                   initial="hidden"
                   animate="show"
                   exit="exit"
-                  className={`${activeData.titlecolor} title text-shadow`}
+                  className={`${activeData.titlecolor} title text-shadow xl:`}
                 >
                   {activeData.title}
                 </motion.h1>
