@@ -16,7 +16,7 @@ export const HeroList = [
     title: "ICE LATTE",
     titlecolor: "text-gray-300",
     description: "เย็นสดชื่น กลิ่นหอมกรุ่น ผสานรสเข้มของกาแฟอย่างลงตัว",
-    desccolor: "text-gray-300",
+    desccolor: "text-white",
     price: "130฿",
     modal: "ICE LATTE",
     sizemodal: "text-[250px] text-white/10",
