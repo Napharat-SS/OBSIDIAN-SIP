@@ -91,9 +91,9 @@ const Herosection = () => {
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }}
                 className="list-seprator "
               >
-                <div className="xl:w-50 w-25 h-0.5 bg-white"></div>
+                <div className="xl:w-50 2xl:w-60 w-25 h-0.5 bg-white"></div>
                 <p className="text-sm lg:text-base">Special Menu</p>
-                <div className="xl:w-50 w-25 h-0.5 bg-white"></div>
+                <div className="xl:w-50 2xl:w-60 w-25 h-0.5 bg-white"></div>
               </motion.div>
               {/*image switcher */}
               <div className="grid grid-cols-4 gap-10 items-end">
@@ -116,11 +116,6 @@ const Herosection = () => {
                               : "opacity-50"
                           }`}
                         />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-white text-center">
-                          {HeroData.price}
-                        </p>
                       </div>
                     </div>
                   );
@@ -149,6 +144,7 @@ const Herosection = () => {
                 className={`${activeData.sizeimgr} img-shadow relative z-10 object-cover`}
               />
             </AnimatePresence>
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeData.id}
@@ -161,7 +157,7 @@ const Herosection = () => {
                     duration: 1,
                   },
                 }}
-                className="text-white/10 text-[250px] font-extrabold absolute top-0 left-0.5 -translate-x-0.5 -translate-y-0.5"
+                className={`${activeData.sizemodal} font-extrabold absolute top-0 left-0.5 -translate-x-0.5 -translate-y-0.5 overflow-hidden text-clip`}
               >
                 {activeData.modal}
               </motion.div>

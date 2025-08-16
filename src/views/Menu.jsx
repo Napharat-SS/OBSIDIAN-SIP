@@ -1,26 +1,29 @@
-import React, { useState } from 'react'
-import {MenuCard} from '../components/MenuCard'
-import { hotCoffeeList } from "../data/HotCoffee";
+import { useState } from "react";
+import { MenuCard } from "../components/MenuCard";
+import { coffeeBeansList } from "../data/CoffeeBeans";
 import { coldCoffeeList } from "../data/ColdCoffee";
 import { dessertList } from "../data/Dessert";
-import { coffeeBeansList } from "../data/CoffeeBeans";
-
+import { hotCoffeeList } from "../data/HotCoffee";
 
 export function Menu() {
-
-  const allItem = [...hotCoffeeList, ...coldCoffeeList, ...dessertList, ...coffeeBeansList];
+  const allItem = [
+    ...hotCoffeeList,
+    ...coldCoffeeList,
+    ...dessertList,
+    ...coffeeBeansList,
+  ];
 
   const categories = [
-    {key: "all", label: "All", data: allItem},
-    {key: "hot", label: "Hot Coffee", data: hotCoffeeList},
-    {key: "cold", label: "Cold Coffee", data: coldCoffeeList},
-    {key: "dessert", label: "Dessert", data: dessertList},
-    {key: "beans", label: "Coffee Beans", data: coffeeBeansList},
+    { key: "all", label: "All", data: allItem },
+    { key: "hot", label: "Hot Coffee", data: hotCoffeeList },
+    { key: "cold", label: "Cold Coffee", data: coldCoffeeList },
+    { key: "dessert", label: "Dessert", data: dessertList },
+    { key: "beans", label: "Coffee Beans", data: coffeeBeansList },
   ];
 
   const [selectedCat, setSelectedCat] = useState("all");
 
-  const currentCat = categories.find(cat => cat.key === selectedCat);
+  const currentCat = categories.find((cat) => cat.key === selectedCat);
 
   return (
     <div>
@@ -65,4 +68,4 @@ export function Menu() {
   );
 }
 
-export default Menu
+export default Menu;
