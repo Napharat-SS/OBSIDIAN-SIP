@@ -14,7 +14,7 @@ export const OrderConfirmation = () => {
   // ฟังก์ชันสำหรับจัดการเมื่อกดปุ่ม "Track Your Order"
   const handleTrackOrder = () => {
     // กดแล้ว จะไปหน้า User Profile เพื่อให้ User ติดตามสถานะคำสั่งซื้อ
-    navigate("/");
+    navigate("/profile/notification");
   };
 
   // Function to generate a random order number (สร้างหมายเลขคำสั่งซื้อแบบสุ่ม)
@@ -60,6 +60,7 @@ export const OrderConfirmation = () => {
     <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10 text-[#3F3C38]">
       <div className="min-h-screen">
         <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+
           {/* Information Section on the Left side */}
           <div className="bg-neutral-200 shadow-md rounded-2xl p-6 relative">
             <h1 className="text-4xl font-bold mb-4">
