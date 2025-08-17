@@ -12,6 +12,7 @@ import Privacy from "./views/Privacy";
 import { RegisterForm } from "./views/Register";
 import { ForgotPassword } from "./views/ForgotPassword";
 import Profile from "./views/Profile";
+import Addtocart from "./views/Addtocart";
 
 
 const router = createBrowserRouter([
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
       { path: "profile", element: <Profile /> },
       { path: "profile/notification", element: <Notification /> },
       { path: "profile/privacy", element: <Privacy /> },
+      { path : "addtocart", element: <Addtocart /> },
     ],
   },
 ]);
