@@ -31,7 +31,7 @@ const SlideRight = (delay) => {
 
 const Herosection = () => {
   const [activeData, setActiveData] = useState(HeroList[0]);
-  const MotionLink = motion(Link);
+  const MotionLink = motion.create(Link);
   const handleActiveData = (HeroData) => {
     setActiveData(HeroData);
   };
@@ -97,9 +97,10 @@ const Herosection = () => {
               </motion.div>
               {/*image switcher */}
               <div className="grid grid-cols-4 gap-10 items-end">
-                {HeroList.map((HeroData) => {
+                {HeroList.map((HeroData, index) => {
                   return (
                     <div
+                      key={HeroData.id || index}
                       onClick={() => handleActiveData(HeroData)}
                       className="cursor-pointer space-y-3 hover:scale-105 transition-all duration-200 "
                       style={{ padding: "10px", margin: "-10px" }}
