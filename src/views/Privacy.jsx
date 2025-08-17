@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Privacy() {
   return (
-    <div className="font-['Poppins', 'sans-serif'] bg-[url('/profile_bg.jpg')] bg-cover">
+    <div className="bg-[url('/profile_bg.jpg')] bg-cover min-h-screen">
       <div className="p-5 md:p-10">
         <div className="bg-[#eceae3] pt-5 pl-7 pb-5 border-b-[2px] border-[#e6e6e6] md:pl-20">
           <h1 className="w-[284px] top-[42px] left-24 text-black text-[33px] font-normal">
@@ -47,19 +47,22 @@ export default function Privacy() {
             </button>
           </div>
           <div>
-            <div className="text-lg text-gray-700 font-medium pl-5 pb-5 border-b-[1px] border-[#e6e6e6] md:pt-10">
+            <div className="text-xl text-gray-700 font-medium pl-5 pb-5 border-b-[1px] border-[#e6e6e6] md:pt-10">
               Privacy
             </div>
             <div className="flex flex-col gap-7 my-5">
-              <button href="" target="_blank" className="change-button">
+              <Link to="/profile/privacy/update" className="change-button">
                 UPDATE PROFILE
-              </button>
-              <button href="" target="_blank" className="change-button">
-                RESET YOUR PASSWORD
-              </button>
+              </Link>
+              <Link to="/forgotpassword" className="change-button">
+                RESET PASSWORD
+              </Link>
               <button href="" target="_blank" className="change-button">
                 CHANGE PAYMENT METHOD
               </button>
+              <Link to="/profile/privacy/delete" className="change-button">
+                DELETE PROFILE
+              </Link>
             </div>
           </div>
         </div>
