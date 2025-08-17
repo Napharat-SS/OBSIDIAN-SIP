@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Notification() {
   return (
-    <div className="font-['Poppins', 'sans-serif'] bg-[url('/profile_bg.jpg')] bg-cover">
+    <div className="font-['Poppins', 'sans-serif'] bg-[url('/profile_bg.jpg')] bg-cover min-h-screen">
       <div className="p-5 md:p-10">
         <div className="bg-[#eceae3] pt-5 pl-7 pb-5 border-b-[2px] border-[#e6e6e6] md:pl-20">
           <h1 className="w-[284px] top-[42px] left-24 text-black text-[33px] font-normal">
