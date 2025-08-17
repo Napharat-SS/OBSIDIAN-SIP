@@ -16,7 +16,7 @@ const Navbar = () => {
     >
       <Link
         to="/"
-        className="text-2xl md:text-4xl lg:text-4xl m-0 text-gray-300"
+        className="text-2xl md:text-4xl lg:text-4xl m-0 text-gray-300 font-poppins"
       >
         Obsidian<span className="text-yellow-600">Sip</span>
       </Link>
@@ -63,18 +63,18 @@ const Navbar = () => {
             </Link>
           ))}
 
-            <div className="flex items-center">
-              <Link
-                to="/login"
-                className="getbutton inline-block"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Get started
-              </Link>
-            </div>
+          <div className="flex items-center">
+            <Link
+              to="/login"
+              className="getbutton inline-block"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Get started
+            </Link>
           </div>
-        )}
-      </nav>
+        </div>
+      )}
+    </nav>
   );
 };
 

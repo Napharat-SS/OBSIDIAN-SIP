@@ -31,7 +31,7 @@ const SlideRight = (delay) => {
 
 const Herosection = () => {
   const [activeData, setActiveData] = useState(HeroList[0]);
-  const MotionLink = motion(Link);
+  const MotionLink = motion.create(Link);
   const handleActiveData = (HeroData) => {
     setActiveData(HeroData);
   };
@@ -53,7 +53,7 @@ const Herosection = () => {
                   initial="hidden"
                   animate="show"
                   exit="exit"
-                  className={`${activeData.titlecolor} title text-shadow`}
+                  className={`${activeData.titlecolor} title text-shadow xl:`}
                 >
                   {activeData.title}
                 </motion.h1>
@@ -91,15 +91,16 @@ const Herosection = () => {
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }}
                 className="list-seprator "
               >
-                <div className="xl:w-50 w-25 h-0.5 bg-white"></div>
+                <div className="xl:w-50 2xl:w-60 w-25 h-0.5 bg-white"></div>
                 <p className="text-sm lg:text-base">Special Menu</p>
-                <div className="xl:w-50 w-25 h-0.5 bg-white"></div>
+                <div className="xl:w-50 2xl:w-60 w-25 h-0.5 bg-white"></div>
               </motion.div>
               {/*image switcher */}
               <div className="grid grid-cols-4 gap-10 items-end">
-                {HeroList.map((HeroData) => {
+                {HeroList.map((HeroData, index) => {
                   return (
                     <div
+                      key={HeroData.id || index}
                       onClick={() => handleActiveData(HeroData)}
                       className="cursor-pointer space-y-3 hover:scale-105 transition-all duration-200 "
                       style={{ padding: "10px", margin: "-10px" }}
@@ -116,11 +117,6 @@ const Herosection = () => {
                               : "opacity-50"
                           }`}
                         />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-white text-center">
-                          {HeroData.price}
-                        </p>
                       </div>
                     </div>
                   );
@@ -149,6 +145,7 @@ const Herosection = () => {
                 className={`${activeData.sizeimgr} img-shadow relative z-10 object-cover`}
               />
             </AnimatePresence>
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeData.id}
@@ -161,7 +158,7 @@ const Herosection = () => {
                     duration: 1,
                   },
                 }}
-                className="text-white/10 text-[250px] font-extrabold absolute top-0 left-0.5 -translate-x-0.5 -translate-y-0.5"
+                className={`${activeData.sizemodal} font-extrabold absolute top-0 left-0.5 -translate-x-0.5 -translate-y-0.5 overflow-hidden text-clip`}
               >
                 {activeData.modal}
               </motion.div>

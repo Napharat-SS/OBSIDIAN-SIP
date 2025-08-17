@@ -33,7 +33,7 @@ export const dessertList = [
   },
   {
     id: 305,
-    title: "Brownie:",
+    title: "Brownie",
     description:
       "Fudgy and dense with a deep chocolate flavor that melts in your mouth.",
     price: "80฿",
