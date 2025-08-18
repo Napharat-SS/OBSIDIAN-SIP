@@ -1,11 +1,10 @@
-import { Card,  CardContent } from "@/components/ui/card";
-import React from 'react'
-import AddIconButton from "./ui/addicon";
+import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
+import AddIconButton from "./ui/addicon";
 
-export const MenuCard = ({ id,title, description, price, img }) => {
+export const MenuCard = ({ id, title, description, price, img }) => {
   return (
-    <div className="flex justify-center py-2">
+    <div className="flex justify-center py-2 ">
       <Card key={id} className="flex flex-col h-full bg-[#dfc6aa]">
         <CardContent className=" flex flex-col justify-between">
           <div className="md:flex md:flex-col md:justify-center">
@@ -34,4 +33,3 @@ export const MenuCard = ({ id,title, description, price, img }) => {
     </div>
   );
 };
-

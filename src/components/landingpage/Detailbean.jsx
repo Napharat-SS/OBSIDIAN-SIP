@@ -36,7 +36,7 @@ const Detailbean = () => {
             whileInView={{ rotateX: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="font-libertinus text-gray-700 md:text-gray-200 py-4 text-4xl md:text-6xl text-center md:text-left "
+            className="font-libertinus text-gray-700 md:text-gray-700 xl:text-gray-200 py-4 text-4xl md:text-6xl text-center md:text-left "
             style={{ textShadow: "2px 2px 6px rgba(0,0,0,0.4)" }}
           >
             Our Coffee Beans
