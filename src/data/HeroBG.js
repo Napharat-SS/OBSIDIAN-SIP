@@ -13,7 +13,7 @@ export const HeroList = [
     sizeImg: "w-25 h-25 xl:h-35 ",
     sizeimgr:
       "w-2xs md:w-5xl md:mb-30 xl:h-[600px] xl:ml-20 xl:mb-0 2xl:h-[700px]",
-    title: "ICE LATTE",
+    title: "ICED LATTE",
     titlecolor: "text-gray-300",
     description: "เย็นสดชื่น กลิ่นหอมกรุ่น ผสานรสเข้มของกาแฟอย่างลงตัว",
     desccolor: "text-white",

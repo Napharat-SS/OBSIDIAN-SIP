@@ -11,7 +11,7 @@ const Footer = () => {
             You'll find the Java Jungle.
           </p>
           <p className="flex items-center gap-2 mb-2">
-            <span>📍</span> Address: 10 JSD, Bankok, Thailand
+            <span>📍</span> Address: 10 JSD, Bangkok, Thailand
           </p>
           <p className="flex items-center gap-2 mb-2">
             <span>✉️</span> Email: ObsidianSip@example.com
