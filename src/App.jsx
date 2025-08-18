@@ -12,6 +12,8 @@ import Privacy from "./views/Privacy";
 import { RegisterForm } from "./views/Register";
 import { ForgotPassword } from "./views/ForgotPassword";
 import Profile from "./views/Profile";
+import Profile_update from "./views/Profile_update";
+import Profile_delete from "./views/Profile_delete";
 import Addtocart from "./views/Addtocart";
 
 
@@ -30,13 +32,15 @@ const router = createBrowserRouter([
       { path: "about", element: <Aboutus /> },
       { path: "contact", element: <Contact /> },
       { path: "login", element: <Login /> },
-      { path: "register", element: <RegisterForm />},
-      { path: "forgotpassword", element: <ForgotPassword />},
+      { path: "register", element: <RegisterForm /> },
+      { path: "forgotpassword", element: <ForgotPassword /> },
       { path: "checkout", element: <Checkout /> },
       { path: "order-confirmation", element: <OrderConfirmation /> },
       { path: "profile", element: <Profile /> },
       { path: "profile/notification", element: <Notification /> },
       { path: "profile/privacy", element: <Privacy /> },
+      { path: "profile/privacy/update", element: <Profile_update /> },
+      { path: "profile/privacy/delete", element: <Profile_delete /> },
       { path : "addtocart", element: <Addtocart /> },
     ],
   },

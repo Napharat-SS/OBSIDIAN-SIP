@@ -6,6 +6,15 @@ import { coffeeData } from "../mock/coffeeData"; // Import mock data
 export const Checkout = () => {
   const navigate = useNavigate();
 
+  // สร้าง Mock Data ของ User Profile (ที่รวมทั้งข้อมูลลูกค้าและที่อยู่)
+  const userProfileData = {
+    firstName: "Arm",
+    lastName: "JS",
+    phoneNumber: "081-123-4567",
+    email: "arm.js@example.com",
+    savedAddress: "123/45 ซอยกาแฟ ถนนสุขุมวิท เขตวัฒนา กรุงเทพฯ 10110",
+  };
+
   // --- ประกาศ State ต่างๆ สำหรับเก็บข้อมูลในหน้า Checkout ---
 
   // สร้าง state สำหรับตะกร้าสินค้า (basket)
@@ -15,16 +24,21 @@ export const Checkout = () => {
   );
   // สร้าง state สำหรับวิธีรับสินค้า (dinein, pickup, delivery) เริ่มต้นเป็น "dinein"
   const [orderMethod, setOrderMethod] = useState("dinein");
-  // สร้าง state สำหรับตัวเลือกที่อยู่จัดส่ง (saved, new) เริ่มต้นเป็น "saved"
+  // 4. เพิ่ม state สำหรับจัดการตัวเลือก "Use saved profile" เริ่มต้นเป็น "saved"
+  const [profileChoice, setProfileChoice] = useState("saved");
+  // 5. จัดการ state สำหรับ "Use saved address" เริ่มต้นเป็น "saved"
   const [addressChoice, setAddressChoice] = useState("saved");
-  // สร้าง state สำหรับเก็บที่อยู่จัดส่งใหม่
-  const [deliveryAddress, setDeliveryAddress] = useState("");
-  // สร้าง state สำหรับเก็บข้อมูลลูกค้า (ชื่อ, เบอร์, อีเมล)
+  // state ของข้อมูลลูกค้าให้มี First Name, Last Name และเริ่มต้นด้วยข้อมูลจาก profile
   const [customerInfo, setCustomerInfo] = useState({
-    fullName: "",
-    phoneNumber: "",
-    email: "",
+    firstName: userProfileData.firstName, // กำหนดค่าเริ่มต้นเป็น firstName จากข้อมูลจำลอง
+    lastName: userProfileData.lastName, // กำหนดค่าเริ่มต้นเป็น lastName จากข้อมูลจำลอง
+    phoneNumber: userProfileData.phoneNumber,
+    email: userProfileData.email,
   });
+  // 5. กำหนดค่าเริ่มต้นของ Delivery Address จากข้อมูลใน profile
+  const [deliveryAddress, setDeliveryAddress] = useState(
+    userProfileData.savedAddress
+  );
   // สร้าง state สำหรับเก็บเวลาและหมายเหตุ
   const [timeNote, setTimeNote] = useState({
     time: "In 15 minutes",
@@ -43,14 +57,15 @@ export const Checkout = () => {
       (
         prevBasket // อัปเดต state basket โดยอิงจากค่าเก่า (prevBasket)
       ) =>
-        prevBasket.map(
-          (
-            item // วนลูปในตะกร้าเก่าเพื่อหา item ที่ต้องการแก้ไข
-          ) =>
-            item.id === itemId
-              ? { ...item, quantity: Number(newQuantity) }
-              : item
-        ) // ถ้า item.id ตรงกับ itemId ที่ส่งมา ให้สร้าง object ใหม่ โดยอัปเดตแค่ quantity: item // ถ้าไม่ตรง ก็คืนค่า item เดิม
+      prevBasket.map(
+        (
+          item // วนลูปในตะกร้าเก่าเพื่อหา item ที่ต้องการแก้ไข
+        ) =>
+        item.id === itemId ?
+        { ...item, quantity: Number(newQuantity) } // ถ้า item.id ตรงกับ itemId ที่ส่งมา ให้สร้าง object ใหม่ โดยอัปเดตแค่ quantity
+        :
+        item // ถ้าไม่ตรง ก็คืนค่า item เดิม
+      )
     );
   };
 
@@ -60,19 +75,49 @@ export const Checkout = () => {
     setBasket((prevBasket) => prevBasket.filter((item) => item.id !== itemId));
   };
 
+  // Logic: ใช้ useEffect เพื่อจัดการการเติม Customer Info และ address อัตโนมัติ
+  useEffect(() => {
+    // Logic สำหรับการเติมข้อมูล Customer Info
+    if (profileChoice === "saved") {
+      setCustomerInfo({
+        firstName: userProfileData.firstName,
+        lastName: userProfileData.lastName,
+        phoneNumber: userProfileData.phoneNumber,
+        email: userProfileData.email,
+      });
+    } else {
+      setCustomerInfo({
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        email: "",
+      });
+    }
+  }, [profileChoice]); // Dependency array: useEffect นี้จะทำงานเมื่อ profileChoice เปลี่ยนแปลงเท่านั้น
+
+  // Logic สำหรับการเติมข้อมูล Delivery Address
+  useEffect(() => {
+    if (addressChoice === "saved") {
+      setDeliveryAddress(userProfileData.savedAddress);
+    } else {
+      setDeliveryAddress("");
+    }
+  }, [addressChoice]); // Dependency array: useEffect นี้จะทำงานเมื่อ addressChoice เปลี่ยนแปลงเท่านั้น
+
   // useEffect Hook: ใช้สำหรับคำนวณราคารวม (subtotal) ใหม่ทุกครั้งที่ basket เปลี่ยนแปลง
   useEffect(() => {
     const calculatedSubtotal = basket.reduce(
-      // วนลูปในตะกร้า (basket) เพื่อคำนวณราคารวมของสินค้าทั้งหมด
       (sum, item) => sum + item.price * item.quantity,
-      0
-    ); // นำราคารวมปัจจุบัน (sum) มาบวกกับ (ราคา * จำนวน) ของสินค้าแต่ละชิ้น 0 // ค่าเริ่มต้นของ sum คือ 0
+      // วนลูปในตะกร้า (basket) เพื่อคำนวณราคารวมของสินค้าทั้งหมด
+      0 // นำราคารวมปัจจุบัน (sum) มาบวกกับ (ราคา * จำนวน) ของสินค้าแต่ละชิ้น
+    );
     setSubtotal(calculatedSubtotal); // อัปเดต state subtotal ด้วยราคารวมที่คำนวณได้
   }, [basket]); // Dependency array: useEffect จะทำงานใหม่เมื่อค่าใน basket เปลี่ยนแปลงเท่านั้น
 
   // ฟังก์ชัน handleConfirm: ทำงานเมื่อกดปุ่ม "Place Order"
   const handleConfirm = (event) => {
-    event.preventDefault(); // ป้องกันการ reload หน้าเว็บเมื่อฟอร์มถูก submit
+    event.preventDefault(); // ป้องกันการ reload หน้าเว็บ เมื่อ form ถูก submit
+    
     // คำนวณราคาสุทธิ (finalTotal) โดยตรวจสอบว่าถ้าเลือก "delivery" ให้บวกค่าจัดส่งเพิ่ม
     const finalTotal =
       orderMethod === "delivery" ? subtotal + deliveryFee : subtotal;
@@ -94,9 +139,6 @@ export const Checkout = () => {
 
   // --- การคำนวณค่าตัวแปรอื่นๆ สำหรับใช้ใน JSX ---
 
-  // ตรวจสอบว่าผู้ใช้เลือก "delivery" และ "new address" หรือไม่
-  const isNewAddress = orderMethod === "delivery" && addressChoice === "new";
-
   // คำนวณราคาสุทธิอีกครั้งสำหรับแสดงผลในหน้า Checkout
   const finalTotal =
     orderMethod === "delivery" ? subtotal + deliveryFee : subtotal;
@@ -104,14 +146,14 @@ export const Checkout = () => {
   // --- ส่วนของ JSX (หน้าตาของ Component) ---
   return (
     // Container หลักของ Component
-    <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center min-h-screen px-4 py-10">
+    <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10">
       {/* ฟอร์มทั้งหมด ที่เมื่อกด Submit จะเรียก handleConfirm */}
       <form
         onSubmit={handleConfirm}
         className="max-w-4xl mx-auto bg-[#fcfbfa] rounded-2xl shadow-lg p-4 sm:p-6 space-y-6"
       >
         {/* แถบหัวข้อ Checkout */}
-        <div className="bg-[#3F3C38] py-4 px-4 rounded-lg space-y-2">
+        <div className="bg-[#472C03] py-4 px-4 rounded-lg space-y-2">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#F5F2EC] text-center">
             🛒 Checkout
           </h1>
@@ -127,7 +169,7 @@ export const Checkout = () => {
               {/* วนลูปแสดงรายการสินค้าแต่ละชิ้นใน basket */}
               {basket.map((item) => (
                 <li
-                  // {/* key ที่จำเป็นสำหรับ React เพื่อระบุแต่ละ element ที่ไม่ซ้ำกัน */}
+                  // key ที่จำเป็นสำหรับ React เพื่อระบุแต่ละ element ที่ไม่ซ้ำกัน
                   key={item.id}
                   className="flex justify-between items-center text-sm sm:text-base"
                 >
@@ -135,7 +177,7 @@ export const Checkout = () => {
                   <div className="flex items-center gap-2">
                     {/* Quantity dropdown สำหรับเพื่มลดจำนวนสินค้า */}
                     <select
-                      // {/* กำหนดค่าที่แสดงใน dropdown ตาม state */}
+                      // กำหนดค่าที่แสดงใน dropdown ตาม state
                       value={item.quantity}
                       onChange={
                         (e) => handleQuantityChange(item.id, e.target.value) // เมื่อเปลี่ยนค่า ให้เรียกฟังก์ชันอัปเดตจำนวน
@@ -254,15 +296,95 @@ export const Checkout = () => {
                     onChange={(e) => setAddressChoice(e.target.value)}
                     className="accent-[#9C9284]"
                   />
-                  <span className="text-sm">Use new address</span>
+                  <span className="text-sm">Create new address</span>
                 </label>
               </div>
             )}
           </div>
         </div>
 
-        {/* Delivery Address Field จะแสดงเมื่อ User เลือก Delivery และ New Address */}
-        {isNewAddress && (
+        {/* section customer information */}
+        <div>
+          <h2 className="text-lg sm:text-xl font-semibold mb-2">
+            👤 Customer Information
+          </h2>
+          <div className="bg-[#F5F2EC] p-4 rounded-lg">
+            {/* 4. ปุ่ม Radio สำหรับเลือก Profile */}
+            <div className="flex gap-4 mb-4">
+              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+                <input
+                  type="radio"
+                  name="profile-choice"
+                  value="saved"
+                  checked={profileChoice === "saved"}
+                  onChange={(e) => setProfileChoice(e.target.value)}
+                  className="accent-[#9C9284]"
+                />
+                Use saved details
+              </label>
+              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+                <input
+                  type="radio"
+                  name="profile-choice"
+                  value="new"
+                  checked={profileChoice === "new"}
+                  onChange={(e) => setProfileChoice(e.target.value)}
+                  className="accent-[#9C9284]"
+                />
+                Enter new details
+              </label>
+            </div>
+
+            {/* input fields */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="First Name"
+                className="border rounded-lg p-2 text-sm sm:text-base"
+                value={customerInfo.firstName}
+                onChange={(e) =>
+                  setCustomerInfo({
+                    ...customerInfo, //ใช้ Spread Operator (...) เพื่อ คัดลอก Properties ทั้งหมดจาก Object customerInfo เดิมมาสร้างเป็น Object ใหม่
+                    firstName: e.target.value,
+                  }) // อัปเดตแค่ firstName
+                }
+              />
+              <input
+                type="text"
+                placeholder="Last Name"
+                className="border rounded-lg p-2 text-sm sm:text-base"
+                value={customerInfo.lastName}
+                onChange={(e) =>
+                  setCustomerInfo({ ...customerInfo, lastName: e.target.value })
+                }
+              />
+              <input
+                type="text"
+                placeholder="Phone Number"
+                className="border rounded-lg p-2 text-sm sm:text-base"
+                value={customerInfo.phoneNumber}
+                onChange={(e) =>
+                  setCustomerInfo({
+                    ...customerInfo,
+                    phoneNumber: e.target.value,
+                  })
+                }
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="border rounded-lg p-2 text-sm sm:text-base"
+                value={customerInfo.email}
+                onChange={(e) =>
+                  setCustomerInfo({ ...customerInfo, email: e.target.value })
+                }
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* กล่อง Delivery Address จะ pop up มาใต้ Customer Information เมื่อ user เลือก order type เป็น Delivery */}
+        {orderMethod === "delivery" && ( // เงื่อนไขการแสดงผลเป็น "delivery"
           <div>
             <h2 className="text-lg sm:text-xl font-semibold mb-2">
               🏠 Delivery Address
@@ -278,56 +400,6 @@ export const Checkout = () => {
           </div>
         )}
 
-        {/* Customer Information Section */}
-        <div>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2">
-            👤 Customer Information
-          </h2>
-          <div className="bg-[#F5F2EC] p-4 rounded-lg">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Input สำหรับชื่อเต็ม */}
-              <input
-                type="text"
-                placeholder="Full Name"
-                className="border rounded-lg p-2 text-sm sm:text-base"
-                value={customerInfo.fullName}
-                onChange={
-                  (e) =>
-                    setCustomerInfo({
-                      ...customerInfo,
-                      fullName: e.target.value,
-                    }) // อัปเดตแค่ fullName
-                }
-              />
-
-              {/* Input สำหรับเบอร์โทรศัพท์ */}
-              <input
-                type="text"
-                placeholder="Phone Number"
-                className="border rounded-lg p-2 text-sm sm:text-base"
-                value={customerInfo.phoneNumber}
-                onChange={(e) =>
-                  setCustomerInfo({
-                    ...customerInfo,
-                    phoneNumber: e.target.value,
-                  })
-                }
-              />
-
-              {/* Input สำหรับอีเมล */}
-              <input
-                type="email"
-                placeholder="Email"
-                className="border rounded-lg p-2 md:col-span-2 text-sm sm:text-base"
-                value={customerInfo.email}
-                onChange={(e) =>
-                  setCustomerInfo({ ...customerInfo, email: e.target.value })
-                }
-              />
-            </div>
-          </div>
-        </div>
-
         {/* Time & Note Section เลือกเวลาและใส่หมายเหตุ */}
         <div>
           <h2 className="text-lg sm:text-xl font-semibold mb-2">
@@ -339,8 +411,8 @@ export const Checkout = () => {
               <select
                 className="border rounded-lg p-2 text-sm sm:text-base"
                 value={timeNote.time}
-                onChange={(e) =>
-                  setTimeNote({ ...timeNote, time: e.target.value })
+                onChange={
+                  (e) => setTimeNote({ ...timeNote, time: e.target.value }) //ใช้ Spread Operator เพื่อคัดลอก Properties ทั้งหมดจาก Object timeNote เดิมมาสร้างเป็น Object ใหม่
                 }
               >
                 <option>In 15 minutes</option>
@@ -366,20 +438,12 @@ export const Checkout = () => {
         {/* ปุ่มสำหรับกดยืนยันคำสั่งซื้อ */}
         <button
           type="submit" // กำหนดให้เป็นปุ่ม submit ของฟอร์ม
-          className="w-full sm:w-auto bg-[#3F3C38] text-[#FFFFFF] px-6 py-3 rounded-xl hover:bg-[#E6D9C2] hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
+          className="w-full sm:w-auto bg-[#472C03] text-[#FFFFFF] px-6 py-3 rounded-xl hover:bg-[#E6D9C2] hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
         >
-          ✅ Place Order
+          Place Order
         </button>
       </form>
     </div>
   );
 };
 
-// Notes - Pending for Discussion
-// 1. Checkout.jsx - FYI เมื่อ user กดเลือก saved address แล้วจะไปดึงข้อมูลลูกค้าจากหน้า user profile มาอัติโนมัติ ต้องมี user data ก่อน และจะทำภายหลัง - Connect with Earth
-// 2. Checkout.jsx - FYI สร้าง ตัวแปร basket ไว้แล้ว รับข้อมูล basket ทั้งก้อน จากหน้า basket ของพี่ตี - connect with P'tee
-// 3. Checkout.jsx - FYI add function delete มา เพื่อลบรายการสินค้าออก หากลูกค้าเปลี่ยนใจไม่เอารายการนี้แล้ว - all ควรเอาออกไหม หรือว่าเอาไว้ดี ถ้าไม่มี function delete ก็คือเมื่อ user กดปุ่ม Go to checkout จากหน้าพี่ตี มาหน้านี้แล้ว ก็สามารถเพิ่มลดจำนวนสินค้าได้อย่างเดียว ลบรายการสินค้าออกไม่ได้
-// 4. OrderConfirmation.jsx - FYI สร้าง Property ชื่อ Image ไว้แล้ว เพื่่อรับค่าของ basket ทั้งก้อน ที่ส่งมาจากหน้า Checkout
-// 5. OrderConfirmation.jsx - FYI สร้างปุ่ม Track Your Order กดแล้วจะ link ไปที่หน้า User Profile เพื่อดูสถานะคำสั่งซื้อ รอใส่ path เพ่ื่อ navigate - Connect with Earth
-// 6. OrderConfirmation.jsx - Payment Method ยังไม่แน่ใจว่าจะใส่ไหม เลยตั้งเป็น static ว่า mobile banking ไว้ก่อน จะเอาไว้หรือให้ตัดออกดี - all
-// 7. Both pages - Background Image เอารูปไหนดี หรือเอาเป็นพื้นหลังสี base เปล่าๆ - all

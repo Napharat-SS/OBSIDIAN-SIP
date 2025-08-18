@@ -14,7 +14,7 @@ export const OrderConfirmation = () => {
   // ฟังก์ชันสำหรับจัดการเมื่อกดปุ่ม "Track Your Order"
   const handleTrackOrder = () => {
     // กดแล้ว จะไปหน้า User Profile เพื่อให้ User ติดตามสถานะคำสั่งซื้อ
-    navigate("/");
+    navigate("/profile/notification");
   };
 
   // Function to generate a random order number (สร้างหมายเลขคำสั่งซื้อแบบสุ่ม)
@@ -37,7 +37,7 @@ export const OrderConfirmation = () => {
   if (!location.state) {
     return (
       <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center min-h-screen px-4 py-10">
-        <div className="text-center text-[#F5F2EC] p-6 rounded-lg bg-red-900 bg-opacity-70">
+        <div className="text-center text-[#3F3C38] p-6 rounded-lg bg-neutral-300 bg-opacity-70">
           <h1 className="text-4xl font-bold">Error!</h1>
           <p className="mt-4">
             No order data found. Please go back to the checkout page.
@@ -56,10 +56,11 @@ export const OrderConfirmation = () => {
 
   // --- ส่วนของ JSX (หน้าตาของ Component) ---
   return (
-    // Container หลักของหน้าจอ อาจมีภาพพื้นหลัง
-    <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center min-h-screen px-4 py-10 text-[#3F3C38]">
-      <div className="backdrop-brightness-90 min-h-screen">
+    // Container หลักของหน้าจอ
+    <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10 text-[#3F3C38]">
+      <div className="min-h-screen">
         <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+
           {/* Information Section on the Left side */}
           <div className="bg-neutral-200 shadow-md rounded-2xl p-6 relative">
             <h1 className="text-4xl font-bold mb-4">
@@ -75,20 +76,20 @@ export const OrderConfirmation = () => {
             <div className="mb-6">
               <h2 className="text-3xl font-semibold mb-2">Billing address</h2>
               <p className="text-xl">
-                <strong>Name:</strong> {customer.fullName}
+                <strong>Name:</strong> {customer?.firstName} {customer?.lastName}{/* เพิ่ม ?. เพื่อป้องกัน error ถ้า customer เป็น undefined หรือ null */}
               </p>
               <p className="text-xl">
                 {/* แสดงที่อยู่เฉพาะเมื่อมีค่าจัดส่ง */}
                 <strong>Address:</strong> {isDelivery ? address : "N/A"}
               </p>
               <p className="text-xl">
-                <strong>Phone:</strong> {customer.phoneNumber}
+                <strong>Phone:</strong> {customer?.phoneNumber} {/* เพิ่ม ?. เพื่อป้องกัน error ถ้า customer เป็น undefined หรือ null */}
               </p>
               <p className="text-xl">
-                <strong>Email:</strong> {customer.email}
+                <strong>Email:</strong> {customer?.email} {/* เพิ่ม ?. เพื่อป้องกัน error ถ้า customer เป็น undefined หรือ null */}
               </p>
               <p className="text-l mt-4">
-                <strong>Note:</strong> {note}
+                <strong>Note:</strong> {note || "N/A"} {/* เพิ่ม || 'N/A' เพื่อแสดง 'N/A' ถ้า note ไม่มีค่า */}
               </p>
             </div>
 
@@ -115,8 +116,8 @@ export const OrderConfirmation = () => {
               <div>
                 <strong>Order Number</strong>
                 <br />
-                {generateOrderNumber()}{" "}
                 {/* เรียกใช้ฟังก์ชันสร้างเลขที่คำสั่งซื้อ */}
+                {generateOrderNumber()}{" "}
               </div>
               {/* ยังไม่แน่ใจว่าจะใส่ไหม เลยตั้งเป็น static mobile banking ไว้ก่อน */}
               <div>
