@@ -14,6 +14,8 @@ import { ForgotPassword } from "./views/ForgotPassword";
 import Profile from "./views/Profile";
 import Profile_update from "./views/Profile_update";
 import Profile_delete from "./views/Profile_delete";
+import Addtocart from "./views/Addtocart";
+
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,7 @@ const router = createBrowserRouter([
       { path: "profile/privacy", element: <Privacy /> },
       { path: "profile/privacy/update", element: <Profile_update /> },
       { path: "profile/privacy/delete", element: <Profile_delete /> },
+      { path : "addtocart", element: <Addtocart /> },
     ],
   },
 ]);
