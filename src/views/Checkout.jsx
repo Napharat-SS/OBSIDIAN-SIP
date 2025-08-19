@@ -24,9 +24,9 @@ export const Checkout = () => {
   );
   // สร้าง state สำหรับวิธีรับสินค้า (dinein, pickup, delivery) เริ่มต้นเป็น "dinein"
   const [orderMethod, setOrderMethod] = useState("dinein");
-  // 4. เพิ่ม state สำหรับจัดการตัวเลือก "Use saved profile" เริ่มต้นเป็น "saved"
+  // เพิ่ม state สำหรับจัดการตัวเลือก "Use saved details" เริ่มต้นเป็น "saved"
   const [profileChoice, setProfileChoice] = useState("saved");
-  // 5. จัดการ state สำหรับ "Use saved address" เริ่มต้นเป็น "saved"
+  // จัดการ state สำหรับ "Use saved address" เริ่มต้นเป็น "saved"
   const [addressChoice, setAddressChoice] = useState("saved");
   // state ของข้อมูลลูกค้าให้มี First Name, Last Name และเริ่มต้นด้วยข้อมูลจาก profile
   const [customerInfo, setCustomerInfo] = useState({
@@ -35,7 +35,7 @@ export const Checkout = () => {
     phoneNumber: userProfileData.phoneNumber,
     email: userProfileData.email,
   });
-  // 5. กำหนดค่าเริ่มต้นของ Delivery Address จากข้อมูลใน profile
+  // กำหนดค่าเริ่มต้นของ Delivery Address จากข้อมูลใน profile
   const [deliveryAddress, setDeliveryAddress] = useState(
     userProfileData.savedAddress
   );
@@ -57,15 +57,14 @@ export const Checkout = () => {
       (
         prevBasket // อัปเดต state basket โดยอิงจากค่าเก่า (prevBasket)
       ) =>
-      prevBasket.map(
-        (
-          item // วนลูปในตะกร้าเก่าเพื่อหา item ที่ต้องการแก้ไข
-        ) =>
-        item.id === itemId ?
-        { ...item, quantity: Number(newQuantity) } // ถ้า item.id ตรงกับ itemId ที่ส่งมา ให้สร้าง object ใหม่ โดยอัปเดตแค่ quantity
-        :
-        item // ถ้าไม่ตรง ก็คืนค่า item เดิม
-      )
+        prevBasket.map(
+          (
+            item // วนลูปในตะกร้าเก่าเพื่อหา item ที่ต้องการแก้ไข
+          ) =>
+            item.id === itemId
+              ? { ...item, quantity: Number(newQuantity) } // ถ้า item.id ตรงกับ itemId ที่ส่งมา ให้สร้าง object ใหม่ โดยอัปเดตแค่ quantity
+              : item // ถ้าไม่ตรง ก็คืนค่า item เดิม
+        )
     );
   };
 
@@ -75,9 +74,9 @@ export const Checkout = () => {
     setBasket((prevBasket) => prevBasket.filter((item) => item.id !== itemId));
   };
 
-  // Logic: ใช้ useEffect เพื่อจัดการการเติม Customer Info และ address อัตโนมัติ
+  // ใช้ useEffect เพื่อจัดการการเติม Customer Info และ address อัตโนมัติ
   useEffect(() => {
-    // Logic สำหรับการเติมข้อมูล Customer Info
+    // Logic สำหรับการเติมข้อมูล Customer Info เข้าไปใน field
     if (profileChoice === "saved") {
       setCustomerInfo({
         firstName: userProfileData.firstName,
@@ -95,7 +94,7 @@ export const Checkout = () => {
     }
   }, [profileChoice]); // Dependency array: useEffect นี้จะทำงานเมื่อ profileChoice เปลี่ยนแปลงเท่านั้น
 
-  // Logic สำหรับการเติมข้อมูล Delivery Address
+  // Logic สำหรับการเติมข้อมูล Delivery Address เข้าไปใน field
   useEffect(() => {
     if (addressChoice === "saved") {
       setDeliveryAddress(userProfileData.savedAddress);
@@ -117,7 +116,7 @@ export const Checkout = () => {
   // ฟังก์ชัน handleConfirm: ทำงานเมื่อกดปุ่ม "Place Order"
   const handleConfirm = (event) => {
     event.preventDefault(); // ป้องกันการ reload หน้าเว็บ เมื่อ form ถูก submit
-    
+
     // คำนวณราคาสุทธิ (finalTotal) โดยตรวจสอบว่าถ้าเลือก "delivery" ให้บวกค่าจัดส่งเพิ่ม
     const finalTotal =
       orderMethod === "delivery" ? subtotal + deliveryFee : subtotal;
@@ -147,7 +146,7 @@ export const Checkout = () => {
   return (
     // Container หลักของ Component
     <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10">
-      {/* ฟอร์มทั้งหมด ที่เมื่อกด Submit จะเรียก handleConfirm */}
+      {/* ฟอร์มทั้งหมด ที่เมื่อกดปุ่ม Place Order จะเรียก handleConfirm */}
       <form
         onSubmit={handleConfirm}
         className="max-w-4xl mx-auto bg-[#fcfbfa] rounded-2xl shadow-lg p-4 sm:p-6 space-y-6"
@@ -309,7 +308,7 @@ export const Checkout = () => {
             👤 Customer Information
           </h2>
           <div className="bg-[#F5F2EC] p-4 rounded-lg">
-            {/* 4. ปุ่ม Radio สำหรับเลือก Profile */}
+            {/* ปุ่ม Radio สำหรับเลือก Details (Customer Info) */}
             <div className="flex gap-4 mb-4">
               <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
                 <input
@@ -342,11 +341,12 @@ export const Checkout = () => {
                 placeholder="First Name"
                 className="border rounded-lg p-2 text-sm sm:text-base"
                 value={customerInfo.firstName}
-                onChange={(e) =>
-                  setCustomerInfo({
-                    ...customerInfo, //ใช้ Spread Operator (...) เพื่อ คัดลอก Properties ทั้งหมดจาก Object customerInfo เดิมมาสร้างเป็น Object ใหม่
-                    firstName: e.target.value,
-                  }) // อัปเดตแค่ firstName
+                onChange={
+                  (e) =>
+                    setCustomerInfo({
+                      ...customerInfo, //ใช้ Spread Operator (...) เพื่อ คัดลอก Properties ทั้งหมดจาก Object customerInfo เดิมมาสร้างเป็น Object ใหม่
+                      firstName: e.target.value,
+                    }) // อัปเดตแค่ firstName
                 }
               />
               <input
@@ -446,4 +446,3 @@ export const Checkout = () => {
     </div>
   );
 };
-
