@@ -1,3 +1,4 @@
+import React from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 
 // สร้าง Component ชื่อ OrderConfirmation เป็น function
@@ -133,14 +134,7 @@ export const OrderConfirmation = () => {
                 (
                   item // วนลูปแสดงสินค้าแต่ละชิ้นใน basket
                 ) => (
-                  <div key={item.id} className="flex items-center py-4 gap-4">
-                    <img
-                      // ใช้ URL ของรูปภาพจากข้อมูลสินค้าจริงที่ส่งมา
-                      // ดึงค่าจาก property image ของ object item ที่ส่งมาใน basket
-                      src={item.image}
-                      alt={`${item.name} Image`}
-                      className="w-16 h-16 rounded-md object-cover" // ใส่ object-cover เพื่อให้รูปภาพไม่เสียสัดส่วน
-                    />
+                  <div key={item.id} className="flex items-center py-4">
                     <div className="flex-1">
                       <h3 className="font-semibold">{item.name}</h3>
                       <p className="text-sm text-[#7A7267]">
@@ -157,12 +151,13 @@ export const OrderConfirmation = () => {
             </div>
 
             {/* Part สรุปราคา */}
-            <div className="mt-4 text-sm text-[#3F3C38] space-y-1">
+            <div className="mt-4 text-md text-[#3F3C38] space-y-1">
               <div className="flex justify-between">
-                <span>Sub Total</span>
-                <span>฿{subtotal}.00</span>
-                {/* แสดงค่าจัดส่งเฉพาะเมื่อ Order Type เป็น Delivery */}
+                <span><strong>Sub Total</strong></span>
+                <span><strong>฿{subtotal}.00</strong></span>
               </div>
+              
+              {/* แสดงค่าจัดส่งเฉพาะเมื่อ Order Type เป็น Delivery */}
               {isDelivery && (
                 <div className="flex justify-between">
                   <span>Shipping</span>
@@ -170,7 +165,7 @@ export const OrderConfirmation = () => {
                 </div>
               )}
 
-              <div className="flex justify-between font-bold pt-2 border-t">
+              <div className="flex justify-between font-bold pt-2 border-t mt-8">
                 <span className="pt-4 text-xl">Order Total</span>
                 <span className="pt-4 text-xl">฿{total}.00</span>
               </div>
