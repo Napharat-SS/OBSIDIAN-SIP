@@ -55,6 +55,7 @@ export function Menu() {
             {currentCat.data.map((item) => (
               <MenuCard
                 key={item.id}
+                slug={item.slug}
                 title={item.title}
                 description={item.description}
                 price={item.price}

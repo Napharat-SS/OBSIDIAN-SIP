@@ -158,7 +158,7 @@ const Herosection = () => {
                     duration: 1,
                   },
                 }}
-                className={`${activeData.sizemodal} font-extrabold absolute top-0 left-0.5 -translate-x-0.5 -translate-y-0.5 overflow-hidden text-clip`}
+                className={`${activeData.sizemodal} font-extrabold absolute top-0 left-0.5 -translate-x-0.5 -translate-y-0.5 overflow-hidden text-clip hidden sm:block`}
               >
                 {activeData.modal}
               </motion.div>

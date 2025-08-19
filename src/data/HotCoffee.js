@@ -2,6 +2,7 @@ export const hotCoffeeList = [
   {
     id: 101,
     title: "Hot Espresso",
+    slug: "Hot Espresso",
     description: "An intense, full-flavored espresso.",
     price: "115฿",
     img: "/hot-espresso.jpg",
@@ -9,6 +10,7 @@ export const hotCoffeeList = [
   {
     id: 102,
     title: "Hot Americano",
+    slug: "Hot Americano",
     description: "Espresso with hot water.",
     price: "120฿",
     img: "/hot-americano.jpg",
@@ -16,6 +18,7 @@ export const hotCoffeeList = [
   {
     id: 103,
     title: "Hot Latte",
+    slug: "Hot Latte",
     description: "Espresso, steamed milk and foam.",
     price: "130฿",
     img: "/hot-latte.jpg",
@@ -23,6 +26,7 @@ export const hotCoffeeList = [
   {
     id: 104,
     title: "Hot Cappuccino",
+    slug: "Hot Cappuccino",
     description: "Espresso, steamed milk and layer of foam.",
     price: "150฿",
     img: "/hot-cappuccino.jpg",
@@ -30,6 +34,7 @@ export const hotCoffeeList = [
   {
     id: 105,
     title: "Hot Flat White",
+    slug: "Hot Flat White",
     description: "Ristretto shots with steamed milk.",
     price: "145฿",
     img: "/hot-flatwhite.jpg",
@@ -37,6 +42,7 @@ export const hotCoffeeList = [
   {
     id: 106,
     title: "Hot Mocha",
+    slug: "Hot Mocha",
     description: "Espresso shot, mocha sauce, milk and whipped cream.",
     price: "145฿",
     img: "/hot-mocha.jpg",
@@ -44,6 +50,7 @@ export const hotCoffeeList = [
   {
     id: 107,
     title: "Hot White Chocolate Mocha",
+    slug: "Hot White Chocolate Mocha",
     description:
       "Espresso, steamed milk and white chocolate sauce with whipped cream.",
     price: "155฿",
@@ -52,6 +59,7 @@ export const hotCoffeeList = [
   {
     id: 108,
     title: "Hot Caramel Macchiato",
+    slug: "Hot Caramel Macchiato",
     description: "Milk, vanilla syrup espresso shot and caramel drizzles.",
     price: "155฿",
     img: "/hot-caramelmacchiato.jpg",
