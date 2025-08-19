@@ -13,7 +13,6 @@ const MainLayout = () => {
 
       <Footer />
       <Toaster richColors position="top-right" />
-      <main></main>
     </>
   );
 };

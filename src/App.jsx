@@ -1,21 +1,21 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout";
 import Aboutus from "./views/Aboutus";
+import Addtocart from "./views/Addtocart";
 import { Checkout } from "./views/Checkout";
 import { Contact } from "./views/Contact";
+import { ForgotPassword } from "./views/ForgotPassword";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Menu from "./views/Menu";
 import Notification from "./views/Notification";
 import { OrderConfirmation } from "./views/OrderConfirmation";
 import Privacy from "./views/Privacy";
-import { RegisterForm } from "./views/Register";
-import { ForgotPassword } from "./views/ForgotPassword";
+import ProductDetail from "./views/ProductDetail";
 import Profile from "./views/Profile";
-import Profile_update from "./views/Profile_update";
 import Profile_delete from "./views/Profile_delete";
-import Addtocart from "./views/Addtocart";
-
+import Profile_update from "./views/Profile_update";
+import { RegisterForm } from "./views/Register";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +29,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "menu", element: <Menu /> },
+      { path: "menu/:slug", element: <ProductDetail /> },
       { path: "about", element: <Aboutus /> },
       { path: "contact", element: <Contact /> },
       { path: "login", element: <Login /> },
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       { path: "profile/privacy", element: <Privacy /> },
       { path: "profile/privacy/update", element: <Profile_update /> },
       { path: "profile/privacy/delete", element: <Profile_delete /> },
-      { path : "addtocart", element: <Addtocart /> },
+      { path: "addtocart", element: <Addtocart /> },
     ],
   },
 ]);

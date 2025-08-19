@@ -24,7 +24,7 @@ const Newmenu = () => {
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="flex-shrink-0 w-72 md:w-1/2 xl:w-auto"
+              className="flex-shrink-0 w-72 md:w-1/2 xl:w-auto flex flex-col items-center"
             >
               <MenuCard
                 id={product.id}
