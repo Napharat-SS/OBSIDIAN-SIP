@@ -6,6 +6,7 @@ export const coffeeBeansList = [
     description: "คั่วกลาง (Medium Roast) กลมกล่อม หอมคาราเมล",
     price: "250฿",
     img: "/coffeebean-Photoroom 1.png",
+    category: "coffeeBeans",
   },
   {
     id: 402,
@@ -14,6 +15,7 @@ export const coffeeBeansList = [
     description: "คั่วอ่อน (Light Roast) เปรี้ยวนิด ดอกไม้หน่อย",
     price: "250฿",
     img: "/coffeebean-Photoroom 2.png",
+    category: "coffeeBeans",
   },
   {
     id: 403,
@@ -22,6 +24,7 @@ export const coffeeBeansList = [
     description: "คั่วเข้ม (Dark Roast) เข้มข้น ขมแบบกลมกล่อม",
     price: "250฿",
     img: "/coffeebean-Photoroom 3.png",
+    category: "coffeeBeans",
   },
   {
     id: 404,
@@ -31,5 +34,6 @@ export const coffeeBeansList = [
       "คั่วอ่อนถึงกลาง (Light-Medium Roast) หอมผลไม้ ซับซ้อน มีเสน่ห์",
     price: "250฿",
     img: "/coffeebean-Photoroom 4.png",
+    category: "coffeeBeans",
   },
 ];
