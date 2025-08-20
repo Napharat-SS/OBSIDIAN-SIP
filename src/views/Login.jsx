@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import bgImage from "../assets/background.png";
 
 const Login = () => {
@@ -17,7 +18,7 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
-              placeholder="E-mail"
+              placeholder="Username"
               required
             />
           </div>
@@ -42,9 +43,9 @@ const Login = () => {
               />
               Remember me
             </label>
-            <a href="#" className="text-sm text-blue-500 hover:underline">
+            <Link to="/forgotpassword" className="text-sm text-blue-500 hover:underline">
               Forgot password?
-            </a>
+            </Link>
           </div>
 
           <button
@@ -56,9 +57,9 @@ const Login = () => {
 
           <p className="text-sm text-center mt-4">
             Don't have an account?
-            <a href="#" className="text-blue-400 hover:underline">
+            <Link to="/register" className="text-blue-400 hover:underline">
               Register
-            </a>
+            </Link>
           </p>
         </div>
       </div>

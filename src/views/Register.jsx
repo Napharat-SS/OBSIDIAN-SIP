@@ -43,14 +43,14 @@ export const RegisterForm =() => {
 
   return (
     <div className="bg-[url('/bg-register.jpg')] bg-cover bg-center min-h-screen flex items-center justify-center">
-      <div className="bg-[#FFF0D7] p-8 rounded-xl shadow-lg w-full max-w-xl md:px-6 md:m-10 md:max-w-xl">
+      <div className="bg-[#F8F6F2] p-8 mx-6 rounded-xl shadow-lg w-full max-w-xl md:px-10 md:my-10 md:mx-5 md:max-w-xl">
         <h2 className="text-4xl font-bold mb-6 text-[#3F3C38]">Register</h2>
         <Form onSubmit={handleSubmit} className="gap-4 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
             <div>
-              <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
+              {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
                 Firstname
-              </label>
+              </label> */}
               <input
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
                 type="text"
@@ -61,9 +61,9 @@ export const RegisterForm =() => {
               />
             </div>
             <div>
-              <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
+              {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
                 Lastname
-              </label>
+              </label> */}
               <input
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
                 type="text"
@@ -75,22 +75,22 @@ export const RegisterForm =() => {
             </div>
           </div>
           <div className="mb-2">
-            <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
+            {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
               Email
-            </label>
+            </label> */}
             <input
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
               type="email"
               id="email"
               name="email"
-              placeholder="xxxx@email.com"
+              placeholder="Email"
               required
             />
           </div>
           <div className="mb-2">
-            <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
+            {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
               Address
-            </label>
+            </label> */}
             <input
               type="text"
               id="address"
@@ -100,30 +100,35 @@ export const RegisterForm =() => {
             <input
               type="text"
               className="w-full px-3 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
-              placeholder="Sub-district"
+              placeholder="District"
+            />
+            <input
+              type="text"
+              className="w-full px-3 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
+              placeholder="City"
             />
             <input
               type="text"
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
-              placeholder="District/ City"
+              placeholder="Zip Code"
             />
           </div>
-          <div className="">
-            <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
+          <div className="mb-2">
+            {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
               Telephone
-            </label>
+            </label> */}
             <input
               type="text"
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
-              placeholder="0XX-XXX-XXXX"
+              placeholder="Phone"
               required
             />
           </div>
-          <div className="flex flex-col mb-2">
-            <div>
-              <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
+          <div>
+            <div className="mb-2">
+              {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
                 Username
-              </label>
+              </label> */}
               <input
                 type="text"
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
@@ -133,10 +138,10 @@ export const RegisterForm =() => {
                 name="username"
               />
             </div>
-            <div className="">
-              <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
+            <div>
+              {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
                 Password
-              </label>
+              </label> */}
               <input
                 type="password"
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
@@ -149,7 +154,7 @@ export const RegisterForm =() => {
               />
             </div>
             <div className="flex gap-4 py-2">
-              <div className="">
+              <div>
                 <RuleItem
                   condition={rules.hasUpper}
                   text="At least one uppercase letter (A-Z)"
@@ -170,10 +175,10 @@ export const RegisterForm =() => {
                 />
               </div>
             </div>
-            <div className="">
-              <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
+            <div className="mb-4">
+              {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
                 Confirm Password
-              </label>
+              </label> */}
               <input
                 type="password"
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
