@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom";
 import bgImage from "../assets/background.png";
 
+
 const Login = () => {
   return (
     <div className="relative">
-      <div
-        className=" absolute inser-0 h-screen w-full bg-left bg-[length:1800px_1800px] flex item-center justify-center "
+    <div className=" bg-left bg-[length:1800px_1800px] w-full min-h-screen flex justify-center items-center"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
         <div className="absolute inset-0 bg-white/50"></div>
-        <div className="relative bg-white rounded-2xl p-8 w-96 h-96 shadow-md mt-20">
-          <h1 className="font-bold text-3xl text-center mb-6">Login</h1>
 
-          <div>
+          <div className="relative bg-white rounded-2xl p-8 w-96 h-96 shadow-md">
+            <h1 className="font-bold text-3xl text-center mb-6">Login</h1>
+
+            <div>
             <input
               className="bg-[#fff9a0] text-sm rounded-xl py-3 px-4 mt-2 w-full"
               type="email"
@@ -58,12 +59,17 @@ const Login = () => {
           <p className="text-sm text-center mt-4">
             Don't have an account?
             <Link to="/register" className="text-blue-400 hover:underline">
-              Register
+              &nbsp;Register
             </Link>
           </p>
-        </div>
-      </div>
+
+          </div>
+
+
+
     </div>
+    </div>
+    
   );
 };
 
