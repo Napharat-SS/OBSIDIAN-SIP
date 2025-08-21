@@ -12,18 +12,18 @@ export const MenuCard = ({ id, title, description, price, img }) => {
 
   const slug = slugify(title);
   return (
-    <div className="flex justify-center py-2 ">
-      <Card key={id} className="flex flex-col h-full bg-[#dfc6aa]">
-        <CardContent className=" flex flex-col justify-between">
+    <div className="flex flex-wrap justify-center gap-4">
+      <Card key={id} className="flex flex-col md:w-auto md:h-auto bg-[#dfc6aa]">
+        <CardContent className=" flex flex-col justify-between h-full">
           <div className="md:flex md:flex-col md:justify-center">
-            <div className=" md:flex md:justify-center mb-4 fl justify-center">
+            <div className="flex justify-center mb-4">
               <Link to={`/menu/${slug}`}>
                 <img
                   src={img}
                   alt={title}
                   className="h-50 w-40 object-cover rounded-lg md:round-3xl md:h-95 md:w-80 hover:scale-105 transition-transform duration-300"
                 />
-              </Link>{" "}
+              </Link>
             </div>
             <div className="text-2xl flex flex-col flex-grow md:flex md:justify-start md:h-30 md:space-y-2 ">
               <div className="font-bold text-xl hover:underline cursor-pointer">
