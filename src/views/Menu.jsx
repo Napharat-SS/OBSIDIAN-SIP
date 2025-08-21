@@ -51,7 +51,7 @@ export function Menu() {
           ))}
         </div>
         <div className="flex justify-center">
-          <div className="grid grid-cols-3 md:grid-cols-4 gap-x-4 w-full max-w-6xl">
+          <div className="flex flex-col md:grid md:grid-cols-4 gap-x-4 w-full max-w-6xl">
             {currentCat.data.map((item) => (
               <MenuCard
                 key={item.id}
