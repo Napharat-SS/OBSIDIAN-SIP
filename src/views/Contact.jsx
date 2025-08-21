@@ -16,18 +16,15 @@ export const Contact = () => {
                 <div className="flex flex-row md:flex items-center space-y-2 ">
                   <img src="./public/phone.png" className="h-12 w-8" />
                   <div className="ml-4">
-                    <p className="font-bold">Telephone</p>
-                    <p>088-888-8888</p>
+                    <p className="font-bold">Phone</p>
+                    <p>(012) 345 6789</p>
                   </div>
                 </div>
                 <div className="flex space-y-2 items-center">
                   <img src="./public/pin_address.png" className="h-9 w-8" />
                   <div className="ml-4">
                     <p className="font-bold">Address</p>
-                    <p>
-                      888/8 The generation place,
-                      <br /> Star Avenue, Bangkok
-                    </p>
+                    <p>10 JSD, Bangkok, Thailand</p>
                   </div>
                 </div>
               </div>
@@ -63,7 +60,7 @@ export const Contact = () => {
           </div>
           <Form className="flex-col pb-10 px-4 md:w-3/5 " method="post">
             <div>
-              <label className="font-semibold text-xl mb-5">Firstname</label>
+              {/* <label className="font-semibold text-xl mb-5">Firstname</label> */}
               <input
                 className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E] mb-1"
                 type="text"
@@ -72,7 +69,7 @@ export const Contact = () => {
                 placeholder="Firstname"
                 required
               />
-              <label className="font-semibold text-xl mb-5">Lastname</label>
+              {/* <label className="font-semibold text-xl mb-5">Lastname</label> */}
               <input
                 className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E] mb-1"
                 type="text"
@@ -81,16 +78,16 @@ export const Contact = () => {
                 placeholder="Lastname"
                 required
               />
-              <label className="font-semibold text-xl mb-5">Email</label>
+              {/* <label className="font-semibold text-xl mb-5">Email</label> */}
               <input
                 className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E] mb-1"
                 type="email"
                 id="email"
                 name="email"
-                placeholder="xxxx@email.com"
+                placeholder="Email"
                 required
               />
-              <label className="font-semibold text-xl mb-5">Message</label>
+              {/* <label className="font-semibold text-xl mb-5">Message</label> */}
               <textarea
                 className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E] mb-1"
                 placeholder="Your Message"

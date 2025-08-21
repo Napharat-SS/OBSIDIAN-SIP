@@ -415,8 +415,8 @@ export const Checkout = () => {
                   (e) => setTimeNote({ ...timeNote, time: e.target.value }) //ใช้ Spread Operator เพื่อคัดลอก Properties ทั้งหมดจาก Object timeNote เดิมมาสร้างเป็น Object ใหม่
                 }
               >
+                <option>Now</option>
                 <option>In 15 minutes</option>
-                <option>In 30 minutes</option>
                 <option>In 1 hour</option>
                 <option>Custom Time</option>
               </select>
