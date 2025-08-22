@@ -5,17 +5,17 @@ import bgImage from "../assets/background.png";
 const Aboutus = () => {
   return (
     <>
-    <div
-          className=" absolute bg-left bg-[length:1800px_1800px] text-white font-kanit "
-          style={{ backgroundImage: `url(${bgImage})` }} 
-        >
-          <div className="absolute inset-0 bg-white/50"></div>
+    <div className="relative">
+      <div className=" bg-left bg-[length:1800px_1800px] text-white font-kanit w-full min-h-screen "
+          style={{ backgroundImage: `url(${bgImage})` }} >
 
-    <div className="relative m-4 md:m-10 ">
+            <div className="absolute inset-0 bg-orange-300/50"></div>
+
+              <div className="relative p-10 ">
             <div className="flex-col md:flex-row lg:flex ">
 
-              <div className="flex-1">
-                <div className="text-justify bg-black opacity-60 p-8 mb-3 shadow-md rounded-2xl mt-3 ">
+              <div className="flex-1 pt-5">
+                <div className="text-justify bg-black opacity-70 p-8 mb-3 shadow-md rounded-2xl mt-3 ">
                   <h1 className="text-3xl text-center pb-5">About us</h1>
                   <p>
                   &nbsp;&nbsp;&nbsp;&nbsp;ObsidianSip ร้าน Coffee
@@ -32,7 +32,7 @@ const Aboutus = () => {
                 </div>
               </div>
 
-              <div className="relative flex-col sm:flex md:flex-row lg:flex ml-5 mr-3">
+              <div className="relative pt-5 flex-col sm:flex md:flex-row lg:flex ml-5 mr-3">
                 <div className=" w-90 md:w-80  ">
                   <Lens>
                     <img
@@ -61,7 +61,7 @@ const Aboutus = () => {
                 ></iframe>
               
               <div className="flex-1 ml-5 mt-3 md:mt-7 md:w-full">
-                <div className=" bg-black opacity-60 rounded-2xl p-8  text-center ">
+                <div className=" bg-black opacity-70 rounded-2xl p-8  text-center ">
                   <p className="text-2xl ">Our location</p>
                   <p className=" pb-3 italic">
                     <span className="text-3xl">"&nbsp;</span>เพราะเราเชื่อว่า...{" "}
@@ -75,15 +75,14 @@ const Aboutus = () => {
                   </p>
                 </div>
               </div>
-
             </div>
           </div>
 
-          <span className="relative">
-          <Footer />
-          </span>
-       </div>
-      
+      </div>
+    </div>
+
+
+
     </>
   );
 };
