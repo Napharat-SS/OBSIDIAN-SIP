@@ -1,3 +1,4 @@
+import BakeryDetail from "../components/landingpage/bakeryDetail.jsx";
 import Detailbean from "../components/landingpage/Detailbean.jsx";
 import Herosection from "../components/landingpage/Herosection";
 import Newmenu from "../components/landingpage/Newmenu";
@@ -10,6 +11,7 @@ const Home = () => {
       <Herosection />
       <Newmenu />
       <Detailbean />
+      <BakeryDetail />
       <WhyDifferent />
       <ReviewCard />
     </div>
