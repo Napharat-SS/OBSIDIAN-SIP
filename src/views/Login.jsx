@@ -5,17 +5,17 @@ import bgImage from "../assets/background.png";
 const Login = () => {
   return (
     <div className="relative">
-    <div className=" bg-left bg-[length:1800px_1800px] w-full min-h-screen flex justify-center items-center"
+    <div className=" bg-left bg-[length:1800px_1800px] w-full min-h-screen flex justify-center items-center font-kanit"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <div className="absolute inset-0 bg-white/50"></div>
+        <div className="absolute inset-0 bg-orange-300/50"></div>
 
-          <div className="relative bg-white rounded-2xl p-8 w-96 h-96 shadow-md">
-            <h1 className="font-bold text-3xl text-center mb-6">Login</h1>
+          <div className="relative bg-white rounded-2xl p-8 w-100 h-100 shadow-md">
+            <h1 className="text-3xl text-center mb-6">Login</h1>
 
             <div>
             <input
-              className="bg-[#fff9a0] text-sm rounded-xl py-3 px-4 mt-2 w-full"
+              className="bg-[#f6d794] text-sm rounded-xl py-3 px-4 mt-2 w-full"
               type="email"
               id="email"
               name="email"
@@ -26,7 +26,7 @@ const Login = () => {
 
           <div>
             <input
-              className="bg-[#fff9a0] text-sm rounded-xl py-3 px-4 mt-4 w-full"
+              className="bg-[#f6d794] text-sm rounded-xl py-3 px-4 mt-4 w-full"
               type="password"
               id="password"
               name="password"
@@ -50,7 +50,7 @@ const Login = () => {
           </div>
 
           <button
-            className="bg-[#bb895c] text-white text-sm w-full p-3 rounded-xl mt-6 hover:bg-amber-900 transition duration-700 ease-in-out"
+            className="bg-[#C18343] text-white w-full p-3 rounded-xl mt-6 hover:bg-amber-900 transition duration-700 ease-in-out"
             type="submit"
           >
             Login
