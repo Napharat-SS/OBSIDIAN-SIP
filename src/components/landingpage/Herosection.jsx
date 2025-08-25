@@ -1,3 +1,4 @@
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { AnimatePresence, easeInOut, motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -78,9 +79,13 @@ const Herosection = () => {
                   initial="hidden"
                   animate="show"
                   exit="exit"
-                  className="orderbutton relative z-30"
+                  className=" relative z-30"
                 >
-                  Order Now
+                  <ShimmerButton className="shadow-2xl hover:bg-amber-900">
+                    <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none bgtracking-tight text-yellow-950 dark:from-white dark:to-slate-900/10 lg:text-lg">
+                      Order Now
+                    </span>
+                  </ShimmerButton>
                 </MotionLink>
               </AnimatePresence>
 
