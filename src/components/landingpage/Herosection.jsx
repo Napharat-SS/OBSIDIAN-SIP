@@ -1,179 +1,73 @@
-import { ShimmerButton } from "@/components/magicui/shimmer-button";
-import { AnimatePresence, easeInOut, motion } from "framer-motion";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { HeroList } from "../../data/HeroBG";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import Video1 from "../../assets/HeroVideo/Video1.mp4";
+import Video2 from "../../assets/HeroVideo/Video2.mp4";
+import Video3 from "../../assets/HeroVideo/Video3.mp4";
+const videos = [Video1, Video2, Video3];
 
-const SlideRight = (delay) => {
-  return {
-    hidden: {
-      x: 100,
-      opacity: 0,
-    },
-    show: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        delay: delay,
-        ease: easeInOut,
-      },
-    },
-    exit: {
-      opacity: 0,
-      x: -50,
-      transition: {
-        duration: 0.2,
-        ease: easeInOut,
-      },
-    },
-  };
-};
+export default function HeroSection() {
+  const [currentVideo, setCurrentVideo] = useState(0);
 
-const Herosection = () => {
-  const [activeData, setActiveData] = useState(HeroList[0]);
-  const MotionLink = motion.create(Link);
-  const handleActiveData = (HeroData) => {
-    setActiveData(HeroData);
-  };
+  // วนเล่นวิดีโอทีละไฟล์
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentVideo((prev) => (prev + 1) % videos.length);
+    }, 7000); // เปลี่ยนทุก 15 วิ (ปรับได้)
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <>
-      <motion.div
-        initial={{ backgroundImage: `url(${activeData.bgimg})` }}
-        animate={{ backgroundImage: `url(${activeData.bgimg})` }}
-        transition={{ duration: 0.8 }}
-        className="bg-cover bg-center min-h-screen"
-      >
-        <div className="container grid grid-cols-1 md:grid-cols-2 min-h-screen">
-          <div className="flex flex-col justify-center py-14 lg:pl-10 xl:max-w-3xl order-2 md:order-1">
-            <div className="space-y-5 text-center md:text-left  ">
-              <AnimatePresence mode="wait">
-                <motion.h1
-                  key={`title-${activeData.id}`}
-                  variants={SlideRight(0.2)}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                  className={`${activeData.titlecolor} title text-shadow xl:`}
-                >
-                  {activeData.title}
-                </motion.h1>
-              </AnimatePresence>
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={`desc-${activeData.id}`}
-                  variants={SlideRight(0.4)}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                  className={`${activeData.desccolor} description text-shadow`}
-                >
-                  {activeData.description}
-                </motion.p>
-              </AnimatePresence>
-              <AnimatePresence mode="wait">
-                <MotionLink
-                  to="menu"
-                  key={`btn-${activeData.id}`}
-                  variants={SlideRight(0.6)}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                  className=" relative z-30"
-                >
-                  <ShimmerButton className="shadow-2xl hover:bg-amber-900">
-                    <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none bgtracking-tight text-yellow-950 dark:from-white dark:to-slate-900/10 lg:text-lg">
-                      Order Now
-                    </span>
-                  </ShimmerButton>
-                </MotionLink>
-              </AnimatePresence>
+    <section className="relative w-full h-screen overflow-hidden">
+      {/* วิดีโอ background */}
+      <video
+        key={currentVideo[currentVideo]} // บังคับ re-render เวลาเปลี่ยนไฟล์
+        src={videos[currentVideo]}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover"
+      />
+      {/* Overlay มืดๆ */}
+      <div className="absolute inset-0 bg-black/20" />
+      {/* Content */}
 
-              {/*list seprator */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }}
-                className="list-seprator "
-              >
-                <div className="xl:w-50 2xl:w-60 w-25 h-0.5 bg-white"></div>
-                <p className="text-sm lg:text-base">Special Menu</p>
-                <div className="xl:w-50 2xl:w-60 w-25 h-0.5 bg-white"></div>
-              </motion.div>
-              {/*image switcher */}
-              <div className="grid grid-cols-4 gap-10 items-end">
-                {HeroList.map((HeroData, index) => {
-                  return (
-                    <div
-                      key={HeroData.id || index}
-                      onClick={() => handleActiveData(HeroData)}
-                      className="cursor-pointer space-y-3 hover:scale-105 transition-all duration-200 "
-                      style={{ padding: "10px", margin: "-10px" }}
-                    >
-                      <div className="flex justify-center ">
-                        <img
-                          src={HeroData.image}
-                          alt="product-img"
-                          className={`relative z-20 ${
-                            HeroData.sizeImg
-                          } object-cover img-shadow ${
-                            activeData.image === HeroData.image
-                              ? "opacity-100 scale-110"
-                              : "opacity-50"
-                          }`}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-          {/*Hero img */}
-          <div className="flex flex-col justify-end items-center relative order-1 md:order-2 w-full h-full">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={activeData.id}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0, ease: easeInOut }}
-                exit={{
-                  opacity: 0,
-                  x: -50,
-                  transition: {
-                    duration: 0.8,
-                    ease: easeInOut,
-                  },
-                }}
-                src={activeData.image}
-                alt="Hero-img"
-                className={`${activeData.sizeimgr} img-shadow relative z-10 object-cover`}
-              />
-            </AnimatePresence>
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 translate-y-30">
+        {/* Title */}
+        <motion.h1
+          className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg text-gray-100 font-libertinus"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 3, ease: "easeOut" }}
+        >
+          Brewed with passion, Baked with Love
+        </motion.h1>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeData.id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0, ease: easeInOut }}
-                exit={{
-                  opacity: 0,
-                  transition: {
-                    duration: 1,
-                  },
-                }}
-                className={`${activeData.sizemodal} font-extrabold absolute top-0 left-0.5 -translate-x-0.5 -translate-y-0.5 overflow-hidden text-clip hidden sm:block`}
-              >
-                {activeData.modal}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-          {/*icon */}
-        </div>
-      </motion.div>
-    </>
+        {/* Description */}
+        <motion.p
+          className="text-lg md:text-2xl mb-6 max-w-2xl drop-shadow-md text-gray-200 font-poppins"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 3, ease: "easeOut" }}
+        >
+          Special coffee & bakery, anywhere, anytime.
+        </motion.p>
+
+        {/* Buttons */}
+        <motion.div
+          className="flex gap-4 font-poppins"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 5, ease: "easeOut" }}
+        >
+          <button className="px-6 py-3 rounded-3xl bg-[#c58c4ce6] text-white font-medium shadow-lg hover:bg-[##ddb07ee6] transition">
+            Get Yours Today
+          </button>
+          <button className="px-6 py-3 rounded-3xl bg-transparent border border-white text-white font-medium hover:bg-white/20 transition">
+            Browse Menu
+          </button>
+        </motion.div>
+      </div>
+    </section>
   );
-};
-
-export default Herosection;
+}

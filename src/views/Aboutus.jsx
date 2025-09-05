@@ -1,5 +1,5 @@
 import { Lens } from "@/components/magicui/lens";
-import bgImage from "../assets/background.png";
+import bgImage from "../assets/HeroVideo/bg-register.jpg";
 
 const Aboutus = () => {
   return (

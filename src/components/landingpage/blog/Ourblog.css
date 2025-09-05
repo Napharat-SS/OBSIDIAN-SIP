@@ -1,0 +1,87 @@
+/* wrapper */
+.expo-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 48px 0;
+  box-sizing: border-box;
+}
+
+/* ขนาดสไลด์ใช้กับ slidesPerView="auto" */
+.expo-slide {
+  position: relative;
+  width: min(86vw, 1100px);
+  height: clamp(260px, 42vw, 520px);
+  border-radius: 28px;
+  overflow: hidden;
+  background: #111;
+}
+
+/* รูปภาพเริ่มต้น: ขาวดำ + scale เล็ก + โปร่งนิดๆ */
+.img-wrap,
+.img-wrap img {
+  width: 100%;
+  height: 100%;
+}
+.img-wrap img {
+  object-fit: cover;
+  filter: grayscale(100%);
+  transform: scale(0.92);
+  opacity: 0.7;
+  transition: transform 0.7s ease, filter 0.7s ease, opacity 0.7s ease;
+}
+
+/* เมื่อเป็นสไลด์ตรงกลาง (active) -> สี + ขยายเล็กน้อย + ชัด */
+.swiper-slide-active .img-wrap img {
+  filter: grayscale(0%);
+  transform: scale(1.03);
+  opacity: 1;
+}
+
+/* เงากึ่งโปร่งให้ตัวหนังสืออ่านง่าย */
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.48) 0%,
+    rgba(0, 0, 0, 0) 55%
+  );
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.swiper-slide-active .shade {
+  opacity: 0.32;
+}
+
+/* ตัวหนังสือ overlay (โชว์เฉพาะ active แบบ fade-in) */
+.caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+  pointer-events: none;
+}
+.caption-text {
+  color: #fff;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-size: clamp(22px, 6vw, 64px);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.swiper-slide-active .caption-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ปรับ spacing บนจอใหญ่ */
+@media (min-width: 1024px) {
+  .expo-wrap {
+    padding: 64px 0;
+  }
+}
