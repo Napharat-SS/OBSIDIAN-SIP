@@ -145,25 +145,25 @@ export const Checkout = () => {
   // --- ส่วนของ JSX (หน้าตาของ Component) ---
   return (
     // Container หลักของ Component
-    <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10">
+    <div className="bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] bg-center bg-fixed min-h-screen px-4 py-10 text-black">
       {/* ฟอร์มทั้งหมด ที่เมื่อกดปุ่ม Place Order จะเรียก handleConfirm */}
       <form
         onSubmit={handleConfirm}
-        className="max-w-4xl mx-auto bg-[#fcfbfa] rounded-2xl shadow-lg p-4 sm:p-6 space-y-6"
+        className="max-w-4xl mx-auto bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] rounded-2xl shadow-lg p-4 sm:p-6 space-y-6"
       >
         {/* แถบหัวข้อ Checkout */}
-        <div className="bg-[#472C03] py-4 px-4 rounded-lg space-y-2">
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#F5F2EC] text-center">
+        <div className="bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] py-4 px-4 rounded-lg space-y-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 text-center">
             🛒 Checkout
           </h1>
         </div>
 
         {/* Order Summary Section */}
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             🧾 Order Summary
           </h2>
-          <div className="bg-[#F5F2EC] p-4 rounded-lg space-y-2">
+          <div className="bg-gray-300 p-4 rounded-lg space-y-2">
             <ul className="space-y-1">
               {/* วนลูปแสดงรายการสินค้าแต่ละชิ้นใน basket */}
               {basket.map((item) => (
@@ -181,7 +181,7 @@ export const Checkout = () => {
                       onChange={
                         (e) => handleQuantityChange(item.id, e.target.value) // เมื่อเปลี่ยนค่า ให้เรียกฟังก์ชันอัปเดตจำนวน
                       }
-                      className="border rounded p-1 text-sm"
+                      className="border rounded border-black p-1 text-sm bg-gray-300 text-black"
                     >
                       {/* วนลูปสร้าง option สำหรับจำนวน 1-10 */}
                       {[...Array(10).keys()].map((q) => (
@@ -197,7 +197,7 @@ export const Checkout = () => {
                     <button
                       type="button"
                       onClick={() => handleRemoveItem(item.id)}
-                      className="text-gray-400 hover:text-amber-400 transition-colors p-1 rounded"
+                      className="text-gray-400 hover:text-black transition-colors p-1 rounded"
                     >
                       x
                     </button>
@@ -205,7 +205,7 @@ export const Checkout = () => {
                 </li>
               ))}
             </ul>
-            <hr />
+            <hr className="border-t-1 border-black" />
 
             {/* แสดงค่าจัดส่งเฉพาะเมื่อเลือก delivery */}
             <div
@@ -227,13 +227,13 @@ export const Checkout = () => {
 
         {/* Order Type Section ประเภทการสั่งซื้อ */}
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             📍 Order Type
           </h2>
-          <div className="bg-[#F5F2EC] p-4 rounded-lg space-y-2">
+          <div className="bg-gray-300 p-4 rounded-lg space-y-2">
             <div className="space-y-1">
               {/* Radio button สำหรับ Dine-in */}
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
                 <input
                   type="radio"
                   name="method"
@@ -246,7 +246,7 @@ export const Checkout = () => {
               </label>
 
               {/* Radio button สำหรับ Pick-up */}
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
                 <input
                   type="radio"
                   name="method"
@@ -259,7 +259,7 @@ export const Checkout = () => {
               </label>
 
               {/* Radio button สำหรับ Delivery */}
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
                 <input
                   type="radio"
                   name="method"
@@ -275,7 +275,7 @@ export const Checkout = () => {
             {/* แสดงตัวเลือกที่อยู่จัดส่งเฉพาะเมื่อ user เลือก Delivery */}
             {orderMethod === "delivery" && (
               <div className="ml-6 space-y-0">
-                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400">
                   <input
                     type="radio"
                     name="address-choice"
@@ -286,7 +286,7 @@ export const Checkout = () => {
                   />
                   <span className="text-sm">Use saved address</span>
                 </label>
-                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400">
                   <input
                     type="radio"
                     name="address-choice"
@@ -304,13 +304,13 @@ export const Checkout = () => {
 
         {/* section customer information */}
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             👤 Customer Information
           </h2>
-          <div className="bg-[#F5F2EC] p-4 rounded-lg">
+          <div className="bg-gray-300 p-4 rounded-lg">
             {/* ปุ่ม Radio สำหรับเลือก Details (Customer Info) */}
             <div className="flex gap-4 mb-4">
-              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400">
                 <input
                   type="radio"
                   name="profile-choice"
@@ -321,7 +321,7 @@ export const Checkout = () => {
                 />
                 Use saved details
               </label>
-              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400">
                 <input
                   type="radio"
                   name="profile-choice"
@@ -339,7 +339,7 @@ export const Checkout = () => {
               <input
                 type="text"
                 placeholder="First Name"
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.firstName}
                 onChange={
                   (e) =>
@@ -352,7 +352,7 @@ export const Checkout = () => {
               <input
                 type="text"
                 placeholder="Last Name"
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.lastName}
                 onChange={(e) =>
                   setCustomerInfo({ ...customerInfo, lastName: e.target.value })
@@ -361,7 +361,7 @@ export const Checkout = () => {
               <input
                 type="text"
                 placeholder="Phone Number"
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.phoneNumber}
                 onChange={(e) =>
                   setCustomerInfo({
@@ -373,7 +373,7 @@ export const Checkout = () => {
               <input
                 type="email"
                 placeholder="Email"
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.email}
                 onChange={(e) =>
                   setCustomerInfo({ ...customerInfo, email: e.target.value })
@@ -386,12 +386,12 @@ export const Checkout = () => {
         {/* กล่อง Delivery Address จะ pop up มาใต้ Customer Information เมื่อ user เลือก order type เป็น Delivery */}
         {orderMethod === "delivery" && ( // เงื่อนไขการแสดงผลเป็น "delivery"
           <div>
-            <h2 className="text-lg sm:text-xl font-semibold mb-2">
+            <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
               🏠 Delivery Address
             </h2>
-            <div className="bg-[#F5F2EC] p-4 rounded-lg">
+            <div className="bg-gray-300 p-4 rounded-lg">
               <textarea
-                className="w-full border rounded-lg p-2 text-sm sm:text-base"
+                className="w-full border rounded-lg border-black p-2 text-sm sm:text-base"
                 placeholder="Delivery Address (if applicable)"
                 value={deliveryAddress} // กำหนดค่าใน textarea ตาม state
                 onChange={(e) => setDeliveryAddress(e.target.value)} // เมื่อ user พิมพ์มา ให้เปลี่ยน state
@@ -402,14 +402,14 @@ export const Checkout = () => {
 
         {/* Time & Note Section เลือกเวลาและใส่หมายเหตุ */}
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             🕒 Time & Note
           </h2>
-          <div className="bg-[#F5F2EC] p-4 rounded-lg">
+          <div className="bg-gray-300 p-4 rounded-lg">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Dropdown สำหรับเลือกเวลา */}
               <select
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base bg-gray-300 text-black"
                 value={timeNote.time}
                 onChange={
                   (e) => setTimeNote({ ...timeNote, time: e.target.value }) //ใช้ Spread Operator เพื่อคัดลอก Properties ทั้งหมดจาก Object timeNote เดิมมาสร้างเป็น Object ใหม่
@@ -425,7 +425,7 @@ export const Checkout = () => {
               <input
                 type="text"
                 placeholder="Note Ex. Pick up at 3 PM."
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={timeNote.note}
                 onChange={(e) =>
                   setTimeNote({ ...timeNote, note: e.target.value })
@@ -438,7 +438,7 @@ export const Checkout = () => {
         {/* ปุ่มสำหรับกดยืนยันคำสั่งซื้อ */}
         <button
           type="submit" // กำหนดให้เป็นปุ่ม submit ของฟอร์ม
-          className="w-full sm:w-auto bg-[#472C03] text-[#FFFFFF] px-6 py-3 rounded-xl hover:bg-[#E6D9C2] hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
+          className="w-full sm:w-auto text-xl bg-stone-400 text-black px-6 py-3 rounded-xl hover:bg-[##ddb07ee6] hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
         >
           Place Order
         </button>

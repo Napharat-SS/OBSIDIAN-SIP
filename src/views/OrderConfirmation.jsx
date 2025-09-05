@@ -37,8 +37,8 @@ export const OrderConfirmation = () => {
   // ส่วนนี้จะแสดงเมื่อไม่มีข้อมูลคำสั่งซื้อ เช่น เข้ามาหน้านี้โดยตรง
   if (!location.state) {
     return (
-      <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center min-h-screen px-4 py-10">
-        <div className="text-center text-[#3F3C38] p-6 rounded-lg bg-neutral-300 bg-opacity-70">
+      <div className="bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] bg-cover bg-no-repeat bg-center min-h-screen px-4 py-10">
+        <div className="text-center text-[#3F3C38] p-6 rounded-lg bg-stone-300 bg-opacity-70">
           <h1 className="text-4xl font-bold">Error!</h1>
           <p className="mt-4">
             No order data found. Please go back to the checkout page.
@@ -46,7 +46,7 @@ export const OrderConfirmation = () => {
           {/* // สร้างปุ่มไว้ ให้ User กดแล้วกลับไปหน้า checkout */}
           <button
             onClick={() => navigate("/checkout")}
-            className="mt-6 bg-[#E6D9C2] text-[#3F3C38] px-6 py-3 rounded-xl hover:bg-yellow-700 hover:text-white transition-all"
+            className="mt-6 bg-[#3F3C38] text-[#FFFFFF] px-6 py-3 rounded-xl hover:bg-[##ddb07ee6] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
           >
             Go to Checkout
           </button>
@@ -57,13 +57,13 @@ export const OrderConfirmation = () => {
 
   // --- ส่วนของ JSX (หน้าตาของ Component) ---
   return (
-    // Container หลักของหน้าจอ
-    <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10 text-[#3F3C38]">
+    // Container หลักของหน้าจอ bg-[url('/Journeyimg/J3.png')]
+    <div className="bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10 text-[#3F3C38]">
       <div className="min-h-screen">
         <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
 
           {/* Information Section on the Left side */}
-          <div className="bg-neutral-200 shadow-md rounded-2xl p-6 relative">
+          <div className="bg-stone-300 shadow-md rounded-2xl p-6 relative">
             <h1 className="text-4xl font-bold mb-4">
               Thank you for your purchase!
             </h1>
@@ -97,14 +97,14 @@ export const OrderConfirmation = () => {
             {/* ปุ่มสำหรับกดเพื่อดูสถานะคำสั่งซื้อ ที่หน้า User Profile */}
             <button
               onClick={handleTrackOrder}
-              className="w-full sm:w-auto bg-[#3F3C38] text-[#FFFFFF] px-6 py-3 rounded-xl hover:bg-[#E6D9C2] hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
+              className="w-full sm:w-auto bg-[#3F3C38] text-[#FFFFFF] px-6 py-3 rounded-xl hover:bg-[##ddb07ee6] hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
             >
               Track Your Order
             </button>
           </div>
 
           {/* Receipt Section on the Right side: Order Summary */}
-          <div className="bg-neutral-200 shadow-md rounded-2xl p-6 relative">
+          <div className="bg-stone-300 shadow-md rounded-2xl p-6 relative">
             <h2 className="text-2xl font-bold mb-7">Order Summary</h2>
 
             {/* รายละเอียดการสั่งซื้อ (วันที่สั่งซื้อ, เลขที่สั่งซื้อ, วิธีชำระเงิน(ถ้ามี)) */}
