@@ -340,7 +340,7 @@ export const MenuItem = [
     desc: "Buttery tart filled with fresh raspberries and cream.",
     category: "bakery",
     price: 65,
-    img: "https://images.unsplash.com/photo-1604908177522-5f0d9c5e9a4c?q=80&w=1200&auto=format&fit=crop",
+    img: "/public/bakery/bake8.png",
     tag: "Trending",
     inStock: true,
   },
