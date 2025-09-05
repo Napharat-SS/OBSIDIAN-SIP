@@ -1,6 +1,6 @@
 import { memo, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { MenuItem } from "../../components/MenuPage/MenuData";
+import { MenuItem } from "../../data/MenuData";
 
 const MenuCard = memo(
   ({ name, desc, tag, img, price, inStock, onFavoriteToggle }) => {

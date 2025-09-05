@@ -2,7 +2,7 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { FaTrash } from "react-icons/fa6";
 import bgImage from "../assets/background.png";
 
-import { MenuItem } from "../components/MenuPage/MenuData";
+import { MenuItem } from "../data/MenuData";
 
 const Addtocart = () => {
   const products = [...MenuItem];

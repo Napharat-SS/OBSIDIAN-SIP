@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import MenuCard from "../components/MenuPage/MenuCard";
-import { MenuItem } from "../components/MenuPage/MenuData";
+import { MenuItem } from "../data/MenuData";
 
 const CATEGORY_ORDER = [
   { id: "hot", label: "Hot" },
@@ -22,7 +22,7 @@ export default function MenuPage() {
 
   return (
     <div className="min-h-screen bg-[#0f0f10] text-white">
-      <div className="container mx-auto px-4 py-10">
+      <div className="mx-[10%] px-4 py-10">
         {/* Header */}
         <header className="py-15 px-20 mb-10 rounded-4xl bg-[url('/bgMenu.png')] bg-cover bg-bottom bg-no-repeat">
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-center">

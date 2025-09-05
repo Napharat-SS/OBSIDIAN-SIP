@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Autoplay, EffectCoverflow, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { MenuItem } from "../../../data/MenuData";
 import MenuCard from "../../MenuPage/MenuCard";
-import { MenuItem } from "../../MenuPage/MenuData";
 
 const Bestsellers = () => {
   const bestsellerIds = [
