@@ -11,7 +11,6 @@ import Menu from "./views/Menu";
 import Notification from "./views/Notification";
 import { OrderConfirmation } from "./views/OrderConfirmation";
 import Privacy from "./views/Privacy";
-import ProductDetail from "./views/ProductDetail";
 import Profile from "./views/Profile";
 import Profile_delete from "./views/Profile_delete";
 import Profile_update from "./views/Profile_update";
@@ -29,7 +28,6 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "menu", element: <Menu /> },
-      { path: "menu/:slug", element: <ProductDetail /> },
       { path: "about", element: <Aboutus /> },
       { path: "contact", element: <Contact /> },
       { path: "login", element: <Login /> },

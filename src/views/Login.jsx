@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
-import bgImage from "../assets/background.png";
-
+import bgImage from "../assets/HeroVideo/bg-register.jpg";
 
 const Login = () => {
   return (
     <div className="relative">
-    <div className=" bg-left bg-[length:1800px_1800px] w-full min-h-screen flex justify-center items-center font-kanit"
+      <div
+        className=" bg-left bg-[length:1800px_1800px] w-full min-h-screen flex justify-center items-center font-kanit"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
         <div className="absolute inset-0 bg-orange-300/50"></div>
 
-          <div className="relative bg-white rounded-2xl p-8 w-100 h-100 shadow-md">
-            <h1 className="text-3xl text-center mb-6">Login</h1>
+        <div className="relative bg-white rounded-2xl p-8 w-100 h-100 shadow-md">
+          <h1 className="text-3xl text-center mb-6">Login</h1>
 
-            <div>
+          <div>
             <input
               className="bg-[#f6d794] text-sm rounded-xl py-3 px-4 mt-2 w-full"
               type="email"
@@ -44,7 +44,10 @@ const Login = () => {
               />
               Remember me
             </label>
-            <Link to="/forgotpassword" className="text-sm text-blue-500 hover:underline">
+            <Link
+              to="/forgotpassword"
+              className="text-sm text-blue-500 hover:underline"
+            >
               Forgot password?
             </Link>
           </div>
@@ -62,14 +65,9 @@ const Login = () => {
               &nbsp;Register
             </Link>
           </p>
-
-          </div>
-
-
-
+        </div>
+      </div>
     </div>
-    </div>
-    
   );
 };
 
