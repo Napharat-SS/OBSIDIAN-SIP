@@ -33,10 +33,10 @@ export const RegisterForm =() => {
     e.preventDefault();
 
     if (!match) {
-      alert("รหัสผ่านไม่ตรงกัน");
+      alert("Your passwords do not match");
       return;
     }
-    alert("สมัครสมาชิกสำเร็จ!");
+    alert("Successfully registered as a member!");
   };
 
   const navigate  = useNavigate();
@@ -195,7 +195,9 @@ export const RegisterForm =() => {
                     match ? "text-green-600" : "text-red-500"
                   }`}
                 >
-                  {match ? "รหัสผ่านตรงกัน✔️" : "รหัสผ่านไม่ตรงกัน❌"}
+                  {match
+                    ? "Passwords match✔️"
+                    : "Your passwords do not match❌"}
                 </p>
               )}
             </div>
