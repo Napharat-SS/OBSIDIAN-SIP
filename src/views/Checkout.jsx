@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { coffeeData } from "../mock/coffeeData"; // Import mock data
 
 // สร้าง Component ชื่อ Checkout เป็น function
 export const Checkout = () => {
@@ -14,6 +13,13 @@ export const Checkout = () => {
     email: "arm.js@example.com",
     savedAddress: "123/45 ซอยกาแฟ ถนนสุขุมวิท เขตวัฒนา กรุงเทพฯ 10110",
   };
+
+  // สร้าง Mock Data สำหรับ products for checkout
+  const coffeeData = [
+  { id: 1, name: "Hot Americano", price: 120 },
+  { id: 2, name: "Iced Latte", price: 130 },
+  { id: 3, name: "Croissant", price: 100 },
+];
 
   // --- ประกาศ State ต่างๆ สำหรับเก็บข้อมูลในหน้า Checkout ---
 
@@ -149,7 +155,7 @@ export const Checkout = () => {
       {/* ฟอร์มทั้งหมด ที่เมื่อกดปุ่ม Place Order จะเรียก handleConfirm */}
       <form
         onSubmit={handleConfirm}
-        className="max-w-4xl mx-auto bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] rounded-2xl shadow-lg p-4 sm:p-6 space-y-6"
+        className="max-w-4xl mx-auto bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] rounded-2xl p-4 sm:p-6 space-y-6"
       >
         {/* แถบหัวข้อ Checkout */}
         <div className="bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] py-4 px-4 rounded-lg space-y-2">
@@ -438,7 +444,7 @@ export const Checkout = () => {
         {/* ปุ่มสำหรับกดยืนยันคำสั่งซื้อ */}
         <button
           type="submit" // กำหนดให้เป็นปุ่ม submit ของฟอร์ม
-          className="w-full sm:w-auto text-xl bg-stone-400 text-black px-6 py-3 rounded-xl hover:bg-[##ddb07ee6] hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
+          className="w-full sm:w-auto text-xl bg-stone-400 text-black px-6 py-3 rounded-xl hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
         >
           Place Order
         </button>

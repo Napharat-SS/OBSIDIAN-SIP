@@ -46,7 +46,7 @@ export const OrderConfirmation = () => {
           {/* // สร้างปุ่มไว้ ให้ User กดแล้วกลับไปหน้า checkout */}
           <button
             onClick={() => navigate("/checkout")}
-            className="mt-6 bg-[#3F3C38] text-[#FFFFFF] px-6 py-3 rounded-xl hover:bg-[##ddb07ee6] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
+            className="mt-6 bg-[#3F3C38] text-[#FFFFFF] px-6 py-3 rounded-xl hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
           >
             Go to Checkout
           </button>
@@ -75,7 +75,7 @@ export const OrderConfirmation = () => {
 
             {/* Customer Information ที่ดึงค่ามาจากหน้า Checkout */}
             <div className="mb-6">
-              <h2 className="text-3xl font-semibold mb-2">Billing address</h2>
+              <h2 className="text-3xl text-stone-800 font-semibold mb-2">Billing address</h2>
               <p className="text-xl">
                 <strong>Name:</strong> {customer?.firstName} {customer?.lastName}{/* เพิ่ม ?. เพื่อป้องกัน error ถ้า customer เป็น undefined หรือ null */}
               </p>
@@ -97,7 +97,7 @@ export const OrderConfirmation = () => {
             {/* ปุ่มสำหรับกดเพื่อดูสถานะคำสั่งซื้อ ที่หน้า User Profile */}
             <button
               onClick={handleTrackOrder}
-              className="w-full sm:w-auto bg-[#3F3C38] text-[#FFFFFF] px-6 py-3 rounded-xl hover:bg-[##ddb07ee6] hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
+              className="w-full sm:w-auto text-xl bg-stone-400 text-black px-6 py-3 rounded-xl hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
             >
               Track Your Order
             </button>
