@@ -1,18 +1,23 @@
 import { memo, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { MenuItem } from "../../data/MenuData";
+import { useNavigate } from "react-router-dom";
 
 const MenuCard = memo(
-  ({ name, desc, tag, img, price, inStock, onFavoriteToggle }) => {
+  ({ id, name, desc, tag, img, price, inStock, onFavoriteToggle }) => {
     const [isFavorite, setIsFavorite] = useState(false);
+    const navigate = useNavigate();
 
-    const handleFavoriteClick = () => {
+    const handleFavoriteClick = (e) => {
+      e.stopPropagation();
       setIsFavorite(!isFavorite);
       onFavoriteToggle && onFavoriteToggle(!isFavorite);
     };
 
     return (
-      <div className="group relative w-full p-4">
+      <div
+        className="group relative w-full p-4"
+        onClick={() => navigate(`/menu/${id}`)}
+      >
         <div className="bg-[#232323] rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer overflow-hidden h-full flex flex-col border border-gray-400">
           <div className="relative">
             <img
@@ -24,9 +29,6 @@ const MenuCard = memo(
             <button
               onClick={handleFavoriteClick}
               className="absolute top-4 right-4 p-2 bg-[#676767] rounded-full shadow-md transition-transform duration-300 hover:scale-110 opacity-80"
-              aria-label={
-                isFavorite ? "Remove from favorites" : "Add to favorites"
-              }
             >
               {isFavorite ? (
                 <FaHeart className="text-red-500 text-xl" />
@@ -79,28 +81,4 @@ const MenuCard = memo(
 );
 
 MenuCard.displayName = "MenuCard";
-
-const Menu = () => {
-  // ฟังก์ชันอยู่ข้างใน component
-  const renderMenuCards = () =>
-    MenuItem.map((product) => (
-      <MenuCard
-        key={product.id}
-        {...product}
-        onFavoriteToggle={(isFavorite) =>
-          console.log(`Product ${product.id} favorite status: ${isFavorite}`)
-        }
-      />
-    ));
-
-  // return JSX
-  return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="container mx-auto">
-        <div className="flex flex-wrap -mx-4">{renderMenuCards()}</div>
-      </div>
-    </div>
-  );
-};
-
 export default MenuCard;

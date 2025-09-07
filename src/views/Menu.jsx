@@ -9,6 +9,7 @@ const CATEGORY_ORDER = [
   { id: "cold", label: "Cold " },
   { id: "bakery", label: "Bakery" },
   { id: "beans", label: "Beans" },
+  { id: "combo", label: "Combo" },
 ];
 
 export default function MenuPage() {

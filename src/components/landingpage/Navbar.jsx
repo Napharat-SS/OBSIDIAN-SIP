@@ -16,8 +16,8 @@ const Navbar = () => {
   const mobileNav = [
     { name: "HOME", path: "/" },
     { name: "MENU", path: "menu" },
-    { name: "ABOUT US", path: "about" },
-    { name: "CONTACT", path: "contact" },
+    { name: "ABOUT US", path: "aboutus" },
+    { name: "CONTACT", path: "/footer" },
   ];
 
   const routeIsActive = (path) => {
@@ -34,7 +34,7 @@ const Navbar = () => {
       >
         <Link
           to="/"
-          className="text-2xl md:text-4xl lg:text-4xl m-0 text-gray-300 font-poppins"
+          className="text-2xl md:text-4xl lg:text-4xl m-0 text-gray-300 font-poppins font-medium"
         >
           Obsidian<span className="text-yellow-600">Sip</span>
         </Link>
@@ -47,10 +47,10 @@ const Navbar = () => {
           <Link to="menu" className="nav-style">
             MENU
           </Link>
-          <Link to="about" className="nav-style">
+          <Link to="aboutus" className="nav-style">
             ABOUT US
           </Link>
-          <Link to="contact" className="nav-style">
+          <Link to="/footer" className="nav-style">
             CONTACT
           </Link>
         </div>
