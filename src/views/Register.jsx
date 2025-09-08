@@ -145,7 +145,8 @@ export const RegisterForm =() => {
               Telephone
             </label> */}
             <input
-              type="text"
+              type="tel"
+              name="phone"
               className="w-full bg-transparent border-b border-neutral-600 focus:border-white outline-none py-2 peer"
               placeholder=" "
               required
