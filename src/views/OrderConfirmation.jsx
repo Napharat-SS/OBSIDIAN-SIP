@@ -58,7 +58,7 @@ export const OrderConfirmation = () => {
   // --- ส่วนของ JSX (หน้าตาของ Component) ---
   return (
     // Container หลักของหน้าจอ bg-[url('/Journeyimg/J3.png')]
-    <div className="bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10 text-[#3F3C38]">
+    <div className="bg-[#0f0f10] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10 text-[#3F3C38]">
       <div className="min-h-screen">
         <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
 
