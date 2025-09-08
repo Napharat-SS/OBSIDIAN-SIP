@@ -49,9 +49,6 @@ export default function MenuPage() {
     data-[state=active]:font-semibold"
               >
                 <span className="font-bold">All</span>
-                <span className="text-xs opacity-80 ">
-                  items {MenuItem.length}
-                </span>
               </TabsTrigger>
 
               {CATEGORY_ORDER.map((cat) => (

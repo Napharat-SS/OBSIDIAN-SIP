@@ -20,7 +20,7 @@ const ProductDetail = () => {
           className="w-full h-full object-cover rounded-4xl"
         />
         {/* รายละเอียดสินค้า */}
-        <div className="p-8 shadow-lg text-white space-y-6">
+        <div className="p-8 shadow-lg text-white space-y-6 pt-25">
           <h1 className="text-3xl font-bold">{product.name}</h1>
           <p className="text-gray-300">{product.desc}</p>
 
@@ -37,7 +37,7 @@ const ProductDetail = () => {
             {product.inStock ? "Available" : "Sold Out"}
           </div>
 
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 pt-10">
             <Button
               className="bg-[#e2a053e6] hover:bg-[#ffffffe6]  text-black px-6 py-3 rounded-2xl"
               disabled={!product.inStock}

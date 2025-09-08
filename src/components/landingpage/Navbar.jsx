@@ -8,10 +8,14 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useFavorites } from "../FavoritesContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFavOpen, setIsFavOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
+  const { favorites } = useFavorites();
 
   const mobileNav = [
     { name: "HOME", path: "/" },
@@ -56,21 +60,61 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-1 m-0">
-          <Search className="text-white w-14 h-7" />
-          <Heart className="text-white w-14 h-7" />
+          <div className="relative flex items-center">
+            {/* Search input */}
+            <input
+              type="text"
+              placeholder="Search..."
+              className={`bg-black text-white rounded-3xl px-2 py-1 transition-all duration-300 origin-right border border-[#c88844] 
+              ${isSearchOpen ? "w-60 opacity-100 mr-2" : "w-0 opacity-0 mr-0"}`}
+            />
+
+            {/* Search icon */}
+            <button onClick={() => setIsSearchOpen(!isSearchOpen)}>
+              <Search className="text-white w-7 h-7 mr-4 cursor-pointer" />
+            </button>
+          </div>
+
+          <div className="relative">
+            <button onClick={() => setIsFavOpen(true)}>
+              <Heart className="text-white w-7 h-7 mt-2" />
+              {favorites.length > 0 && (
+                <span className="absolute top-1 -right-2 bg-[#c58c4ce6] text-black text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                  {favorites.length}
+                </span>
+              )}
+            </button>
+          </div>
           <ShoppingBasket className="text-white w-14 h-7" />
           <Link to="login" className="getbutton inline-block">
             Get started
           </Link>
         </div>
 
-        {/* mobile toggle nav */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-white"
-        >
-          {isMenuOpen ? <X /> : <AlignRight />}
-        </button>
+        {/* mobile right section: search + toggle */}
+        <div className="flex items-center md:hidden">
+          {/* Search input */}
+          <input
+            type="text"
+            placeholder="Search..."
+            className={`bg-black text-white rounded-3xl px-2 py-1 border border-[#c88844] transition-all duration-300 origin-right 
+      ${isSearchOpen ? "w-40 opacity-100" : "w-0 opacity-0 mr-0"}
+    `}
+          />
+
+          {/* Search icon */}
+          <button onClick={() => setIsSearchOpen(!isSearchOpen)}>
+            <Search className="text-white w-7 h-7 mr-4 cursor-pointer" />
+          </button>
+
+          {/* Toggle button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-white"
+          >
+            {isMenuOpen ? <X /> : <AlignRight />}
+          </button>
+        </div>
 
         {/* mobile dropdown nav */}
         {isMenuOpen && (
@@ -99,19 +143,73 @@ const Navbar = () => {
         )}
       </nav>
 
+      {/* Drawer */}
+      <div
+        className={`fixed top-0 right-0 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 
+    ${isFavOpen ? "translate-x-0" : "translate-x-full"} 
+    w-full sm:w-80 md:w-96`}
+      >
+        {/* Header */}
+        <div className="flex justify-between items-center p-4 border-b">
+          <h2 className="text-lg font-bold">Your Favorites</h2>
+          <button onClick={() => setIsFavOpen(false)}>
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="p-4 overflow-y-auto h-full">
+          {favorites.length === 0 ? (
+            <p className="text-gray-500">No favorites yet.</p>
+          ) : (
+            <div className="space-y-4">
+              {favorites.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-3 border-b pb-2"
+                >
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="w-16 h-16 object-cover rounded-md"
+                  />
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-sm">{item.name}</h3>
+                    <p className="text-xs text-gray-600">{item.desc}</p>
+                    <p className="text-sm text-yellow-600 font-bold">
+                      ${item.price}
+                    </p>
+                    <p
+                      className={`text-xs ${
+                        item.inStock ? "text-green-600" : "text-red-600"
+                      }`}
+                    >
+                      {item.inStock ? "In Stock" : "Out of Stock"}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          <button className="w-full bg-[#c58c4ce6] text-black py-2 rounded-2xl hover:bg-[#ddb07ee6] transition-colors duration-300 text-sm font-medium focus:outline-none ">
+            Add to Basket
+          </button>
+        </div>
+      </div>
+
       {/* --- Mobile Bottom Navbar --- */}
       <nav className="fixed bottom-0 left-0 w-full bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_-4px_6px_rgba(0,0,0,0.6)] z-50 md:hidden pb-3">
         <div className="flex justify-around items-center py-2 relative">
-          {/* Favorite */}
+          {/* Basket */}
           <Link
-            to="/favorites"
+            to="/cart"
             className={`flex flex-col items-center text-xs transition-all ${
-              routeIsActive("/favorites")
+              routeIsActive("/cart")
                 ? "text-amber-400 scale-110"
                 : "text-gray-300"
             }`}
           >
-            <Heart className="w-8 h-8" />
+            <ShoppingBasket className="w-8 h-8" />
           </Link>
 
           {/* Home (center, floating) */}
@@ -128,17 +226,15 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Basket */}
-          <Link
-            to="/cart"
-            className={`flex flex-col items-center text-xs transition-all ${
-              routeIsActive("/cart")
-                ? "text-amber-400 scale-110"
-                : "text-gray-300"
-            }`}
-          >
-            <ShoppingBasket className="w-8 h-8" />
-          </Link>
+          {/* Favorite */}
+          <button className="relative" onClick={() => setIsFavOpen(true)}>
+            <Heart className="text-white w-7 h-7" />
+            {favorites.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-[#c58c4ce6] text-black text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                {favorites.length}
+              </span>
+            )}
+          </button>
         </div>
       </nav>
     </>
