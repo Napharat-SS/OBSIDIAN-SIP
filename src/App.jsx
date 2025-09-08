@@ -14,6 +14,7 @@ import Profile_delete from "./views/Profile_delete";
 import Profile_update from "./views/Profile_update";
 import { RegisterForm } from "./views/Register";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
