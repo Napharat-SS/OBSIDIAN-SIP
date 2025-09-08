@@ -12,7 +12,7 @@ import Privacy from "./views/Privacy";
 import Profile from "./views/Profile";
 import Profile_delete from "./views/Profile_delete";
 import Profile_update from "./views/Profile_update";
-import LogReg from "./views/Register-ver3";
+import { RegisterForm } from "./views/Register";
 
 
 const router = createBrowserRouter([
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "menu", element: <Menu /> },
       { path: "login", element: <Login /> },
-      { path: "register", element: <LogRegogReg /> },
+      { path: "register", element: <RegisterForm /> },
       { path: "forgotpassword", element: <ForgotPassword /> },
       { path: "checkout", element: <Checkout /> },
       { path: "order-confirmation", element: <OrderConfirmation /> },
