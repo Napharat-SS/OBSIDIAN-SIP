@@ -6,8 +6,8 @@ export const ForgotPassword = () => {
   const navigate  = useNavigate();
 
   return (
-    <div class="bg-[url('/bg-register.jpg')] bg-opacity-50 bg-cover bg-center flex items-center justify-center min-h-screen">
-      <div class="bg-[#F8F6F2] p-8 rounded-xl shadow-lg w-full text-[#3F3C38] md:w-2/7 px-10 py-15">
+    <div class="bg-neutral-950 bg-opacity-50 bg-cover bg-center flex items-center justify-center min-h-screen">
+      <div class="bg-neutral-900 p-8 rounded-xl shadow-lg w-full text-white md:w-2/7 px-10 py-15">
         <h2 class="text-4xl font-bold text-center mb-4">Reset Your Password</h2>
         <p class="text-center mb-6 text-xl">
           Forgot your password?
@@ -18,7 +18,10 @@ export const ForgotPassword = () => {
         </p>
         <form>
           <div class="mb-4">
-            <label for="email" class="block text-2xl font-semibold mb-1">
+            <label
+              for="email"
+              class="block text-2xl font-semibold mb-1 placeholder:text-gray-400 pb-2"
+            >
               Email Address:
             </label>
             <input
@@ -32,14 +35,14 @@ export const ForgotPassword = () => {
           <div className="flex justify-center gap-10">
             <button
               type="button"
-              className="w-3/5 bg-[#A69C8E] text-white text-xl fontbold py-2 rounded hover:bg-[#716a60] transition-colors"
+              className="w-1/2 px-6 py-3 rounded-xl border border-[#c58c4ce6] text-[#c58c4ce6] font-medium shadow-lg hover:text-white hover:bg-gray-600 transition"
               onClick={() => navigate("/login")}
             >
               Back
             </button>
             <button
               type="submit"
-              class="w-full bg-[#D4A475] text-white text-xl py-2 rounded hover:bg-yellow-600 transition font-semibold"
+              class="w-1/2 px-6 py-3 rounded-xl bg-[#c58c4ce6] text-black font-medium shadow-lg hover:bg-[#ddb07ee6] transition"
             >
               Reset Password
             </button>
