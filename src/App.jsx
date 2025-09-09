@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout";
+import AboutUs from "./views/AboutUs";
 import Addtocart from "./views/Addtocart";
 import { Checkout } from "./views/Checkout";
 import { ForgotPassword } from "./views/ForgotPassword";
@@ -9,6 +10,7 @@ import Menu from "./views/Menu";
 import Notification from "./views/Notification";
 import { OrderConfirmation } from "./views/OrderConfirmation";
 import Privacy from "./views/Privacy";
+import ProductDetail from "./views/ProductDetail";
 import Profile from "./views/Profile";
 import Profile_delete from "./views/Profile_delete";
 import Profile_update from "./views/Profile_update";
@@ -26,7 +28,14 @@ const router = createBrowserRouter([
     ),
     children: [
       { path: "/", element: <Home /> },
-      { path: "menu", element: <Menu /> },
+      {
+        path: "menu",
+        children: [
+          { index: true, element: <Menu /> },
+          { path: ":id", element: <ProductDetail /> },
+        ],
+      },
+      { path: "aboutus", element: <AboutUs /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <RegisterForm /> },
       { path: "forgotpassword", element: <ForgotPassword /> },

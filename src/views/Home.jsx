@@ -1,4 +1,4 @@
-import Bestsellers from "../components/landingpage/Bestsellers/Bestsellers.jsx";
+import Bestsellers from "../components/landingpage/Bestsellers.jsx";
 import Ourblog from "../components/landingpage/blog/Ourblog.jsx";
 import { Community } from "../components/landingpage/Community.jsx";
 import Herosection from "../components/landingpage/Herosection";
