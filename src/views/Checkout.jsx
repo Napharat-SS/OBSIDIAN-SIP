@@ -151,14 +151,14 @@ export const Checkout = () => {
   // --- ส่วนของ JSX (หน้าตาของ Component) ---
   return (
     // Container หลักของ Component
-    <div className="bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] bg-center bg-fixed min-h-screen px-4 py-10 text-black">
+    <div className="bg-[#0f0f10]">
       {/* ฟอร์มทั้งหมด ที่เมื่อกดปุ่ม Place Order จะเรียก handleConfirm */}
       <form
         onSubmit={handleConfirm}
-        className="max-w-4xl mx-auto bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] rounded-2xl p-4 sm:p-6 space-y-6"
+        className="border border-gray-200 max-w-4xl mx-auto bg-[#0f0f10] rounded-2xl p-4 sm:p-6 space-y-6"
       >
         {/* แถบหัวข้อ Checkout */}
-        <div className="bg-gradient-to-r from-[#000000] to-[#341f01] shadow-[0_4px_6px_rgba(0,0,0,0.6)] py-4 px-4 rounded-lg space-y-2">
+        <div className="bg-[#341f01] py-4 px-4 rounded-lg space-y-2">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 text-center">
             🛒 Checkout
           </h1>
@@ -169,7 +169,7 @@ export const Checkout = () => {
           <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             🧾 Order Summary
           </h2>
-          <div className="bg-gray-300 p-4 rounded-lg space-y-2">
+          <div className="bg-[#341f01] p-4 rounded-lg space-y-2 text-gray-300">
             <ul className="space-y-1">
               {/* วนลูปแสดงรายการสินค้าแต่ละชิ้นใน basket */}
               {basket.map((item) => (
@@ -236,10 +236,10 @@ export const Checkout = () => {
           <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             📍 Order Type
           </h2>
-          <div className="bg-gray-300 p-4 rounded-lg space-y-2">
+          <div className="bg-[#341f01] text-gray-300 p-4 rounded-lg space-y-2">
             <div className="space-y-1">
               {/* Radio button สำหรับ Dine-in */}
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400 text-gray-300 hover:text-black">
                 <input
                   type="radio"
                   name="method"
@@ -252,7 +252,7 @@ export const Checkout = () => {
               </label>
 
               {/* Radio button สำหรับ Pick-up */}
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                 <input
                   type="radio"
                   name="method"
@@ -265,7 +265,7 @@ export const Checkout = () => {
               </label>
 
               {/* Radio button สำหรับ Delivery */}
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                 <input
                   type="radio"
                   name="method"
@@ -281,7 +281,7 @@ export const Checkout = () => {
             {/* แสดงตัวเลือกที่อยู่จัดส่งเฉพาะเมื่อ user เลือก Delivery */}
             {orderMethod === "delivery" && (
               <div className="ml-6 space-y-0">
-                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400">
+                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                   <input
                     type="radio"
                     name="address-choice"
@@ -292,7 +292,7 @@ export const Checkout = () => {
                   />
                   <span className="text-sm">Use saved address</span>
                 </label>
-                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400">
+                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                   <input
                     type="radio"
                     name="address-choice"
@@ -308,26 +308,27 @@ export const Checkout = () => {
           </div>
         </div>
 
+
         {/* section customer information */}
         <div>
           <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             👤 Customer Information
           </h2>
-          <div className="bg-gray-300 p-4 rounded-lg">
+          <div className="bg-[#341f01] text-gray-300 p-4 rounded-lg">
             {/* ปุ่ม Radio สำหรับเลือก Details (Customer Info) */}
             <div className="flex gap-4 mb-4">
-              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400">
+              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                 <input
                   type="radio"
                   name="profile-choice"
                   value="saved"
                   checked={profileChoice === "saved"}
                   onChange={(e) => setProfileChoice(e.target.value)}
-                  className="accent-[#9C9284]"
+                  className="accent-[#9C9284] hover:text-black"
                 />
                 Use saved details
               </label>
-              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400">
+              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                 <input
                   type="radio"
                   name="profile-choice"
@@ -395,7 +396,7 @@ export const Checkout = () => {
             <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
               🏠 Delivery Address
             </h2>
-            <div className="bg-gray-300 p-4 rounded-lg">
+            <div className="bg-[#341f01] text-gray-300 p-4 rounded-lg">
               <textarea
                 className="w-full border rounded-lg border-black p-2 text-sm sm:text-base"
                 placeholder="Delivery Address (if applicable)"
@@ -405,17 +406,58 @@ export const Checkout = () => {
             </div>
           </div>
         )}
+        
+                {/* ✅ Payment Method Section */}
+        {/* <div>
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
+            💳 Payment Method
+          </h2>
+          <div className="bg-gray-300 p-4 rounded-lg space-y-2">
+            <div className="space-y-1">
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="credit"
+                  className="accent-[#9C9284]"
+                />
+                Credit / Debit Card
+              </label>
+
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="bank"
+                  className="accent-[#9C9284]"
+                />
+                Bank Transfer
+              </label>
+
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="cod"
+                  className="accent-[#9C9284]"
+                />
+                Cash on Delivery
+              </label>
+            </div>
+          </div>
+        </div> */}
+
 
         {/* Time & Note Section เลือกเวลาและใส่หมายเหตุ */}
         <div>
           <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             🕒 Time & Note
           </h2>
-          <div className="bg-gray-300 p-4 rounded-lg">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-[#341f01] text-gray-300 p-4 rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#341f01] text-gray-300">
               {/* Dropdown สำหรับเลือกเวลา */}
               <select
-                className="border rounded-lg border-black p-2 text-sm sm:text-base bg-gray-300 text-black"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base bg-[#341f01] text-gray-300"
                 value={timeNote.time}
                 onChange={
                   (e) => setTimeNote({ ...timeNote, time: e.target.value }) //ใช้ Spread Operator เพื่อคัดลอก Properties ทั้งหมดจาก Object timeNote เดิมมาสร้างเป็น Object ใหม่
@@ -444,7 +486,7 @@ export const Checkout = () => {
         {/* ปุ่มสำหรับกดยืนยันคำสั่งซื้อ */}
         <button
           type="submit" // กำหนดให้เป็นปุ่ม submit ของฟอร์ม
-          className="w-full sm:w-auto text-xl bg-stone-400 text-black px-6 py-3 rounded-xl hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all cursor-pointer"
+          className="bg-[#C18343] text-black text-2xl font-bold w-full p-3 rounded-xl mt-6 hover:bg-amber-900 ease-in-out sm:hover:text-2xl hover:font-bold hover:scale-105 hover:text-white transition-all cursor-pointer"
         >
           Place Order
         </button>
