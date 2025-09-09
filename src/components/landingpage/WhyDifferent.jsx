@@ -77,7 +77,7 @@ const WhyDifferent = () => {
           </p>
           <Link
             to="menu"
-            className="px-6 py-3 bg-[#F4B400] text-white rounded-full font-semibold shadow hover:bg-[#e0a200] transition"
+            className="px-6 py-3 bg-[#c58c4ce6] text-black rounded-full font-semibold shadow hover:bg-[#e0a200] transition"
           >
             Join Us
           </Link>

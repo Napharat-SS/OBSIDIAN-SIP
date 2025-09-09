@@ -66,37 +66,40 @@
       transform: translateY(calc(-100% - var(--gap)));
     }
   }
-  --animate-grid: grid 15s linear infinite
-;
+  --animate-grid: grid 15s linear infinite;
   @keyframes grid {
-  0% {
-    transform: translateY(-50%);
+    0% {
+      transform: translateY(-50%);
     }
-  100% {
-    transform: translateY(0);
+    100% {
+      transform: translateY(0);
     }
   }
-  --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
+  --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite
+    alternate;
   --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
   @keyframes shimmer-slide {
-  to {
-    transform: translate(calc(100cqw - 100%), 0);
+    to {
+      transform: translate(calc(100cqw - 100%), 0);
     }
   }
   @keyframes spin-around {
-  0% {
-    transform: translateZ(0) rotate(0);
+    0% {
+      transform: translateZ(0) rotate(0);
     }
-  15%, 35% {
-    transform: translateZ(0) rotate(90deg);
+    15%,
+    35% {
+      transform: translateZ(0) rotate(90deg);
     }
-  65%, 85% {
-    transform: translateZ(0) rotate(270deg);
+    65%,
+    85% {
+      transform: translateZ(0) rotate(270deg);
     }
-  100% {
-    transform: translateZ(0) rotate(360deg);
+    100% {
+      transform: translateZ(0) rotate(360deg);
     }
-  }}
+  }
+}
 
 :root {
   --radius: 0.625rem;
@@ -189,13 +192,13 @@
 }
 
 .nav-style {
-  @apply tracking-wider transition-colors text-white hover:text-amber-400 hover:underline z-50 cursor-pointer;
+  @apply tracking-wider transition-colors text-white hover:text-[#c58c4ce6]  z-50 cursor-pointer;
 }
 .getbutton {
-  @apply bg-amber-200 py-1.5 px-5 rounded-full border-none font-medium transition-all duration-500 hover:bg-yellow-700 hover:text-white cursor-pointer z-50;
+  @apply bg-[#c58c4ce6] py-1.5 px-5 rounded-full border-none font-medium transition-all duration-500 hover:bg-yellow-700 hover:text-white cursor-pointer z-50;
 }
 .orderbutton {
-  @apply bg-amber-200 py-2 px-5 rounded-full border-none font-medium transition-all duration-500 hover:bg-yellow-700 hover:text-white cursor-pointer z-50;
+  @apply bg-amber-200  py-2 px-5 rounded-full border-none font-medium transition-all duration-500 hover:bg-yellow-700 hover:text-white cursor-pointer z-50;
 }
 .title {
   @apply text-3xl xl:text-[80px] font-bold;
