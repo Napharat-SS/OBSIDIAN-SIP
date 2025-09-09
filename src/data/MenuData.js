@@ -7,9 +7,20 @@ export const categories = [
   { id: "hot", name: "Hot", count: 12 },
   { id: "bakery", name: "Bakery", count: 12 },
   { id: "beans", name: "Beans", count: 8 },
+  { id: "combo", name: "set", count: 8 },
 ];
 
 export const MenuItem = [
+  {
+    id: "morning-duo",
+    name: "Morning Duo",
+    desc: "A freshly baked croissant paired with a creamy latte – your perfect start to the day.",
+    category: "combo",
+    price: 115,
+    img: "/public/combo1.png",
+    tag: "New",
+    inStock: true,
+  },
   // ==================== COLD ====================
   {
     id: "iced-latte",

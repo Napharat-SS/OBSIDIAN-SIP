@@ -9,6 +9,7 @@ const CATEGORY_ORDER = [
   { id: "cold", label: "Cold " },
   { id: "bakery", label: "Bakery" },
   { id: "beans", label: "Beans" },
+  { id: "combo", label: "Combo" },
 ];
 
 export default function MenuPage() {
@@ -48,9 +49,6 @@ export default function MenuPage() {
     data-[state=active]:font-semibold"
               >
                 <span className="font-bold">All</span>
-                <span className="text-xs opacity-80 ">
-                  items {MenuItem.length}
-                </span>
               </TabsTrigger>
 
               {CATEGORY_ORDER.map((cat) => (

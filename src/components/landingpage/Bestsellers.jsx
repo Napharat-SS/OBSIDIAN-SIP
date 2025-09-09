@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Autoplay, EffectCoverflow, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { MenuItem } from "../../../data/MenuData";
-import MenuCard from "../../MenuPage/MenuCard";
+import { MenuItem } from "../../data/MenuData";
+import MenuCard from "../MenuPage/MenuCard";
 
 const Bestsellers = () => {
   const bestsellerIds = [
@@ -29,7 +29,7 @@ const Bestsellers = () => {
             whileInView={{ rotateY: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.6 }}
-            className="text-4xl md:text-6xl font-medium mb-2 font-inconsolata"
+            className="text-4xl md:text-6xl font-medium mb-2 font-kanit"
           >
             Best Sellers
           </motion.h2>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import { Autoplay, EffectFade } from "swiper/modules";
@@ -6,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 const Ourcoffee = () => {
   const [active, setActive] = useState(null);
+  const navigate = useNavigate();
   const images = [
     "/public/Journeyimg/J1.png",
     "/public/Journeyimg/J2.png",
@@ -34,7 +36,9 @@ const Ourcoffee = () => {
       text: "From bean to brew — pure energy and passion in every roast.",
     },
   ];
-
+  const toMenu = () => {
+    navigate("/menu");
+  };
   return (
     <section className="bg-black text-white pt-10 pb-5 px-10 xl:mx-30">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-0 xl:gap-15 md:mb-15">
@@ -62,18 +66,20 @@ const Ourcoffee = () => {
         {/* RIGHT - TEXT */}
         <div className="px-4 text-center xl:text-left xl:px-4">
           <h2 className="text-3xl xl:text-5xl font-bold my-4 font-poppins">
-            Our Journey
+            Our Coffee & Bakery
           </h2>
           <p className="text-gray-100 mb-5 2xl:leading-loose text-lg 2xl:text-xl">
-            From a small corner with a big dream, we set out to share our love
-            for coffee and baked delights. Every bean we select and every pastry
-            we bake is crafted with care and passion. We believe in creating
-            moments that warm your heart and brighten your day. Our journey is
-            about more than just flavors—it’s about connection, joy, and quality
-            in every sip and bite. Join us as we continue to grow, one delicious
-            moment at a time.
+            At Obsidian Sip, we craft every cup of coffee and bake every pastry
+            with love and care. From rich espresso to refreshing iced drinks,
+            our beverages are made from the finest beans. Our freshly baked
+            croissants, cakes, and treats perfectly complement each drink,
+            creating a delightful experience for every coffee lover. Join us and
+            savor the perfect pairing of flavors.
           </p>
-          <button className="bg-[#c58c4ce6] text-black px-6 py-2 mb-5 rounded-full hover:bg-[#ddb07ee6] transition font-bold ">
+          <button
+            className="bg-[#c58c4ce6] text-black px-6 py-2 mb-5 rounded-full hover:bg-[#ddb07ee6] transition font-bold "
+            onClick={toMenu}
+          >
             Our Menu
           </button>
         </div>

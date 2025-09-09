@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Video1 from "../../assets/HeroVideo/Video1.mp4";
 import Video2 from "../../assets/HeroVideo/Video2.mp4";
 import Video3 from "../../assets/HeroVideo/Video3.mp4";
@@ -7,6 +8,7 @@ const videos = [Video1, Video2, Video3];
 
 export default function HeroSection() {
   const [currentVideo, setCurrentVideo] = useState(0);
+  const navigate = useNavigate();
 
   // วนเล่นวิดีโอทีละไฟล์
   useEffect(() => {
@@ -48,7 +50,7 @@ export default function HeroSection() {
           className="text-lg md:text-2xl mb-6 max-w-2xl drop-shadow-md text-gray-200 font-poppins"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 3, ease: "easeOut" }}
+          transition={{ delay: 0.2, duration: 3, ease: "easeOut" }}
         >
           Special coffee & bakery, anywhere, anytime.
         </motion.p>
@@ -58,12 +60,18 @@ export default function HeroSection() {
           className="flex gap-4 font-poppins"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 5, ease: "easeOut" }}
+          transition={{ delay: 0.6, duration: 3, ease: "easeOut" }}
         >
-          <button className="px-6 py-3 rounded-3xl bg-[#c58c4ce6] text-white font-medium shadow-lg hover:bg-[##ddb07ee6] transition">
+          <button
+            className="px-6 py-3 rounded-3xl bg-[#c58c4ce6] text-white font-medium shadow-lg hover:bg-[##ddb07ee6] transition"
+            onClick={() => navigate("/menu/morning-duo")}
+          >
             Get Yours Today
           </button>
-          <button className="px-6 py-3 rounded-3xl bg-transparent border border-white text-white font-medium hover:bg-white/20 transition">
+          <button
+            className="px-6 py-3 rounded-3xl bg-transparent border border-white text-white font-medium hover:bg-white/20 transition"
+            onClick={() => navigate("/menu")}
+          >
             Browse Menu
           </button>
         </motion.div>

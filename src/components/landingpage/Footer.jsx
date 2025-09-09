@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-black py-3">
       {/* กล่องหลัก */}
-      <div className="mx-6 md:mx-20 md:py-8 border border-gray-300 p-6 md:p-8 rounded-[50px] bg-gradient-to-r from-[#000000] to-[#341f01] text-white text-sm shadow-xl">
+      <div className="mx-6 md:mx-20 md:py-8 border border-gray-700 p-6 md:p-8 rounded-[50px] bg-gradient-to-r from-[#000000] to-[#341f01] text-white text-sm shadow-xl font-poppins">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-6 gap-8 items-start">
           {/* 1. About Info */}
           <div className="space-y-4 col-span-2">
