@@ -58,16 +58,16 @@ export const OrderConfirmation = () => {
   // --- ส่วนของ JSX (หน้าตาของ Component) ---
   return (
     // Container หลักของหน้าจอ bg-[url('/Journeyimg/J3.png')]
-    <div className="bg-[#0f0f10] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10 text-[#3F3C38]">
+    <div className="bg-[#0f0f10] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10 text-gray-300">
       <div className="min-h-screen">
         <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
 
           {/* Information Section on the Left side */}
-          <div className="bg-stone-300 shadow-md rounded-2xl p-6 relative">
+          <div className="bg-[#341f01] shadow-md rounded-2xl p-6 relative text-gray-300">
             <h1 className="text-4xl font-bold mb-4">
               Thank you for your purchase!
             </h1>
-            <p className="pt-4 pb-7 mb-6 text-sm text-neutral-500 text-xl">
+            <p className="pt-4 pb-7 mb-6 text-sm text-gray-300 text-xl">
               Your order will be processed based on the selected order type and
               your specified time. You will receive an notification once it is
               ready or on its way.
@@ -75,7 +75,7 @@ export const OrderConfirmation = () => {
 
             {/* Customer Information ที่ดึงค่ามาจากหน้า Checkout */}
             <div className="mb-6">
-              <h2 className="text-3xl text-stone-800 font-semibold mb-2">Billing address</h2>
+              <h2 className="text-3xl text-gray-300 font-semibold mb-2">Billing address</h2>
               <p className="text-xl">
                 <strong>Name:</strong> {customer?.firstName} {customer?.lastName}{/* เพิ่ม ?. เพื่อป้องกัน error ถ้า customer เป็น undefined หรือ null */}
               </p>
@@ -97,18 +97,18 @@ export const OrderConfirmation = () => {
             {/* ปุ่มสำหรับกดเพื่อดูสถานะคำสั่งซื้อ ที่หน้า User Profile */}
             <button
               onClick={handleTrackOrder}
-              className="w-full sm:w-auto text-xl bg-stone-400 text-black px-6 py-3 rounded-xl hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
+              className="w-full bg-[#c58c4ce6] text-black py-2 rounded-2xl hover:bg-[#ddb07ee6] transition-colors duration-300 text-2xl font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Track Your Order
             </button>
           </div>
 
           {/* Receipt Section on the Right side: Order Summary */}
-          <div className="bg-stone-300 shadow-md rounded-2xl p-6 relative">
-            <h2 className="text-2xl font-bold mb-7">Order Summary</h2>
+          <div className="bg-[#341f01] shadow-md rounded-2xl p-6 relative">
+            <h2 className="text-2xl text-gray-300 font-bold mb-7">Order Summary</h2>
 
             {/* รายละเอียดการสั่งซื้อ (วันที่สั่งซื้อ, เลขที่สั่งซื้อ, วิธีชำระเงิน(ถ้ามี)) */}
-            <div className="grid grid-cols-3 text-sm text-[#3F3C38] mb-4">
+            <div className="grid grid-cols-3 text-sm text-gray-300 mb-4">
               <div>
                 <strong>Date</strong>
                 <br />
@@ -136,12 +136,12 @@ export const OrderConfirmation = () => {
                 ) => (
                   <div key={item.id} className="flex items-center py-4">
                     <div className="flex-1">
-                      <h3 className="font-semibold">{item.name}</h3>
-                      <p className="text-sm text-[#7A7267]">
+                      <h3 className="font-semibold text-gray-300">{item.name}</h3>
+                      <p className="text-sm text-gray-300">
                         Qty: {item.quantity}
                       </p>
                     </div>
-                    <div className="font-semibold">
+                    <div className="font-semibold text-gray-300">
                       {item.price * item.quantity}.00฿{" "}
                       {/* ราคารวมของสินค้าแต่ละชิ้น */}
                     </div>
@@ -151,7 +151,7 @@ export const OrderConfirmation = () => {
             </div>
 
             {/* Part สรุปราคา */}
-            <div className="mt-4 text-md text-[#3F3C38] space-y-1">
+            <div className="mt-4 text-md text-gray-300 space-y-1">
               <div className="flex justify-between">
                 <span><strong>Sub Total</strong></span>
                 <span><strong>฿{subtotal}.00</strong></span>

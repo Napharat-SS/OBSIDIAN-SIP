@@ -155,7 +155,7 @@ export const Checkout = () => {
       {/* ฟอร์มทั้งหมด ที่เมื่อกดปุ่ม Place Order จะเรียก handleConfirm */}
       <form
         onSubmit={handleConfirm}
-        className="border border-gray-200 max-w-4xl mx-auto bg-[#0f0f10] rounded-2xl p-4 sm:p-6 space-y-6"
+        className="border border-gray-200 max-w-4xl mx-auto bg-amber- rounded-2xl p-4 sm:p-6 space-y-6 bg-[#2B1B00]"
       >
         {/* แถบหัวข้อ Checkout */}
         <div className="bg-[#341f01] py-4 px-4 rounded-lg space-y-2">
@@ -169,7 +169,7 @@ export const Checkout = () => {
           <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             🧾 Order Summary
           </h2>
-          <div className="bg-[#341f01] p-4 rounded-lg space-y-2 text-gray-300">
+          <div className="bg-[#341f01]   p-4 rounded-lg space-y-2 text-gray-300">
             <ul className="space-y-1">
               {/* วนลูปแสดงรายการสินค้าแต่ละชิ้นใน basket */}
               {basket.map((item) => (
@@ -406,46 +406,6 @@ export const Checkout = () => {
             </div>
           </div>
         )}
-        
-                {/* ✅ Payment Method Section */}
-        {/* <div>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
-            💳 Payment Method
-          </h2>
-          <div className="bg-gray-300 p-4 rounded-lg space-y-2">
-            <div className="space-y-1">
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
-                <input
-                  type="radio"
-                  name="payment"
-                  value="credit"
-                  className="accent-[#9C9284]"
-                />
-                Credit / Debit Card
-              </label>
-
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
-                <input
-                  type="radio"
-                  name="payment"
-                  value="bank"
-                  className="accent-[#9C9284]"
-                />
-                Bank Transfer
-              </label>
-
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400">
-                <input
-                  type="radio"
-                  name="payment"
-                  value="cod"
-                  className="accent-[#9C9284]"
-                />
-                Cash on Delivery
-              </label>
-            </div>
-          </div>
-        </div> */}
 
 
         {/* Time & Note Section เลือกเวลาและใส่หมายเหตุ */}
@@ -486,7 +446,7 @@ export const Checkout = () => {
         {/* ปุ่มสำหรับกดยืนยันคำสั่งซื้อ */}
         <button
           type="submit" // กำหนดให้เป็นปุ่ม submit ของฟอร์ม
-          className="bg-[#C18343] text-black text-2xl font-bold w-full p-3 rounded-xl mt-6 hover:bg-amber-900 ease-in-out sm:hover:text-2xl hover:font-bold hover:scale-105 hover:text-white transition-all"
+          className="bg-[#C18343] text-black text-2xl font-bold w-full p-3 rounded-xl mt-6 hover:bg-[#3E2723] ease-in-out sm:hover:text-2xl hover:font-bold hover:text-gray-300 transition-all"
         >
           Place Order
         </button>
