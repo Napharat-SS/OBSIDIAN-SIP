@@ -444,7 +444,7 @@ export const Checkout = () => {
         {/* ปุ่มสำหรับกดยืนยันคำสั่งซื้อ */}
         <button
           type="submit" // กำหนดให้เป็นปุ่ม submit ของฟอร์ม
-          className="w-full sm:w-auto text-xl bg-stone-400 text-black px-6 py-3 rounded-xl hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
+          className="w-full sm:w-auto text-xl bg-stone-400 text-black px-6 py-3 rounded-xl hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all cursor-pointer"
         >
           Place Order
         </button>
