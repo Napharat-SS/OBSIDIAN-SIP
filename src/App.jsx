@@ -14,6 +14,7 @@ import ProductDetail from "./views/ProductDetail";
 import Profile from "./views/Profile";
 import Profile_delete from "./views/Profile_delete";
 import Profile_update from "./views/Profile_update";
+import MyOrders from "./views/MyOrders";
 import { SignupPage } from "./views/Register";
 import { AuthProvider } from "./context/AuthProvider";
 
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
       { path: "profile/privacy", element: <Privacy /> },
       { path: "profile/privacy/update", element: <Profile_update /> },
       { path: "profile/privacy/delete", element: <Profile_delete /> },
+      { path: "profile/my-orders", element: <MyOrders /> },
       { path: "addtocart", element: <Addtocart /> },
     ],
   },

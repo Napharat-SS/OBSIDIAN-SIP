@@ -27,6 +27,12 @@ export default function Privacy() {
             >
               Privacy
             </Link>
+            <Link
+              to="/profile/my-orders"
+              className=" top-[120px] left-[106px] font-medium text-[#C78E2C]  text-[17px] leading-normal"
+            >
+              Orders
+            </Link>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-[32%_68%] bg-[#2B1B17]">
