@@ -13,6 +13,7 @@ import Profile from "./views/Profile";
 import Profile_delete from "./views/Profile_delete";
 import Profile_update from "./views/Profile_update";
 import { RegisterForm } from "./views/Register";
+import MyOrders from "./views/MyOrders";
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
       { path: "profile/privacy", element: <Privacy /> },
       { path: "profile/privacy/update", element: <Profile_update /> },
       { path: "profile/privacy/delete", element: <Profile_delete /> },
+      { path: "my-orders", element: <MyOrders /> },
       { path: "addtocart", element: <Addtocart /> },
     ],
   },
