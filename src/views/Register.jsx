@@ -1,11 +1,25 @@
 import React, { useState } from 'react'
-import { Form, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {CheckCircleIcon, XCircleIcon} from "@heroicons/react/24/solid";
+import { useAuth } from '../context/AuthContext';
+import { signupUser } from '../services/authService';
 
-export const RegisterForm =() => {
+export const SignupPage =() => {
 
+  const { setUser } = useAuth();
+  const navigate = useNavigate();
+
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  
 
   const rules = {
     hasUpper: /[A-Z]/.test(password),
@@ -29,23 +43,44 @@ export const RegisterForm =() => {
 
   const match = password && confirmPassword && password === confirmPassword;
 
-  const handleSubmit = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
+    setError("");
 
     if (!match) {
       alert("Your passwords do not match");
       return;
     }
-    alert("Successfully registered as a member!");
+
+
+    setLoading(true);
+    try {
+      const response = await signupUser({ firstname, lastname, email,phone, username, password });
+      alert("Successfully registered as a member!");
+      navigate("/login");
+    } catch (err) {
+      console.error(err);
+      setError(
+        err?.response?.data?.message || "Signup failed. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const navigate  = useNavigate();
+
 
   return (
     <div className="bg-neutral-950 min-h-screen flex items-center justify-center">
       <div className="bg-neutral-900 text-white p-8 mx-6 rounded-2xl shadow-xl border border-neutral-700 w-full max-w-md md:px-10 md:my-10 md:mx-5 md:max-w-xl">
         <h2 className="text-4xl font-bold mb-6 ">Register</h2>
-        <Form onSubmit={handleSubmit}>
+        {error && (
+          <div className="bg-red-200 text-red-900 border-2 border-black rounded-lg px-4 py-2 mb-4 text-center shadow-[2px_2px_0_0_#000] font-mono">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSignup}>
           <div>
             <div className="relative py-2">
               {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
@@ -55,6 +90,8 @@ export const RegisterForm =() => {
                 className="w-full bg-transparent border-b border-neutral-600 focus:border-white outline-none py-2 peer"
                 type="text"
                 id="firstname"
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
                 name="firstname"
                 placeholder=" "
                 required
@@ -77,6 +114,8 @@ export const RegisterForm =() => {
                 className="w-full bg-transparent border-b border-neutral-600 focus:border-white outline-none py-2 peer"
                 type="text"
                 id="lastname"
+                value={lastname}
+                onChange={(e) => setLastname(e.target.value)}
                 name="lastname"
                 placeholder=" "
                 required
@@ -97,6 +136,8 @@ export const RegisterForm =() => {
               className="w-full bg-transparent border-b border-neutral-600 focus:border-white outline-none py-2 peer"
               type="email"
               id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               name="email"
               placeholder=" "
               required
@@ -146,6 +187,8 @@ export const RegisterForm =() => {
             </label> */}
             <input
               type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               name="phone"
               className="w-full bg-transparent border-b border-neutral-600 focus:border-white outline-none py-2 peer"
               placeholder=" "
@@ -172,6 +215,8 @@ export const RegisterForm =() => {
                 placeholder=" "
                 required
                 id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 name="username"
               />
               <label
@@ -199,7 +244,7 @@ export const RegisterForm =() => {
                 required
               />
               <label
-                htmlFor="username"
+                htmlFor="password"
                 className="absolute left-0 top-2 text-gray-400 text-sm transition-all 
                 peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-500 
                 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-focus:text-[#c58c4ce6]
@@ -216,13 +261,13 @@ export const RegisterForm =() => {
                 />
                 <RuleItem
                   condition={rules.hasLower}
-                  text="At least one uppercase letter (a-z)"
+                  text="At least one lowercase letter (a-z)"
                 />
               </div>
               <div>
                 <RuleItem
                   condition={rules.hasNumber}
-                  text="At least one uppercase letter (0-9)"
+                  text="At least one number (0-9)"
                 />
                 <RuleItem
                   condition={rules.hasLength}
@@ -245,7 +290,7 @@ export const RegisterForm =() => {
                 required
               />
               <label
-                htmlFor="username"
+                htmlFor="confirmpassword"
                 className="absolute left-0 top-2 text-gray-400 text-sm transition-all 
                 peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-500 
                 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-focus:text-[#c58c4ce6]
@@ -269,17 +314,16 @@ export const RegisterForm =() => {
           </div>
 
           <div className="flex justify-between mt-8 gap-4">
-            <button
-              type="button"
-              className="w-1/2 px-6 py-3 rounded-xl border border-[#c58c4ce6] text-[#c58c4ce6] font-medium shadow-lg hover:text-white hover:bg-gray-600 transition"
-              onClick={() => navigate("/login")}
+            <Link
+              to="/login"
+              className="w-1/2 px-6 py-3 text-center rounded-xl border-3 border-[#c58c4ce6] text-[#c58c4ce6] font-medium shadow-lg hover:text-white hover:bg-gray-600 transition"
             >
               Back
-            </button>
+            </Link>
             <button
               type="submit"
-              className="w-1/2 px-6 py-3 rounded-xl bg-[#c58c4ce6] text-black font-medium shadow-lg hover:bg-[#ddb07ee6] transition"
               disabled={
+                loading ||
                 !(
                   rules.hasUpper &&
                   rules.hasLower &&
@@ -287,11 +331,17 @@ export const RegisterForm =() => {
                   rules.hasLength
                 )
               }
+              className={`w-full px-6 py-3 rounded-xl font-medium transition duration-200 shadow-lg
+              ${
+                loading
+                  ? "bg-gray-400 text-white cursor-not-allowed"
+                  : "bg-[#c58c4ce6] text-black hover:text-white border-3 border-[#c58c4ce6]  hover:bg-[#5c3202e6]"
+              }`}
             >
-              Register
+              {loading ? "Signing up..." : "Sign Up"}
             </button>
           </div>
-        </Form>
+        </form>
         <p className="mt-4 text-center text-[#c4bdb5] text-lg">
           Already registered?{" "}
           <Link to="/login" className="text-white font-bold hover:underline">

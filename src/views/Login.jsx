@@ -3,10 +3,6 @@ import animationData from "../assets/HotCoffeeanimation.json";
 import Lottie from "lottie-react";
 import { IoMdContact } from "react-icons/io";
 
-
-
-
-
 const Login = () => {
   return (
     <div className="bg-gradient-to-t from-black via-[#504f4f] to-[#070707] min-h-screen flex max-sm:flex-col md:flex-row items-center justify-center ">

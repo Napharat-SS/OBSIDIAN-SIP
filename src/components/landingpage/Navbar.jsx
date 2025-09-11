@@ -56,9 +56,9 @@ const Navbar = () => {
            <Link to="aboutus" className="nav-style">
              ABOUT US
            </Link>
-           <Link to="/footer" className="nav-style">
+           <a href="#contact" className="nav-style">
              CONTACT
-           </Link>
+           </a>
          </div>
 
          <div className="hidden md:flex items-center gap-1 m-0">

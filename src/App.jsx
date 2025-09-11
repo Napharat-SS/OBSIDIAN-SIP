@@ -14,7 +14,8 @@ import ProductDetail from "./views/ProductDetail";
 import Profile from "./views/Profile";
 import Profile_delete from "./views/Profile_delete";
 import Profile_update from "./views/Profile_update";
-import { RegisterForm } from "./views/Register";
+import { SignupPage } from "./views/Register";
+import { AuthProvider } from "./context/AuthProvider";
 
 
 const router = createBrowserRouter([
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
       },
       { path: "aboutus", element: <AboutUs /> },
       { path: "login", element: <Login /> },
-      { path: "register", element: <RegisterForm /> },
+      { path: "register", element: <SignupPage /> },
       { path: "forgotpassword", element: <ForgotPassword /> },
       { path: "checkout", element: <Checkout /> },
       { path: "order-confirmation", element: <OrderConfirmation /> },
@@ -52,7 +53,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 };
 
 export default App;

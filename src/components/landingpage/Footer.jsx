@@ -71,7 +71,7 @@ const Footer = () => {
           </div>
 
           {/* 4. Follow Us */}
-          <div className="space-y-4 col-span-1 md:pl-10">
+          <div id="contact" className="space-y-4 col-span-1 md:pl-10">
             <h3 className="font-bold text-lg">Follow Us On</h3>
             <ul className="space-y-2">
               <li>
