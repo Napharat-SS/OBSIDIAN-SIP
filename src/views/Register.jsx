@@ -19,7 +19,7 @@ export const SignupPage =() => {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
+
 
   const rules = {
     hasUpper: /[A-Z]/.test(password),
@@ -335,7 +335,7 @@ export const SignupPage =() => {
               ${
                 loading
                   ? "bg-gray-400 text-white cursor-not-allowed"
-                  : "bg-[#c58c4ce6] text-black hover:text-white border-3 border-[#c58c4ce6]  hover:bg-[#5c3202e6]"
+                  : "bg-[#c58c4ce6] text-black hover:text-white border-3 border-[#c58c4ce6]  hover:bg-[#5c3202e6] cursor-pointer"
               }`}
             >
               {loading ? "Signing up..." : "Sign Up"}
