@@ -131,11 +131,11 @@ export const Checkout = () => {
     navigate("/order-confirmation", {
       // ส่งข้อมูลทั้งหมดไปยังหน้า OrderConfirmation ผ่าน state
       state: {
-        basket: basket, // ส่งข้อมูล basket ไปทั้งก้อน
+        basketItems: basket, // ส่งข้อมูล basket ไปทั้งก้อน
         subtotal, // ราคารวมของสินค้า
-        shipping: orderMethod === "delivery" ? deliveryFee : 0, // ค่าจัดส่ง (เป็น 0 ถ้าไม่ใช่ delivery)
+        deliveryFee: orderMethod === "delivery" ? deliveryFee : 0, // ค่าจัดส่ง (เป็น 0 ถ้าไม่ใช่ delivery)
         total: finalTotal, // ราคาสุทธิทั้งหมด
-        customer: customerInfo, // ข้อมูลลูกค้า
+        customerInfo: customerInfo, // ข้อมูลลูกค้า
         address: orderMethod === "delivery" ? deliveryAddress : "N/A",
         note: timeNote.note, // หมายเหตุจากลูกค้า
       },

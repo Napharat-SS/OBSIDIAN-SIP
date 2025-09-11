@@ -42,10 +42,10 @@ export default function Profile_update() {
               Privacy
             </Link>
             <Link
-              to="#"
+              to="/profile/my-orders"
               className=" top-[120px] left-[106px] font-medium text-[#C78E2C]  text-[17px] leading-normal"
             >
-              Order
+              Orders
             </Link>
           </div>
         </div>

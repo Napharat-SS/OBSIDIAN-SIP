@@ -47,7 +47,7 @@ const router = createBrowserRouter([
       { path: "profile/privacy", element: <Privacy /> },
       { path: "profile/privacy/update", element: <Profile_update /> },
       { path: "profile/privacy/delete", element: <Profile_delete /> },
-      { path: "my-orders", element: <MyOrders /> },
+      { path: "profile/my-orders", element: <MyOrders /> },
       { path: "addtocart", element: <Addtocart /> },
     ],
   },
