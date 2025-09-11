@@ -3,9 +3,11 @@ import { FaTrash } from "react-icons/fa6";
 import bgImage from "../assets/background.png";
 
 import { MenuItem } from "../data/MenuData";
+import { useNavigate } from "react-router-dom";
 
 const Addtocart = () => {
   const products = [...MenuItem];
+  const navigate = useNavigate();
   return (
     <div className="relative">
       <div
@@ -71,8 +73,14 @@ const Addtocart = () => {
                   <p className="pb-4 ">Total (Tax incl.)</p>
                   <p>THB300</p>
                 </div>
-                <div className="bg-[#bb895c] text-white text-center rounded-xl p-2  hover:bg-amber-900 transition duration-700 ease-in-out">
-                  <button type="submit">Check out</button>
+                <div className="bg-[#bb895c] text-white text-center rounded-xl p-2 hover:bg-amber-900 transition duration-700 ease-in-out ">
+                  <button
+                    className="cursor-pointer"
+                    type="submit"
+                    onClick={() => navigate("/checkout")}
+                  >
+                    Check out
+                  </button>
                 </div>
               </div>
             </div>
