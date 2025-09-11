@@ -8,7 +8,7 @@ import { useState } from "react";
 
 
 const Addtocart = () => {
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState(1);
 
   const handleMinusQuantity = () => {
     setQuantity(quantity -1 < 1 ? 1 : quantity -1)
@@ -58,7 +58,7 @@ return (
                   </div>
 
 
-              <div className="bg-[#615d58] rounded-3xl  p-10  mr-3 flex-1 mb-5 mt-4 w-140">
+              <div className="bg-[#615d58] rounded-3xl  p-10  mr-3 flex-1 mb-5 mt-4 w-120">
               
                 <p className="text-center font-bold pt-5 pb-4">Summary</p>
                 <hr className="border-[#0a0a0a] py-3" />
