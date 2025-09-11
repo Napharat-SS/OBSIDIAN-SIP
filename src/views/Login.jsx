@@ -24,9 +24,9 @@ const Login = () => {
 
             <input
               className="bg-white text-sm rounded-xl py-3 px-4 mt-2 w-full"
-              type="email"
-              id="email"
-              name="email"
+              type="text"
+              id="username"
+              name="username"
               placeholder="Username"
               required
             />
