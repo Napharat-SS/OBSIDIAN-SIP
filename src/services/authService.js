@@ -1,9 +1,10 @@
 import api from "./api"; // Axios instance with withCredentials:true
 
-export const loginUser = async (username, password) => {
+export const loginUser = async (username, password, remember) => {
   const response = await api.post("/auth/cookie/login", {
     username,
     password,
+    remember,
   });
   return response.data;
 };
