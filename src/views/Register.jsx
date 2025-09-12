@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import {CheckCircleIcon, XCircleIcon} from "@heroicons/react/24/solid";
-import { useAuth } from '../context/AuthContext';
 import { signupUser } from '../services/authService';
 
 export const SignupPage =() => {
 
-  const { setUser } = useAuth();
-  const navigate = useNavigate();
+   const navigate = useNavigate();
 
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
