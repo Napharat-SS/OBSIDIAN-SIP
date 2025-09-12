@@ -141,7 +141,7 @@ return (
 
                   
                  </div>
-                 {cart.length === 0 ? (<div><Lottie className="p-8 w-120 w-120" animationData={animationData}/></div>) : (
+                 {cart.length === 0 ? (<div><Lottie className="p-8 w-120 h-120" animationData={animationData}/></div>) : (
                   <div className="bg-[#615d58] rounded-3xl  p-5  mr-3 flex-1 mb-5 mt-4 ">
               
                 <p className="text-center font-bold pt-5 pb-4">Summary</p>
