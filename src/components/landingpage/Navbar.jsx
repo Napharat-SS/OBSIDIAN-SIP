@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CardContext";
 import { useFavorites } from "../FavoritesContext";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,6 +17,7 @@ const Navbar = () => {
   const location = useLocation();
   const { favorites } = useFavorites();
   const navigate = useNavigate();
+  const { cartItems } = useCart();
 
   const mobileNav = [
     { name: "HOME", path: "/" },
@@ -85,10 +87,17 @@ const Navbar = () => {
               )}
             </button>
           </div>
-          <ShoppingBasket
-            className="text-white hover:text-[#c58c4ce6] w-14 h-7 cursor-pointer"
-            onClick={() => navigate("/addtocart")}
-          />
+          <div className="relative">
+            <ShoppingBasket
+              className="text-white hover:text-[#c58c4ce6] w-14 h-7 cursor-pointer"
+              onClick={() => navigate("/addtocart")}
+            />
+            {cartItems.length > 0 && (
+              <span className="absolute -top-1 right-2 bg-[#c58c4ce6] text-black text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                {cartItems.length}
+              </span>
+            )}
+          </div>
           <Link to="login" className="getbutton inline-block">
             Get started
           </Link>
@@ -214,7 +223,17 @@ const Navbar = () => {
                 : "text-gray-300"
             }`}
           >
-            <ShoppingBasket className="w-8 h-8" />
+            <div className="relative">
+              <ShoppingBasket
+                className="text-white hover:text-[#c58c4ce6] w-14 h-7 cursor-pointer"
+                onClick={() => navigate("/addtocart")}
+              />
+              {cartItems.length > 0 && (
+                <span className="absolute -top-0 right-1 bg-[#c58c4ce6] text-black text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                  {cartItems.length}
+                </span>
+              )}
+            </div>
           </Link>
 
           {/* Home (center, floating) */}

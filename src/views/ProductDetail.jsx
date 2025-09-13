@@ -1,18 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate, useParams } from "react-router-dom";
 import MenuCard from "../components/MenuPage/MenuCard";
+import { useCart } from "../context/CardContext";
 import { MenuItem } from "../data/MenuData";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const product = MenuItem.find((p) => p.id === id);
+  const { addToCart } = useCart();
 
   if (!product) return <div className="p-8 text-white">Product not found</div>;
 
   return (
-    <div className="min-h-screen bg-black px-10 pt-20 pb-20">
-      <div className="container mx-auto grid md:grid-cols-2 gap-8 border border-gray-400 rounded-4xl bg-[#1b1b1b]">
+    <div className="min-h-screen bg-black px-10 md:px-50 pt-20 pb-20">
+      <div className="grid md:grid-cols-2 gap-8 border border-gray-400 rounded-4xl bg-[#1b1b1b] px-[2%] md:p-[3%]">
         {/* รูปสินค้า */}
         <img
           src={product.img}
@@ -20,7 +22,7 @@ const ProductDetail = () => {
           className="w-full h-full object-cover rounded-4xl"
         />
         {/* รายละเอียดสินค้า */}
-        <div className="p-8 shadow-lg text-white space-y-6 pt-25">
+        <div className="p-8 shadow-lg text-white space-y-6 pt-10 md:pt-25">
           <h1 className="text-3xl font-bold">{product.name}</h1>
           <p className="text-gray-300">{product.desc}</p>
 
@@ -41,6 +43,7 @@ const ProductDetail = () => {
             <Button
               className="bg-[#e2a053e6] hover:bg-[#ffffffe6]  text-black px-6 py-3 rounded-2xl"
               disabled={!product.inStock}
+              onClick={() => addToCart(product)}
             >
               Add to Basket
             </Button>
