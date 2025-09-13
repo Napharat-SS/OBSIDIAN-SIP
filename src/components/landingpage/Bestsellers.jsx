@@ -1,24 +1,31 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Autoplay, EffectCoverflow, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { MenuItem } from "../../data/MenuData";
+import { fetchBestsellers } from "../../services/productApi";
 import MenuCard from "../MenuPage/MenuCard";
 
 const Bestsellers = () => {
-  const bestsellerIds = [
-    "vanilla-iced-latte",
-    "hot-latte",
-    "sumatra-mandheling",
-    "butter-croissant",
-    "cinnamon-roll",
-    "iced-espresso-tonic",
-    "kenya-aa",
-    "banana-bread",
-    "hot-caramel-latte",
-    "chocolate-iced-coffee",
-  ];
+  const [bestsellers, setBestsellers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const bestsellers = MenuItem.filter((p) => bestsellerIds.includes(p.id));
+  useEffect(() => {
+    const getBestsellers = async () => {
+      try {
+        const data = await fetchBestsellers();
+        setBestsellers(data.data); // data.data คือ array ของ product
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getBestsellers();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <section className=" bg-black py-10 px-10 xl:px-20 ">
