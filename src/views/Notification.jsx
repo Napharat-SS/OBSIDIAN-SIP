@@ -74,11 +74,7 @@ export default function Notification() {
             </div>
             <div className="flex flex-col gap-5 p-5">
               <div className="bg-[#fdedb1] p-4 rounded-xl shadow-md text-[#3B2F2F] text-center w-full max-w-xl border-1 border-gray-300">
-                Your order is expected to arrive within 30 minutes.
-              </div>
-              <div className="bg-[#fdedb1] p-4 rounded-xl shadow-md text-[#3B2F2F] text-center w-full max-w-xl border-1 border-gray-300">
-                Your order #12345 has been successfully processed and is now
-                awaiting.
+                Your order has been successfully processed and is now preparing.
               </div>
             </div>
           </div>
