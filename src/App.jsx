@@ -17,7 +17,7 @@ import Profile from "./views/Profile";
 import Profile_delete from "./views/Profile_delete";
 import Profile_update from "./views/Profile_update";
 import { SignupPage } from "./views/Register";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthProvider";
 
 
 const router = createBrowserRouter([
