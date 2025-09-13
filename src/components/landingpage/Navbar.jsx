@@ -6,16 +6,20 @@ import {
   ShoppingBasket,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CardContext";
 import { useFavorites } from "../FavoritesContext";
+import { AuthContext } from "../../context/AuthContext";
+
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFavOpen, setIsFavOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
   const { favorites } = useFavorites();
+  const {isLoggedIn, user, logout} = useContext(AuthContext);
   const navigate = useNavigate();
   const { cartItems } = useCart();
 
@@ -98,9 +102,29 @@ const Navbar = () => {
               </span>
             )}
           </div>
-          <Link to="login" className="getbutton inline-block">
-            Get started
-          </Link>
+          <div>
+            {!isLoggedIn ? (
+              <Link to="login" className="getbutton inline-block">
+                Get started
+              </Link>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <span className="text-sm hidden sm:inline">{user?.name}</span>
+                <Link
+                  to="/profile"
+                  className="w-10 h-10 bg-[url('profile_avatar.png')] bg-contain bg-no-repeat rounded-full flex items-center justify-center text-lg font-bold cursor-pointer"
+                >
+                  {user?.name?.[0].toUpperCase()}
+                </Link>
+                <button
+                  onClick={logout}
+                  className="text-gray-300 hover:text-white cursor-pointer"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* mobile right section: search + toggle */}
@@ -118,6 +142,29 @@ const Navbar = () => {
           <button onClick={() => setIsSearchOpen(!isSearchOpen)}>
             <Search className="text-white w-7 h-7 mr-4 cursor-pointer" />
           </button>
+          <div>
+            {!isLoggedIn ? (
+              <Link to="login" className="getbutton inline-block">
+                Get started
+              </Link>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <span className="text-sm hidden sm:inline">{user?.name}</span>
+                <Link
+                  to="/profile"
+                  className="w-10 h-10 bg-[url('profile_avatar.png')] bg-contain bg-no-repeat rounded-full flex items-center justify-center text-lg font-bold cursor-pointer"
+                >
+                  {user?.name?.[0].toUpperCase()}
+                </Link>
+                <button
+                  onClick={logout}
+                  className="text-gray-300 hover:text-white cursor-pointer"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
 
           {/* Toggle button */}
           <button
