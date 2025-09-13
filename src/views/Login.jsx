@@ -7,12 +7,14 @@ import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 
 
+
 const Login = () => {
   const { setUser } = useAuth();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,7 +25,8 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const data = await loginUser(username, password);
+
+      const data = await loginUser(username, password, remember);
       setUser(data.user); // Save user to AuthContext
       navigate("/");
     } catch (err) {
@@ -50,7 +53,7 @@ const Login = () => {
           </div>
 
           {error && (
-            <div className="bg-red-200 text-red-900 border-2 border-black rounded-lg px-4 py-2 mb-4 text-center shadow-[2px_2px_0_0_#000] font-mono">
+            <div className=" text-black border-[#c58c4ce6] rounded-xl px-4 py-2 mb-4 text-center ">
               {error}
             </div>
           )}
@@ -86,6 +89,8 @@ const Login = () => {
                   className="form-checkbox mr-2"
                   type="checkbox"
                   name="remember"
+                  checked={remember}
+                  onChange={(e) => setRemember(e.target.checked)}
                 />
                 Remember me
               </label>
