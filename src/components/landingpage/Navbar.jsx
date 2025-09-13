@@ -102,29 +102,29 @@ const Navbar = () => {
               </span>
             )}
           </div>
-           <div>
-             {!isLoggedIn ? (
+          <div>
+            {!isLoggedIn ? (
               <Link to="login" className="getbutton inline-block">
                 Get started
               </Link>
-             ) : (
-               <div className="flex items-center space-x-4">
-                 <span className="text-sm hidden sm:inline">{user?.name}</span>
-                 <Link
-                   to="/profile"
-                   className="w-10 h-10 bg-[url('profile_avatar.png')] bg-contain bg-no-repeat rounded-full flex items-center justify-center text-lg font-bold cursor-pointer"
-                 >
-                   {user?.name?.[0].toUpperCase()}
-                 </Link>
-                 <button
-                   onClick={logout}
-                   className="text-gray-300 hover:text-white cursor-pointer"
-                 >
-                   Logout
-                 </button>
-               </div>
-             )}
-           </div>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <span className="text-sm hidden sm:inline">{user?.name}</span>
+                <Link
+                  to="/profile"
+                  className="w-10 h-10 bg-[url('profile_avatar.png')] bg-contain bg-no-repeat rounded-full flex items-center justify-center text-lg font-bold cursor-pointer"
+                >
+                  {user?.name?.[0].toUpperCase()}
+                </Link>
+                <button
+                  onClick={logout}
+                  className="text-gray-300 hover:text-white cursor-pointer"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* mobile right section: search + toggle */}
@@ -142,6 +142,29 @@ const Navbar = () => {
           <button onClick={() => setIsSearchOpen(!isSearchOpen)}>
             <Search className="text-white w-7 h-7 mr-4 cursor-pointer" />
           </button>
+          <div>
+            {!isLoggedIn ? (
+              <Link to="login" className="getbutton inline-block">
+                Get started
+              </Link>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <span className="text-sm hidden sm:inline">{user?.name}</span>
+                <Link
+                  to="/profile"
+                  className="w-10 h-10 bg-[url('profile_avatar.png')] bg-contain bg-no-repeat rounded-full flex items-center justify-center text-lg font-bold cursor-pointer"
+                >
+                  {user?.name?.[0].toUpperCase()}
+                </Link>
+                <button
+                  onClick={logout}
+                  className="text-gray-300 hover:text-white cursor-pointer"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
 
           {/* Toggle button */}
           <button
