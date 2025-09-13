@@ -80,7 +80,7 @@ export default function MyOrders() {
                       onClick={() => navigate("/profile/notification", { state: { orderId: order.orderId } })}
                       className="mt-4 sm:mt-0 bg-[#c58c4ce6] text-black px-5 py-2 rounded-xl hover:bg-[#ddb07ee6] transition-colors duration-300 font-medium"
                     >
-                      Track Order
+                      Track Status
                     </button>
                   </div>
 
