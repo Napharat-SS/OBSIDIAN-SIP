@@ -2,20 +2,17 @@ import { Link, useNavigate } from "react-router-dom";
 import animationData from "../assets/HotCoffeeanimation.json";
 import Lottie from "lottie-react";
 import { IoMdContact } from "react-icons/io";
-import { loginUser } from "../services/authService";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
+import api from "../services/api";
 
-
-
-const Login = () => {
-  const { setUser } = useAuth();
+const LoginPage = () => {
+  const { login } = useAuth(); //ดึงฟังก์ชัน login จาก AuthContext
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
-
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -25,9 +22,14 @@ const Login = () => {
     setLoading(true);
 
     try {
+      const response = await api.post("/auth/login", {
+        username,
+        password,
+      });
+      const { accessToken, refreshToken, user } = response.data;
 
-      const data = await loginUser(username, password, remember);
-      setUser(data.user); // Save user to AuthContext
+      // เรียกใช้ฟังก์ชัน login จาก AuthContext เพื่อจัดการ state และเก็บ token
+      login(user, accessToken, refreshToken);
       navigate("/");
     } catch (err) {
       console.error(err);
@@ -38,7 +40,6 @@ const Login = () => {
       setLoading(false);
     }
   };
-
 
   return (
     <div className="bg-gradient-to-t from-black via-[#504f4f] to-[#070707] min-h-screen flex max-sm:flex-col md:flex-row items-center justify-center ">
@@ -123,4 +124,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

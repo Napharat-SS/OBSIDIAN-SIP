@@ -5,7 +5,7 @@ import Addtocart from "./views/Addtocart";
 import { Checkout } from "./views/Checkout";
 import { ForgotPassword } from "./views/ForgotPassword";
 import Home from "./views/Home";
-import Login from "./views/Login";
+import LoginPage from "./views/Login";
 import Menu from "./views/Menu";
 import Notification from "./views/Notification";
 import { OrderConfirmation } from "./views/OrderConfirmation";
@@ -16,7 +16,7 @@ import Profile_delete from "./views/Profile_delete";
 import Profile_update from "./views/Profile_update";
 import MyOrders from "./views/MyOrders";
 import { SignupPage } from "./views/Register";
-import { AuthProvider } from "./context/AuthProvider";
+import { AuthProvider } from "./context/AuthContext";
 
 
 const router = createBrowserRouter([
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         ],
       },
       { path: "aboutus", element: <AboutUs /> },
-      { path: "login", element: <Login /> },
+      { path: "login", element: <LoginPage /> },
       { path: "register", element: <SignupPage /> },
       { path: "forgotpassword", element: <ForgotPassword /> },
       { path: "checkout", element: <Checkout /> },
