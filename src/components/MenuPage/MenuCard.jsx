@@ -1,10 +1,12 @@
 import { memo } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CardContext";
 import { useFavorites } from "../FavoritesContext";
 
 const MenuCard = memo(({ id, name, desc, tag, img, price, inStock }) => {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   const { favorites, toggleFavorite } = useFavorites();
 
@@ -20,6 +22,11 @@ const MenuCard = memo(({ id, name, desc, tag, img, price, inStock }) => {
       img,
       inStock,
     });
+  };
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+    addToCart({ id, name, desc, price, img, inStock });
   };
 
   return (
@@ -78,6 +85,7 @@ const MenuCard = memo(({ id, name, desc, tag, img, price, inStock }) => {
             <button
               className="w-full bg-[#c58c4ce6] text-black py-2 rounded-2xl hover:bg-[#ddb07ee6] transition-colors duration-300 text-sm font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={!inStock}
+              onClick={handleAddToCart}
             >
               Add to Basket
             </button>

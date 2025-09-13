@@ -52,13 +52,13 @@ export const Promotion = () => {
             <p className="text-xs md:text-base">
               Enjoy our special blends made daily just for you
             </p>
-            <botton
+            <button
               href="/menus"
               className="group inline-flex items-center gap-2 bg-[#c58c4ce6] text-black font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#ddb07ee6] transition-all duration-200 text-xs md:text-base"
               onClick={goToMenu}
             >
               <span>Order Now</span>
-            </botton>
+            </button>
           </div>
         </div>
       </div>

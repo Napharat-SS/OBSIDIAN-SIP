@@ -53,7 +53,7 @@ export const SignupPage =() => {
 
     setLoading(true);
     try {
-      const response = await signupUser({ firstname, lastname, email,phone, username, password });
+      await signupUser({ firstname, lastname, email,phone, username, password });
       alert("Successfully registered as a member!");
       navigate("/login");
     } catch (err) {
@@ -73,7 +73,7 @@ export const SignupPage =() => {
       <div className="bg-neutral-900 text-white p-8 mx-6 rounded-2xl shadow-xl border border-neutral-700 w-full max-w-md md:px-10 md:my-10 md:mx-5 md:max-w-xl">
         <h2 className="text-4xl font-bold mb-6 ">Register</h2>
         {error && (
-          <div className="bg-red-200 text-red-900 border-2 border-black rounded-lg px-4 py-2 mb-4 text-center shadow-[2px_2px_0_0_#000] font-mono">
+          <div className="bg-natural-600 text-red-600 bg-neutral-600/50 rounded-xl px-4 py-2 mb-4 text-center">
             {error}
           </div>
         )}
