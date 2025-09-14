@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { coffeeData } from "../mock/coffeeData"; // Import mock data
 
 // สร้าง Component ชื่อ Checkout เป็น function
 export const Checkout = () => {
@@ -15,6 +14,13 @@ export const Checkout = () => {
     savedAddress: "123/45 ซอยกาแฟ ถนนสุขุมวิท เขตวัฒนา กรุงเทพฯ 10110",
   };
 
+  // สร้าง Mock Data สำหรับ products for checkout
+  const coffeeData = [
+  { id: 1, name: "Hot Americano", price: 120 },
+  { id: 2, name: "Iced Latte", price: 130 },
+  { id: 3, name: "Croissant", price: 100 },
+];
+
   // --- ประกาศ State ต่างๆ สำหรับเก็บข้อมูลในหน้า Checkout ---
 
   // สร้าง state สำหรับตะกร้าสินค้า (basket)
@@ -24,9 +30,9 @@ export const Checkout = () => {
   );
   // สร้าง state สำหรับวิธีรับสินค้า (dinein, pickup, delivery) เริ่มต้นเป็น "dinein"
   const [orderMethod, setOrderMethod] = useState("dinein");
-  // 4. เพิ่ม state สำหรับจัดการตัวเลือก "Use saved profile" เริ่มต้นเป็น "saved"
+  // เพิ่ม state สำหรับจัดการตัวเลือก "Use saved details" เริ่มต้นเป็น "saved"
   const [profileChoice, setProfileChoice] = useState("saved");
-  // 5. จัดการ state สำหรับ "Use saved address" เริ่มต้นเป็น "saved"
+  // จัดการ state สำหรับ "Use saved address" เริ่มต้นเป็น "saved"
   const [addressChoice, setAddressChoice] = useState("saved");
   // state ของข้อมูลลูกค้าให้มี First Name, Last Name และเริ่มต้นด้วยข้อมูลจาก profile
   const [customerInfo, setCustomerInfo] = useState({
@@ -35,7 +41,7 @@ export const Checkout = () => {
     phoneNumber: userProfileData.phoneNumber,
     email: userProfileData.email,
   });
-  // 5. กำหนดค่าเริ่มต้นของ Delivery Address จากข้อมูลใน profile
+  // กำหนดค่าเริ่มต้นของ Delivery Address จากข้อมูลใน profile
   const [deliveryAddress, setDeliveryAddress] = useState(
     userProfileData.savedAddress
   );
@@ -57,15 +63,14 @@ export const Checkout = () => {
       (
         prevBasket // อัปเดต state basket โดยอิงจากค่าเก่า (prevBasket)
       ) =>
-      prevBasket.map(
-        (
-          item // วนลูปในตะกร้าเก่าเพื่อหา item ที่ต้องการแก้ไข
-        ) =>
-        item.id === itemId ?
-        { ...item, quantity: Number(newQuantity) } // ถ้า item.id ตรงกับ itemId ที่ส่งมา ให้สร้าง object ใหม่ โดยอัปเดตแค่ quantity
-        :
-        item // ถ้าไม่ตรง ก็คืนค่า item เดิม
-      )
+        prevBasket.map(
+          (
+            item // วนลูปในตะกร้าเก่าเพื่อหา item ที่ต้องการแก้ไข
+          ) =>
+            item.id === itemId
+              ? { ...item, quantity: Number(newQuantity) } // ถ้า item.id ตรงกับ itemId ที่ส่งมา ให้สร้าง object ใหม่ โดยอัปเดตแค่ quantity
+              : item // ถ้าไม่ตรง ก็คืนค่า item เดิม
+        )
     );
   };
 
@@ -75,9 +80,9 @@ export const Checkout = () => {
     setBasket((prevBasket) => prevBasket.filter((item) => item.id !== itemId));
   };
 
-  // Logic: ใช้ useEffect เพื่อจัดการการเติม Customer Info และ address อัตโนมัติ
+  // ใช้ useEffect เพื่อจัดการการเติม Customer Info และ address อัตโนมัติ
   useEffect(() => {
-    // Logic สำหรับการเติมข้อมูล Customer Info
+    // Logic สำหรับการเติมข้อมูล Customer Info เข้าไปใน field
     if (profileChoice === "saved") {
       setCustomerInfo({
         firstName: userProfileData.firstName,
@@ -95,7 +100,7 @@ export const Checkout = () => {
     }
   }, [profileChoice]); // Dependency array: useEffect นี้จะทำงานเมื่อ profileChoice เปลี่ยนแปลงเท่านั้น
 
-  // Logic สำหรับการเติมข้อมูล Delivery Address
+  // Logic สำหรับการเติมข้อมูล Delivery Address เข้าไปใน field
   useEffect(() => {
     if (addressChoice === "saved") {
       setDeliveryAddress(userProfileData.savedAddress);
@@ -117,7 +122,7 @@ export const Checkout = () => {
   // ฟังก์ชัน handleConfirm: ทำงานเมื่อกดปุ่ม "Place Order"
   const handleConfirm = (event) => {
     event.preventDefault(); // ป้องกันการ reload หน้าเว็บ เมื่อ form ถูก submit
-    
+
     // คำนวณราคาสุทธิ (finalTotal) โดยตรวจสอบว่าถ้าเลือก "delivery" ให้บวกค่าจัดส่งเพิ่ม
     const finalTotal =
       orderMethod === "delivery" ? subtotal + deliveryFee : subtotal;
@@ -126,11 +131,11 @@ export const Checkout = () => {
     navigate("/order-confirmation", {
       // ส่งข้อมูลทั้งหมดไปยังหน้า OrderConfirmation ผ่าน state
       state: {
-        basket: basket, // ส่งข้อมูล basket ไปทั้งก้อน
+        basketItems: basket, // ส่งข้อมูล basket ไปทั้งก้อน
         subtotal, // ราคารวมของสินค้า
-        shipping: orderMethod === "delivery" ? deliveryFee : 0, // ค่าจัดส่ง (เป็น 0 ถ้าไม่ใช่ delivery)
+        deliveryFee: orderMethod === "delivery" ? deliveryFee : 0, // ค่าจัดส่ง (เป็น 0 ถ้าไม่ใช่ delivery)
         total: finalTotal, // ราคาสุทธิทั้งหมด
-        customer: customerInfo, // ข้อมูลลูกค้า
+        customerInfo: customerInfo, // ข้อมูลลูกค้า
         address: orderMethod === "delivery" ? deliveryAddress : "N/A",
         note: timeNote.note, // หมายเหตุจากลูกค้า
       },
@@ -146,25 +151,25 @@ export const Checkout = () => {
   // --- ส่วนของ JSX (หน้าตาของ Component) ---
   return (
     // Container หลักของ Component
-    <div className="bg-[url('/bg-coffee-cookie.jpg')] bg-cover bg-no-repeat bg-center bg-fixed min-h-screen px-4 py-10">
-      {/* ฟอร์มทั้งหมด ที่เมื่อกด Submit จะเรียก handleConfirm */}
+    <div className="bg-[#0f0f10]">
+      {/* ฟอร์มทั้งหมด ที่เมื่อกดปุ่ม Place Order จะเรียก handleConfirm */}
       <form
         onSubmit={handleConfirm}
-        className="max-w-4xl mx-auto bg-[#fcfbfa] rounded-2xl shadow-lg p-4 sm:p-6 space-y-6"
+        className="border border-gray-200 max-w-4xl mx-auto bg-amber- rounded-2xl p-4 sm:p-6 space-y-6 bg-[#2B1B00]"
       >
         {/* แถบหัวข้อ Checkout */}
-        <div className="bg-[#472C03] py-4 px-4 rounded-lg space-y-2">
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#F5F2EC] text-center">
+        <div className="bg-[#341f01] py-4 px-4 rounded-lg space-y-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 text-center">
             🛒 Checkout
           </h1>
         </div>
 
         {/* Order Summary Section */}
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             🧾 Order Summary
           </h2>
-          <div className="bg-[#F5F2EC] p-4 rounded-lg space-y-2">
+          <div className="bg-[#341f01]   p-4 rounded-lg space-y-2 text-gray-300">
             <ul className="space-y-1">
               {/* วนลูปแสดงรายการสินค้าแต่ละชิ้นใน basket */}
               {basket.map((item) => (
@@ -182,7 +187,7 @@ export const Checkout = () => {
                       onChange={
                         (e) => handleQuantityChange(item.id, e.target.value) // เมื่อเปลี่ยนค่า ให้เรียกฟังก์ชันอัปเดตจำนวน
                       }
-                      className="border rounded p-1 text-sm"
+                      className="border rounded border-black p-1 text-sm bg-gray-300 text-black"
                     >
                       {/* วนลูปสร้าง option สำหรับจำนวน 1-10 */}
                       {[...Array(10).keys()].map((q) => (
@@ -198,7 +203,7 @@ export const Checkout = () => {
                     <button
                       type="button"
                       onClick={() => handleRemoveItem(item.id)}
-                      className="text-gray-400 hover:text-amber-400 transition-colors p-1 rounded"
+                      className="text-gray-400 hover:text-black transition-colors p-1 rounded"
                     >
                       x
                     </button>
@@ -206,7 +211,7 @@ export const Checkout = () => {
                 </li>
               ))}
             </ul>
-            <hr />
+            <hr className="border-t-1 border-black" />
 
             {/* แสดงค่าจัดส่งเฉพาะเมื่อเลือก delivery */}
             <div
@@ -228,13 +233,13 @@ export const Checkout = () => {
 
         {/* Order Type Section ประเภทการสั่งซื้อ */}
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             📍 Order Type
           </h2>
-          <div className="bg-[#F5F2EC] p-4 rounded-lg space-y-2">
+          <div className="bg-[#341f01] text-gray-300 p-4 rounded-lg space-y-2">
             <div className="space-y-1">
               {/* Radio button สำหรับ Dine-in */}
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400 text-gray-300 hover:text-black">
                 <input
                   type="radio"
                   name="method"
@@ -247,7 +252,7 @@ export const Checkout = () => {
               </label>
 
               {/* Radio button สำหรับ Pick-up */}
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                 <input
                   type="radio"
                   name="method"
@@ -260,7 +265,7 @@ export const Checkout = () => {
               </label>
 
               {/* Radio button สำหรับ Delivery */}
-              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+              <label className="flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                 <input
                   type="radio"
                   name="method"
@@ -276,7 +281,7 @@ export const Checkout = () => {
             {/* แสดงตัวเลือกที่อยู่จัดส่งเฉพาะเมื่อ user เลือก Delivery */}
             {orderMethod === "delivery" && (
               <div className="ml-6 space-y-0">
-                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                   <input
                     type="radio"
                     name="address-choice"
@@ -287,7 +292,7 @@ export const Checkout = () => {
                   />
                   <span className="text-sm">Use saved address</span>
                 </label>
-                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+                <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                   <input
                     type="radio"
                     name="address-choice"
@@ -303,26 +308,27 @@ export const Checkout = () => {
           </div>
         </div>
 
+
         {/* section customer information */}
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             👤 Customer Information
           </h2>
-          <div className="bg-[#F5F2EC] p-4 rounded-lg">
-            {/* 4. ปุ่ม Radio สำหรับเลือก Profile */}
+          <div className="bg-[#341f01] text-gray-300 p-4 rounded-lg">
+            {/* ปุ่ม Radio สำหรับเลือก Details (Customer Info) */}
             <div className="flex gap-4 mb-4">
-              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                 <input
                   type="radio"
                   name="profile-choice"
                   value="saved"
                   checked={profileChoice === "saved"}
                   onChange={(e) => setProfileChoice(e.target.value)}
-                  className="accent-[#9C9284]"
+                  className="accent-[#9C9284] hover:text-black"
                 />
                 Use saved details
               </label>
-              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-[#E6D9C2]">
+              <label className="flex items-center gap-2 py-1 px-2 rounded-lg cursor-pointer hover:bg-stone-400 hover:text-black">
                 <input
                   type="radio"
                   name="profile-choice"
@@ -340,19 +346,20 @@ export const Checkout = () => {
               <input
                 type="text"
                 placeholder="First Name"
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.firstName}
-                onChange={(e) =>
-                  setCustomerInfo({
-                    ...customerInfo, //ใช้ Spread Operator (...) เพื่อ คัดลอก Properties ทั้งหมดจาก Object customerInfo เดิมมาสร้างเป็น Object ใหม่
-                    firstName: e.target.value,
-                  }) // อัปเดตแค่ firstName
+                onChange={
+                  (e) =>
+                    setCustomerInfo({
+                      ...customerInfo, //ใช้ Spread Operator (...) เพื่อ คัดลอก Properties ทั้งหมดจาก Object customerInfo เดิมมาสร้างเป็น Object ใหม่
+                      firstName: e.target.value,
+                    }) // อัปเดตแค่ firstName
                 }
               />
               <input
                 type="text"
                 placeholder="Last Name"
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.lastName}
                 onChange={(e) =>
                   setCustomerInfo({ ...customerInfo, lastName: e.target.value })
@@ -361,7 +368,7 @@ export const Checkout = () => {
               <input
                 type="text"
                 placeholder="Phone Number"
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.phoneNumber}
                 onChange={(e) =>
                   setCustomerInfo({
@@ -373,7 +380,7 @@ export const Checkout = () => {
               <input
                 type="email"
                 placeholder="Email"
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.email}
                 onChange={(e) =>
                   setCustomerInfo({ ...customerInfo, email: e.target.value })
@@ -386,12 +393,12 @@ export const Checkout = () => {
         {/* กล่อง Delivery Address จะ pop up มาใต้ Customer Information เมื่อ user เลือก order type เป็น Delivery */}
         {orderMethod === "delivery" && ( // เงื่อนไขการแสดงผลเป็น "delivery"
           <div>
-            <h2 className="text-lg sm:text-xl font-semibold mb-2">
+            <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
               🏠 Delivery Address
             </h2>
-            <div className="bg-[#F5F2EC] p-4 rounded-lg">
+            <div className="bg-[#341f01] text-gray-300 p-4 rounded-lg">
               <textarea
-                className="w-full border rounded-lg p-2 text-sm sm:text-base"
+                className="w-full border rounded-lg border-black p-2 text-sm sm:text-base"
                 placeholder="Delivery Address (if applicable)"
                 value={deliveryAddress} // กำหนดค่าใน textarea ตาม state
                 onChange={(e) => setDeliveryAddress(e.target.value)} // เมื่อ user พิมพ์มา ให้เปลี่ยน state
@@ -400,23 +407,24 @@ export const Checkout = () => {
           </div>
         )}
 
+
         {/* Time & Note Section เลือกเวลาและใส่หมายเหตุ */}
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
             🕒 Time & Note
           </h2>
-          <div className="bg-[#F5F2EC] p-4 rounded-lg">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-[#341f01] text-gray-300 p-4 rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#341f01] text-gray-300">
               {/* Dropdown สำหรับเลือกเวลา */}
               <select
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base bg-[#341f01] text-gray-300"
                 value={timeNote.time}
                 onChange={
                   (e) => setTimeNote({ ...timeNote, time: e.target.value }) //ใช้ Spread Operator เพื่อคัดลอก Properties ทั้งหมดจาก Object timeNote เดิมมาสร้างเป็น Object ใหม่
                 }
               >
+                <option>Now</option>
                 <option>In 15 minutes</option>
-                <option>In 30 minutes</option>
                 <option>In 1 hour</option>
                 <option>Custom Time</option>
               </select>
@@ -425,7 +433,7 @@ export const Checkout = () => {
               <input
                 type="text"
                 placeholder="Note Ex. Pick up at 3 PM."
-                className="border rounded-lg p-2 text-sm sm:text-base"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={timeNote.note}
                 onChange={(e) =>
                   setTimeNote({ ...timeNote, note: e.target.value })
@@ -438,7 +446,7 @@ export const Checkout = () => {
         {/* ปุ่มสำหรับกดยืนยันคำสั่งซื้อ */}
         <button
           type="submit" // กำหนดให้เป็นปุ่ม submit ของฟอร์ม
-          className="w-full sm:w-auto bg-[#472C03] text-[#FFFFFF] px-6 py-3 rounded-xl hover:bg-[#E6D9C2] hover:text-[#000000] hover:text-lg sm:hover:text-2xl hover:font-bold hover:scale-105 transition-all"
+          className="bg-[#C18343] text-black text-2xl font-bold w-full p-3 rounded-xl mt-6 hover:bg-[#3E2723] ease-in-out sm:hover:text-2xl hover:font-bold hover:text-gray-300 transition-all"
         >
           Place Order
         </button>
@@ -446,4 +454,3 @@ export const Checkout = () => {
     </div>
   );
 };
-

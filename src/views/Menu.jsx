@@ -1,71 +1,93 @@
-import { useState } from "react";
-import { MenuCard } from "../components/MenuCard";
-import { coffeeBeansList } from "../data/CoffeeBeans";
-import { coldCoffeeList } from "../data/ColdCoffee";
-import { dessertList } from "../data/Dessert";
-import { hotCoffeeList } from "../data/HotCoffee";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useEffect, useMemo, useState } from "react";
+import MenuCard from "../components/MenuPage/MenuCard";
+import { useProductStore } from "../stores/productStore";
 
-export function Menu() {
-  const allItem = [
-    ...hotCoffeeList,
-    ...coldCoffeeList,
-    ...dessertList,
-    ...coffeeBeansList,
-  ];
+const CATEGORY_ORDER = [
+  { id: "hot", label: "Hot" },
+  { id: "cold", label: "Cold" },
+  { id: "bakery", label: "Bakery" },
+  { id: "beans", label: "Beans" },
+  { id: "combo", label: "Combo" },
+];
 
-  const categories = [
-    { key: "all", label: "All", data: allItem },
-    { key: "hot", label: "Hot Coffee", data: hotCoffeeList },
-    { key: "cold", label: "Cold Coffee", data: coldCoffeeList },
-    { key: "dessert", label: "Dessert", data: dessertList },
-    { key: "beans", label: "Coffee Beans", data: coffeeBeansList },
-  ];
+export default function MenuPage() {
+  const [activeCat, setActiveCat] = useState("all");
 
-  const [selectedCat, setSelectedCat] = useState("all");
+  const { products, loading, error, getProducts } = useProductStore();
 
-  const currentCat = categories.find((cat) => cat.key === selectedCat);
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
+
+  const filteredItems = useMemo(() => {
+    if (activeCat === "all") return products;
+    return products.filter(
+      (p) => (p.category || "").toLowerCase() === activeCat
+    );
+  }, [activeCat, products]);
 
   return (
-    <div>
-      <div className="bg-[#FFF0D7]">
-        <div>
-          <img
-            src="./bg-menu.jpg"
-            alt="pour coffee"
-            className="w-full h-[45vh] object-cover md:object-cover md:h-[35vh] md:w-full"
-          ></img>
+    <div className="min-h-screen bg-[#0f0f10] text-white">
+      <div className="mx-[10%] px-4 py-10">
+        {/* Header */}
+        <header className="py-15 px-20 mb-10 rounded-4xl bg-[url('/bgMenu.png')] bg-cover bg-bottom bg-no-repeat">
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-center">
+            Our <span className="text-[#fab260e6]">Menu</span>
+          </h1>
+          <p className="mt-4 max-w-2xl mx-auto text-center font-kanit text-sm md:text-xl drop-shadow">
+            Every cup and every bite, crafted to bring you joy and brighten your
+            day.
+          </p>
+        </header>
+
+        {/* Tabs */}
+        <div className="mb-6 flex justify-center ">
+          <Tabs value={activeCat} onValueChange={setActiveCat}>
+            <TabsList className="md:flex md:flex-wrap justify-center gap-2 bg-[#1a1a1b]/70 rounded-2xl md:pt-2 md:pb-16 md:px-1 border py-7">
+              <TabsTrigger
+                value="all"
+                className="flex flex-col items-center justify-center rounded-xl md:px-6 md:py-7 transition-colors duration-300 px-3 py-5 text-gray-100 data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:font-semibold"
+              >
+                <span className="font-bold">All</span>
+              </TabsTrigger>
+
+              {CATEGORY_ORDER.map((cat) => (
+                <TabsTrigger
+                  key={cat.id}
+                  value={cat.id}
+                  className="flex flex-col items-center justify-center rounded-xl text-xs md:text-sm data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:font-semibold text-gray-100 md:px-6 md:py-7 py-5 px-3 transition-colors duration-300"
+                >
+                  <span className="font-bold">{cat.label}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
         </div>
-        <div className="flex gap-3 justify-center py-6 px-4 ">
-          {categories.map((cat) => (
-            <button
-              key={cat.key}
-              onClick={() => setSelectedCat(cat.key)}
-              className={`px-4 py-2 rounded-xl text-xl text-[#3F3C38] font-medium transition ${
-                selectedCat === cat.key
-                  ? " text-[#3F3C38] bg-[#D4A475] shadow-md"
-                  : " hover:bg-gray-300"
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-        <div className="flex justify-center">
-          <div className="grid grid-cols-3 md:grid-cols-4 gap-x-4 w-full max-w-6xl">
-            {currentCat.data.map((item) => (
-              <MenuCard
-                key={item.id}
-                title={item.title}
-                description={item.description}
-                price={item.price}
-                img={item.img}
-              />
-            ))}
-          </div>
-        </div>
+
+        {/* Products */}
+        <section aria-label="menu-items">
+          {loading ? (
+            <div className="text-center py-16 opacity-80">
+              <p>Loading...</p>
+            </div>
+          ) : error ? (
+            <div className="text-center py-16 text-red-500">
+              <p>{error}</p>
+            </div>
+          ) : filteredItems.length === 0 ? (
+            <div className="text-center py-16 opacity-80">
+              <p>No items found in this category.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredItems.map((product) => (
+                <MenuCard key={product.id} {...product} />
+              ))}
+            </div>
+          )}
+        </section>
       </div>
     </div>
   );
 }
-
-export default Menu;

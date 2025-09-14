@@ -1,17 +1,20 @@
-import Detailbean from "../components/landingpage/Detailbean.jsx";
+import Bestsellers from "../components/landingpage/Bestsellers.jsx";
+import Ourblog from "../components/landingpage/blog/Ourblog.jsx";
+import { Community } from "../components/landingpage/Community.jsx";
 import Herosection from "../components/landingpage/Herosection";
-import Newmenu from "../components/landingpage/Newmenu";
-import { ReviewCard } from "../components/landingpage/ReviewCard";
-import WhyDifferent from "../components/landingpage/WhyDifferent";
-
+import Ourcoffee from "../components/landingpage/Ourcoffee.jsx";
+import { Promotion } from "../components/landingpage/Promotion.jsx";
+import WhyDifferent from "../components/landingpage/WhyDifferent.jsx";
 const Home = () => {
   return (
-    <div>
+    <div className="bg-black">
       <Herosection />
-      <Newmenu />
-      <Detailbean />
+      <Bestsellers />
+      <Ourcoffee />
+      <Community />
+      <Promotion />
+      <Ourblog />
       <WhyDifferent />
-      <ReviewCard />
     </div>
   );
 };
