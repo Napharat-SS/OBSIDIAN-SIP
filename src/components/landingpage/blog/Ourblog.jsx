@@ -7,23 +7,23 @@ import "./Ourblog.css"; // <-- CSS ด้านล่าง
 
 const slides = [
   {
-    image: "/public/Blogimg/01Ourblog.png",
+    image: "/Blogimg/01Ourblog.png",
     text: "Every cup tells a story, every bite sparks joy.",
   },
   {
-    image: "/public/Blogimg/02Ourblog.jpg",
+    image: "/Blogimg/02Ourblog.jpg",
     text: "Freshly brewed coffee & homemade bakes, made just for you.",
   },
   {
-    image: "/public/Blogimg/03Ourblog.jpg",
+    image: "/Blogimg/03Ourblog.jpg",
     text: "Good days start with good coffee—and a little sweetness.",
   },
   {
-    image: "/public/Blogimg/04Ourblog.png",
+    image: "/Blogimg/04Ourblog.png",
     text: "Your vibe, your brew. Let’s make today special.",
   },
   {
-    image: "/public/Blogimg/05Ourblog.jpg",
+    image: "/Blogimg/05Ourblog.jpg",
     text: "Because coffee isn’t just a drink, it’s an experience.",
   },
 ];
