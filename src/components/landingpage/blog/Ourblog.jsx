@@ -11,7 +11,8 @@ const slides = [
     text: "Every cup tells a story, every bite sparks joy.",
   },
   {
-    image: "/Blogimg/02Ourblog.jpg",
+    image:
+      "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757823572/mink-mingle-qZ5lPCPvdXE-unsplash_xjcxge.jpg",
     text: "Freshly brewed coffee & homemade bakes, made just for you.",
   },
   {
