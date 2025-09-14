@@ -180,18 +180,3 @@ export default function Profile() {
     </div>
   );
 }
-
-// const [user, setUser] = useState();
-
-// const fetchUser = async () => {
-//   try {
-//     const res = await axios.get(API);
-//     setUser(res.user);
-//   } catch (err) {
-//     console.error("Failed to fetch user:"), err;
-//   }
-// };
-
-// useEffect(() => {
-//   fetchUser();
-// }, []);
