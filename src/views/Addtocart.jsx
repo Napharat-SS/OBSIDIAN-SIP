@@ -41,7 +41,7 @@ const Addtocart = () => {
     addToCart(cartItems.filter((item) => item.id !== id));
   };
 
-  
+
 
 return (
   <div className="bg-gradient-to-t from-black via-[#504f4f] to-[#070707] min-h-screen flex justify-center items-center text-white">
@@ -56,7 +56,7 @@ return (
                   </div>
                 <hr className="border-[#92908d] pt-5" />
                 <p className="">shopping cart</p>
-                <p className="pb-5">You have {} items in your basket</p>
+                <p className="pb-5">You have {cartItems.length} items in your basket</p>
 
                 
               
@@ -67,7 +67,7 @@ return (
                     initial={{ opacity: 0, x: 50 }}      // in
                     animate={{ opacity: 1, x: 0 }}       // normal
                     exit={{ opacity: 0, x: -100 }}       // out
-                    transition={{ duration: 0.3 }} 
+                    transition={{ duration: 0.3 }}
                     >
 
                   <div className="flex justify-between items-center gap-5 ">
