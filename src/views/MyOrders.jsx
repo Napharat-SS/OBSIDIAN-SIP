@@ -1,8 +1,22 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function MyOrders() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user } = useAuth();
+
+  if (!user) {
+    return (
+      <div className="bg-gradient-to-r from-[#000000] to-[#341f01] min-h-screen flex items-center justify-center">
+        <div className="bg-neutral-900 p-8 rounded-xl shadow-lg w-full text-[#3F3C38] md:w-3/7 px-10 py-15">
+          <h4 className="text-3xl font-bold text-white text-center mb-4">
+            Please login first
+          </h4>
+        </div>
+      </div>
+    );
+  }
 
   // ดึง orderData ที่ส่งมาจาก OrderConfirmation
   const order = location.state;
@@ -16,16 +30,28 @@ export default function MyOrders() {
             Profile
           </h1>
           <div className="text-2xl flex gap-15 pt-5 pl-3">
-            <Link to="/profile" className="font-medium text-[#C78E2C] text-[17px]">
+            <Link
+              to="/profile"
+              className="font-medium text-[#C78E2C] text-[17px]"
+            >
               Info
             </Link>
-            <Link to="/profile/notification" className="font-medium text-[#C78E2C] text-[17px]">
+            <Link
+              to="/profile/notification"
+              className="font-medium text-[#C78E2C] text-[17px]"
+            >
               Notification
             </Link>
-            <Link to="/profile/privacy" className="font-medium text-[#C78E2C] text-[17px]">
+            <Link
+              to="/profile/privacy"
+              className="font-medium text-[#C78E2C] text-[17px]"
+            >
               Privacy
             </Link>
-            <Link to="/profile/my-orders" className="font-medium text-[#C78E2C] text-[17px]">
+            <Link
+              to="/profile/my-orders"
+              className="font-medium text-[#C78E2C] text-[17px]"
+            >
               Orders
             </Link>
           </div>
@@ -39,7 +65,11 @@ export default function MyOrders() {
               Profile
             </div>
             <div className="relative w-32 h-32 rounded-full overflow-hidden mb-4 border-4">
-              <img src="/profile_avatar.png" alt="Profile Avatar" className="w-full h-full object-cover" />
+              <img
+                src="/profile_avatar.png"
+                alt="Profile Avatar"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="text-xl text-[#E8D9C6] mb-6">Obisidian Sipper</div>
             <button className="bg-yellow-700 text-white font-medium py-3 px-6 rounded-md shadow-md hover:bg-[#a8751d] transition duration-300 ease-in-out">
@@ -48,7 +78,7 @@ export default function MyOrders() {
           </div>
 
           {/* My Orders Section */}
-          <div className="border-l-[2px] bg-[#2B1B17]">
+          <div className="border-l-[2px] border-[#403B36] bg-[#2B1B17]">
             <div className="text-xl text-[#fdcf8e] font-medium pl-5 pb-5 border-b-[1px] border-[#403B36] md:pt-10">
               My Orders
             </div>
@@ -77,22 +107,31 @@ export default function MyOrders() {
                       </p>
                     </div>
                     <button
-                      onClick={() => navigate("/profile/notification", { state: { orderId: order.orderId } })}
+                      onClick={() =>
+                        navigate("/profile/notification", {
+                          state: { orderId: order.orderId },
+                        })
+                      }
                       className="mt-4 sm:mt-0 bg-[#c58c4ce6] text-black px-5 py-2 rounded-xl hover:bg-[#ddb07ee6] transition-colors duration-300 font-medium"
                     >
-                      Track Order
+                      Track Status
                     </button>
                   </div>
 
                   {/* Basket Items */}
                   <div className="border-t border-b divide-y divide-[#403B36]">
                     {order.basketItems.map((item) => (
-                      <div key={item.id} className="flex justify-between items-center py-3">
+                      <div
+                        key={item.id}
+                        className="flex justify-between items-center py-3"
+                      >
                         <div>
                           <h3 className="font-semibold">{item.name}</h3>
                           <p className="text-sm">Qty: {item.quantity}</p>
                         </div>
-                        <div className="font-semibold">฿{item.price * item.quantity}.00</div>
+                        <div className="font-semibold">
+                          ฿{item.price * item.quantity}.00
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -123,9 +162,6 @@ export default function MyOrders() {
     </div>
   );
 }
-
-
-
 
 // import { Link, useNavigate } from "react-router-dom";
 // import { useEffect, useState } from "react";

@@ -76,15 +76,15 @@ export default function Profile() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-5 mb-6">
               <div>
                 <label
-                  for="first_name"
+                  htmlFor="firstname"
                   className="block  text-[#fdcf8e] text-sm font-medium mt-5 mb-2 uppercase"
                 >
                   First Name
                 </label>
                 <input
                   type="text"
-                  id="first_name"
-                  name="first_name"
+                  id="firstname"
+                  name="firstname"
                   value={user.firstname}
                   readOnly
                   className="w-full  px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none"
@@ -92,15 +92,15 @@ export default function Profile() {
               </div>
               <div>
                 <label
-                  for="last_name"
+                  htmlFor="lastname"
                   className="block text-[#fdcf8e] text-sm font-medium mt-5 mb-2 uppercase"
                 >
                   Last Name
                 </label>
                 <input
                   type="text"
-                  id="last_name"
-                  name="last_name"
+                  id="lastname"
+                  name="lastname"
                   value={user.lastname}
                   readOnly
                   className="w-full px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none"
@@ -125,15 +125,15 @@ export default function Profile() {
             </div>
             <div className="mx-5 mb-6">
               <label
-                for="tel"
+                htmlFor="phone"
                 className="block text-[#fdcf8e] text-sm font-medium mb-2 uppercase"
               >
                 Tel.
               </label>
               <input
                 type="tel"
-                id="tel"
-                name="tel"
+                id="phone"
+                name="phone"
                 value={user.phone}
                 readOnly
                 className="w-full px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none"
@@ -141,7 +141,7 @@ export default function Profile() {
             </div>
             <div className="mx-5 mb-6">
               <label
-                for="address"
+                htmlFor="address"
                 className="block text-[#fdcf8e] text-sm font-medium mb-2 uppercase"
               >
                 Address
@@ -150,11 +150,10 @@ export default function Profile() {
                 id="address"
                 name="address"
                 rows="4"
+                value={user.address}
                 readOnly
                 className="w-full px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none resize-y"
-              >
-                {user.address}
-              </textarea>
+              ></textarea>
             </div>
           </div>
         </div>

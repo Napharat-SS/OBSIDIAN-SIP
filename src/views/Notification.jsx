@@ -1,7 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Notification() {
+  const { user } = useAuth();
+
+  if (!user) {
+    return (
+      <div className="bg-gradient-to-r from-[#000000] to-[#341f01] min-h-screen flex items-center justify-center">
+        <div className="bg-neutral-900 p-8 rounded-xl shadow-lg w-full text-[#3F3C38] md:w-3/7 px-10 py-15">
+          <h4 className="text-3xl font-bold text-white text-center mb-4">
+            Please login first
+          </h4>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-gradient-to-r from-[#000000] to-[#341f01] min-h-screen">
       <div className="p-5 md:p-10">
@@ -59,11 +74,7 @@ export default function Notification() {
             </div>
             <div className="flex flex-col gap-5 p-5">
               <div className="bg-[#fdedb1] p-4 rounded-xl shadow-md text-[#3B2F2F] text-center w-full max-w-xl border-1 border-gray-300">
-                Your order is expected to arrive within 30 minutes.
-              </div>
-              <div className="bg-[#fdedb1] p-4 rounded-xl shadow-md text-[#3B2F2F] text-center w-full max-w-xl border-1 border-gray-300">
-                Your order #12345 has been successfully processed and is now
-                awaiting.
+                Your order has been successfully processed and is now preparing.
               </div>
             </div>
           </div>
