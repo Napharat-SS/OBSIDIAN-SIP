@@ -4,8 +4,6 @@ import Profile from "./Profile";
 import { useAuth } from "../context/AuthContext";
 import api from "../services/api.js";
 
-const API = "http://localhost:3030/user/update";
-
 export default function Profile_update() {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -25,7 +23,7 @@ export default function Profile_update() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.put(API, form);
+      await api.put("/user/update", form);
       console.log("Update successfully");
       navigate("/profile");
     } catch (error) {
