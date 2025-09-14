@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import api from "../services/api";
 
 //สร้าง context สำหรับเก็บข้อมูลเกี่ยวกับ Authentication (การล็อกอิน/ผู้ใช้)
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   if (loading) {
-    return <div className="text-center mt-10 text-xl">Loading...</div>;
+    return <div className="text-center mt-10 text-xl">Loading...</div>; //เด๊่ยวเอา lottie
   }
 
   return (

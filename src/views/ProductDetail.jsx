@@ -1,16 +1,37 @@
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MenuCard from "../components/MenuPage/MenuCard";
 import { useCart } from "../context/CardContext";
-import { MenuItem } from "../data/MenuData";
+import { fetchProductById, fetchProducts } from "../services/productApi";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = MenuItem.find((p) => p.id === id);
   const { addToCart } = useCart();
 
-  if (!product) return <div className="p-8 text-white">Product not found</div>;
+  const [product, setProduct] = useState(null);
+  const [recommend, setRecommend] = useState([]);
+
+  useEffect(() => {
+    const loadProduct = async () => {
+      try {
+        const data = await fetchProductById(id);
+        setProduct(data.product);
+        const allProducts = await fetchProducts();
+        const array = Array.isArray(allProducts)
+          ? allProducts
+          : allProducts.products || [];
+        setRecommend(array.filter((p) => p.id !== id).slice(0, 4));
+      } catch (err) {
+        console.error("Error fetching product:", err);
+      }
+    };
+
+    loadProduct();
+  }, [id]);
+
+  if (!product) return <div className="p-8 text-white">Loading...</div>;
 
   return (
     <div className="min-h-screen bg-black px-10 md:px-50 pt-20 pb-20">
@@ -63,17 +84,15 @@ const ProductDetail = () => {
           You may also like
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 2xl:gap-3">
-          {MenuItem.filter((p) => p.id !== product.id)
-            .slice(0, 4)
-            .map((rec) => (
-              <div
-                key={rec.id}
-                onClick={() => navigate(`/menu/${rec.id}`)}
-                className="cursor-pointer"
-              >
-                <MenuCard {...rec} />
-              </div>
-            ))}
+          {recommend.map((rec) => (
+            <div
+              key={rec.id}
+              onClick={() => navigate(`/menu/${rec.id}`)}
+              className="cursor-pointer"
+            >
+              <MenuCard {...rec} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
