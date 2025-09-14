@@ -9,30 +9,30 @@ const Ourcoffee = () => {
   const [active, setActive] = useState(null);
   const navigate = useNavigate();
   const images = [
-    "/Journeyimg/J1.png",
-    "/Journeyimg/J2.png",
-    "/Journeyimg/J3.png",
-    "/Journeyimg/J4.png",
-    "/Journeyimg/J5.png",
-    "/Journeyimg/J6.png",
-    "/Journeyimg/J7.png",
-    "/Journeyimg/J8.png",
+    "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854862/J1_kx7bbh.png",
+    "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854863/J2_gylwn6.png",
+    "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854863/J3_cshpwm.png",
+    "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854862/J4_frddlx.png",
+    "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854862/J5_fseiih.png",
+    "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854862/J6_anustq.png",
+    "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854862/J7_sltlvn.png",
+    "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854863/J8_d6f60e.png",
   ];
   const cards = [
     {
-      img: "/catimg/C1.png",
+      img: "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854986/C1_t4v0df.png",
       text: "Refresh your spirit — cool drinks crafted to chill every moment.",
     },
     {
-      img: "/catimg/C2.png",
+      img: "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854987/C2_pnvjj9.png",
       text: "Warm your soul with rich, comforting flavors in every sip.",
     },
     {
-      img: "/catimg/C3.png",
+      img: "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854987/C3_jjilbj.png",
       text: "Freshly baked delights — a taste of joy in every bite.",
     },
     {
-      img: "/catimg/C4.png",
+      img: "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757854988/C4_w77bll.png",
       text: "From bean to brew — pure energy and passion in every roast.",
     },
   ];
