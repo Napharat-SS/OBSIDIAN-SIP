@@ -112,7 +112,7 @@ const Navbar = () => {
                 <span className="text-sm hidden sm:inline">{user?.name}</span>
                 <Link
                   to="/profile"
-                  className="w-10 h-10 bg-[url('profile_avatar.png')] bg-contain bg-no-repeat rounded-full flex items-center justify-center text-lg font-bold cursor-pointer"
+                  className="w-10 h-10   rounded-full flex items-center justify-center text-lg font-bold cursor-pointer"
                 >
                   {user?.name?.[0].toUpperCase()}
                 </Link>
