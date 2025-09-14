@@ -1,10 +1,29 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-
-const API = "http://localhost:3030/user/profile";
+import { useEffect, useState } from "react";
+import api from "../services/api";
 
 export default function Profile() {
-  const { user } = useAuth();
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await api.get("/auth/status");
+        setUser(res.data.user);
+      } catch (error) {
+        console.error("Failed to fetch user:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  if (loading) {
+    return <div className="text-white">Loading...</div>;
+  }
 
   if (!user) {
     return (

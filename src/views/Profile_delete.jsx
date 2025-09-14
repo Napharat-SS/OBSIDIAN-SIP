@@ -4,22 +4,23 @@ import { useState } from "react";
 import api from "../services/api.js";
 import { useAuth } from "../context/AuthContext.jsx";
 
-const API = "http://localhost:3030/user/delete";
-
 export default function Profile_delete() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [deleteEmail, setDeleteEmail] = useState("");
   const navigate = useNavigate();
 
   const handleDelete = async (e) => {
     e.preventDefault();
     const confirmDelete = window.confirm("Are you sure you want to delete?");
-    if (confirmDelete && deleteEmail === user.email) {
-      await api.delete(API);
-      console.log("Deleting profile...");
-      navigate("/");
-    } else {
-      console.log("Email does not match");
+    try {
+      if (confirmDelete && deleteEmail === user.email) {
+        await api.delete("/user/delete");
+        console.log("Deleting profile...");
+        logout();
+        navigate("/");
+      }
+    } catch (err) {
+      console.error("Failed to delete user:", err);
     }
   };
 
