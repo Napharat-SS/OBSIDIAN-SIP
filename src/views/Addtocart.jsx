@@ -1,11 +1,12 @@
 
 import { FaTrash } from "react-icons/fa6";
-import { MenuItem } from "../data/MenuData";
+
 import { IoChevronBackCircleOutline } from "react-icons/io5";
-import { useState } from "react";
+
 import { AnimatePresence, motion} from "framer-motion";
 import Lottie from "lottie-react";
 import animationData from "../assets/emptycart.json";
+import { useCart } from "../context/CardContext";
 
 
 
@@ -13,70 +14,23 @@ import animationData from "../assets/emptycart.json";
 
 
 const Addtocart = () => {
+  const { cartItems, addToCart } = useCart();
   
-  const [cart, setCart] = useState([
-    {
-    id: "iced-latte",
-    name: "Iced Latte",
-    desc: "Smooth espresso with chilled milk, perfect for hot days.",
-    category: "cold",
-    price: 95,
-    img: "/public/Cold/cold1.png",
-    tag: "Popular",
-    inStock: true,
-    quantity:1,
-  },
-
-  {
-    id: "iced-americano",
-    name: "Iced Americano",
-    desc: "Classic espresso shots with cold water and ice cubes.",
-    category: "cold",
-    price: 90,
-    img: "/public/Cold/cold2.png",
-    tag: "Popular",
-    inStock: true,
-    quantity:1,
-  },
-  {
-    id: "vanilla-iced-latte",
-    name: "Vanilla Iced Latte",
-    desc: "Iced latte with a touch of sweet vanilla syrup.",
-    category: "cold",
-    price: 100,
-    img: "/public/Cold/cold3.png",
-    tag: "Limited",
-    inStock: false,
-    quantity:1,
-  },
-
-  {
-    id: "mocha-iced",
-    name: "Iced Mocha",
-    desc: "Chocolate-flavored iced coffee with creamy milk.",
-    category: "cold",
-    price: 115,
-    img: "/public/Cold/cold4.png",
-    tag: "Popular",
-    inStock: true,
-    quantity:1,
-  },
-  ]);
 
   const handlePlusQty = (id) => {
-     setCart(
-      cart.map((item) =>
+     addToCart((prev)=>
+      prev.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
 
   const handleMinusQty = (id) => {
-    setCart(
-      cart
+    addToCart((prev) =>
+      prev
         .map((item) =>
           item.id === id
-            ? { ...item, quantity: item.quantity - 1 }
+           ? { ...item, quantity: item.quantity - 1 }
             : item
         )
         .filter((item) => item.quantity > 0)
@@ -84,7 +38,7 @@ const Addtocart = () => {
   };
 
    const handleRemove = (id) => {
-    setCart(cart.filter((item) => item.id !== id));
+    addToCart(cartItems.filter((item) => item.id !== id));
   };
 
   
@@ -102,12 +56,12 @@ return (
                   </div>
                 <hr className="border-[#92908d] pt-5" />
                 <p className="">shopping cart</p>
-                <p className="pb-5">You have {cart.length} items in your basket</p>
+                <p className="pb-5">You have {} items in your basket</p>
 
                 
               
                 <AnimatePresence>
-                  {cart.map((item)=> (
+                  {cartItems.map((item)=> (
                     
                     <motion.div key={item.id} className="flex bg-[#615d58] rounded-2xl p-5 mb-5  "
                     initial={{ opacity: 0, x: 50 }}      // in
@@ -141,18 +95,18 @@ return (
 
                   
                  </div>
-                 {cart.length === 0 ? (<div><Lottie className="p-8 w-120 h-120" animationData={animationData}/></div>) : (
+                 {cartItems.length === 0 ? (<div><Lottie className="p-8 w-120 h-120" animationData={animationData}/></div>) : (
                   <div className="bg-[#615d58] rounded-3xl  p-5  mr-3 flex-1 mb-5 mt-4 ">
               
                 <p className="text-center font-bold pt-5 pb-4">Summary</p>
                 <hr className="border-[#0a0a0a] py-3" />
                 <div className="flex justify-between ">
                   <p>Subtotal</p>
-                  <p>THB {cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}</p>
+                  <p>THB {cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)}</p>
                 </div>
                 <div className="flex justify-between gap-10">
                   <p className="pb-4 ">Total (Tax incl.)</p>
-                  <p>THB {cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}</p>
+                  <p>THB {cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)}</p>
                 </div>
                 <div className="bg-[#c58c4ce6] text-black py-2 rounded-xl hover:bg-[#5c3202e6] hover:text-white transition text-center duration-700 ease-in-out">
                   <button type="submit">Check out</button>
