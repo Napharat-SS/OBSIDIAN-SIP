@@ -5,9 +5,9 @@ import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 const AboutUs = () => {
   const images = [
-    "/public/aboutus/cafe1.png",
-    "/public/aboutus/cafe2.png",
-    "/public/aboutus/cafe3.png",
+    "/aboutus/cafe1.png",
+    "/aboutus/cafe2.png",
+    "/aboutus/cafe3.png",
   ];
 
   return (

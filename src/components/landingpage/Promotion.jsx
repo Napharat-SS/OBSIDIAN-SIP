@@ -39,7 +39,7 @@ export const Promotion = () => {
         {/* กล่องขวา */}
         <div className="relative rounded-4xl p-5 mx-10 md:p-5 md:mx-0 gap-4 md:gap-10 flex items-center justify-between border">
           <img
-            src="/public/promotion2.png"
+            src="/promotion2.png"
             alt="beans"
             className="flex-1 max-w-[120px] md:max-w-[220px] lg:max-w-[260px] object-contain"
           />

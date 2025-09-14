@@ -9,30 +9,30 @@ const Ourcoffee = () => {
   const [active, setActive] = useState(null);
   const navigate = useNavigate();
   const images = [
-    "/public/Journeyimg/J1.png",
-    "/public/Journeyimg/J2.png",
-    "/public/Journeyimg/J3.png",
-    "/public/Journeyimg/J4.png",
-    "/public/Journeyimg/J5.png",
-    "/public/Journeyimg/J6.png",
-    "/public/Journeyimg/J7.png",
-    "/public/Journeyimg/J8.png",
+    "/Journeyimg/J1.png",
+    "/Journeyimg/J2.png",
+    "/Journeyimg/J3.png",
+    "/Journeyimg/J4.png",
+    "/Journeyimg/J5.png",
+    "/Journeyimg/J6.png",
+    "/Journeyimg/J7.png",
+    "/Journeyimg/J8.png",
   ];
   const cards = [
     {
-      img: "/public/catimg/C1.png",
+      img: "/catimg/C1.png",
       text: "Refresh your spirit — cool drinks crafted to chill every moment.",
     },
     {
-      img: "/public/catimg/C2.png",
+      img: "/catimg/C2.png",
       text: "Warm your soul with rich, comforting flavors in every sip.",
     },
     {
-      img: "/public/catimg/C3.png",
+      img: "/catimg/C3.png",
       text: "Freshly baked delights — a taste of joy in every bite.",
     },
     {
-      img: "/public/catimg/C4.png",
+      img: "/catimg/C4.png",
       text: "From bean to brew — pure energy and passion in every roast.",
     },
   ];
