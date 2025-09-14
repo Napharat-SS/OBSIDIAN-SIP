@@ -127,7 +127,7 @@ export default function Profile() {
               </div>
               <div>
                 <label
-                  for="email"
+                  htmlFor="email"
                   className="block text-[#fdcf8e] text-sm font-medium mb-2 uppercase"
                 >
                   Email
