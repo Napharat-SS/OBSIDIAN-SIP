@@ -62,15 +62,16 @@ const ProductDetail = () => {
 
           <div className="flex space-x-4 pt-10">
             <Button
-              className="bg-[#e2a053e6] hover:bg-[#ffffffe6]  text-black px-6 py-3 rounded-2xl"
+              className="bg-[#e2a053e6] hover:bg-[#ffffffe6]  text-black px-6 py-3 rounded-2xl cursor-pointer"
               disabled={!product.inStock}
               onClick={() => addToCart(product)}
             >
               Add to Basket
             </Button>
             <Button
-              className="bg-[#e2a053e6] hover:bg-[#ffffffe6] text-gray-800 px-6 py-3 rounded-2xl"
+              className="bg-[#e2a053e6] hover:bg-[#ffffffe6] text-gray-800 px-6 py-3 rounded-2xl cursor-pointer"
               disabled={!product.inStock}
+              onClick={() => navigate("/checkout")}
             >
               Buy Now
             </Button>
