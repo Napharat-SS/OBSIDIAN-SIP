@@ -80,7 +80,7 @@ export default function MyOrders() {
                 <p className="text-xl">You don’t have any orders yet.</p>
                 <button
                   onClick={() => navigate("/")}
-                  className="mt-6 bg-[#c58c4ce6] text-black px-6 py-3 rounded-xl hover:bg-[#ddb07ee6] transition-colors duration-300 font-medium"
+                  className="mt-6 bg-[#c58c4ce6] text-black px-6 py-3 rounded-xl hover:bg-[#ddb07ee6] transition-colors duration-300 font-medium cursor-pointer"
                 >
                   Shop Now
                 </button>

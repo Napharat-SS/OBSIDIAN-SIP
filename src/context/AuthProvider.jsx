@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import Lottie from "lottie-react";
+import { useEffect, useState } from "react";
+import animationData from "../assets/Coffee love.json";
 import api from "../services/api";
 import { AuthContext } from "./AuthContext";
-import Lottie from "lottie-react";
-import animationData from "../assets/Coffee love.json";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Store user information
@@ -26,7 +26,9 @@ export const AuthProvider = ({ children }) => {
         setIsLoggedIn(false);
         setUser(null);
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 5000);
       }
     };
     checkAuthStatus();
@@ -50,7 +52,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   if (loading) {
-    return <Lottie className="w-30 h-30" animationData={animationData} />;
+    return (
+      <div className="flex items-center justify-center h-screen w-screen bg-gradient-to-b from-yellow-950 to-black">
+        <Lottie className="w-40 h-40" animationData={animationData} />
+      </div>
+    );
   }
 
   return (
