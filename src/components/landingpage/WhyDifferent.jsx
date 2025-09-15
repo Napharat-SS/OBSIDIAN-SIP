@@ -5,22 +5,22 @@ const features = [
   {
     title: "Supreme Beans",
     desc: "Beans that provides great taste",
-    icon: "/public/Homeimg/coffeebeans.png", // แทนด้วย SVG หรือ Icon component
+    icon: "/Homeimg/coffeebeans.png", // แทนด้วย SVG หรือ Icon component
   },
   {
     title: "High Quality",
     desc: "We provide the highest quality",
-    icon: "/public/Homeimg/award.png",
+    icon: "/Homeimg/award.png",
   },
   {
     title: "Extraordinary",
     desc: "Coffee like you have never tasted",
-    icon: "/public/Homeimg/coffee.png",
+    icon: "/Homeimg/coffee.png",
   },
   {
     title: "Affordable Price",
     desc: "Our Coffee prices are easy to afford",
-    icon: "/public/Homeimg/price.png",
+    icon: "/Homeimg/price.png",
   },
 ];
 
@@ -29,13 +29,13 @@ const WhyDifferent = () => {
     <section className="relative bg-[#000000]  overflow-hidden py-10">
       {/* splash image ด้านบนขวา */}
       <img
-        src="/public/Homeimg/coffee_blast.png"
+        src="/Homeimg/coffee_blast.png"
         alt="Coffee splash"
         className="hidden xl:block absolute top-0 right-0 w-64 md:w-80 opacity-90 pointer-events-none"
       />
       {/* splash image ด้านบนซ้าย */}
       <img
-        src="/public/Homeimg/coffee_blast_left.png"
+        src="/Homeimg/coffee_blast_left.png"
         alt="Coffee splash left"
         className="hidden xl:block absolute top-0 left-0 w-64 md:w-80 opacity-90 pointer-events-none"
       />
