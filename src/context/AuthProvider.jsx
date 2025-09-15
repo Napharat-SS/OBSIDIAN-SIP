@@ -50,11 +50,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   if (loading) {
-    return <Lottie className="w-30 h-30" animationData={animationData}/>;
+    return <Lottie className="w-30 h-30" animationData={animationData} />;
   }
 
   return (
-    <AuthContext.Provider value={{ user, isLoggedIn, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, setUser, setLoading, isLoggedIn, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

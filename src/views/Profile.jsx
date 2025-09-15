@@ -1,35 +1,13 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import api from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const { user } = useAuth();
-  const [reUser, setReuser] = useState(null);
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await api.get("/auth/status");
-        setReuser(res.data.user);
-      } catch (error) {
-        console.error("Failed to fetch user:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchUser();
-  }, []);
 
   if (user === null) {
     navigate("/login");
-  }
-
-  if (loading) {
-    return <div className="text-white">Loading...</div>;
   }
 
   return (
@@ -99,7 +77,7 @@ export default function Profile() {
                   type="text"
                   id="firstname"
                   name="firstname"
-                  value={reUser.firstname}
+                  value={user.firstname}
                   readOnly
                   className="w-full  px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none"
                 />
@@ -115,7 +93,7 @@ export default function Profile() {
                   type="text"
                   id="lastname"
                   name="lastname"
-                  value={reUser.lastname}
+                  value={user.lastname}
                   readOnly
                   className="w-full px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none"
                 />
@@ -131,7 +109,7 @@ export default function Profile() {
                   type="email"
                   id="email"
                   name="email"
-                  value={reUser.email}
+                  value={user.email}
                   readOnly
                   className="w-full px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none"
                 />
@@ -148,7 +126,7 @@ export default function Profile() {
                 type="tel"
                 id="phone"
                 name="phone"
-                value={reUser.phone}
+                value={user.phone}
                 readOnly
                 className="w-full px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none"
               />
@@ -164,7 +142,7 @@ export default function Profile() {
                 id="address"
                 name="address"
                 rows="4"
-                value={reUser.address}
+                value={user.address}
                 readOnly
                 className="w-full px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none resize-y"
               ></textarea>

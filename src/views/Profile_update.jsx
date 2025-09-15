@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import api from "../services/api.js";
 
 export default function Profile_update() {
-  const { user } = useAuth();
+  const { user, setUser, setLoading } = useAuth();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -22,12 +22,16 @@ export default function Profile_update() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await api.put("/user/update", form);
       console.log("Update successfully");
       navigate("/profile");
+      setUser(form);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
