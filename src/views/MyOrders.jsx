@@ -6,16 +6,8 @@ export default function MyOrders() {
   const location = useLocation();
   const { user } = useAuth();
 
-  if (!user) {
-    return (
-      <div className="bg-gradient-to-r from-[#000000] to-[#341f01] min-h-screen flex items-center justify-center">
-        <div className="bg-neutral-900 p-8 rounded-xl shadow-lg w-full text-[#3F3C38] md:w-3/7 px-10 py-15">
-          <h4 className="text-3xl font-bold text-white text-center mb-4">
-            Please login first
-          </h4>
-        </div>
-      </div>
-    );
+  if (user === null) {
+    navigate("/login");
   }
 
   // ดึง orderData ที่ส่งมาจาก OrderConfirmation
@@ -88,7 +80,7 @@ export default function MyOrders() {
                 <p className="text-xl">You don’t have any orders yet.</p>
                 <button
                   onClick={() => navigate("/")}
-                  className="mt-6 bg-[#c58c4ce6] text-black px-6 py-3 rounded-xl hover:bg-[#ddb07ee6] transition-colors duration-300 font-medium"
+                  className="mt-6 bg-[#c58c4ce6] text-black px-6 py-3 rounded-xl hover:bg-[#ddb07ee6] transition-colors duration-300 font-medium cursor-pointer"
                 >
                   Shop Now
                 </button>

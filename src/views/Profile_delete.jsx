@@ -66,7 +66,7 @@ export default function Profile_delete() {
             </Link>
             <button
               type="submit"
-              className="w-full bg-[#D4A475] text-white text-lg py-2 rounded hover:bg-yellow-600 transition font-semibold"
+              className="w-full bg-[#D4A475] text-white text-lg py-2 rounded hover:bg-yellow-600 transition font-semibold cursor-pointer"
             >
               DELETE
             </button>

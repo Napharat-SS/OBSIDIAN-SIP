@@ -7,23 +7,28 @@ import "./Ourblog.css"; // <-- CSS ด้านล่าง
 
 const slides = [
   {
-    image: "/public/Blogimg/01Ourblog.png",
+    image:
+      "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757855602/01Ourblog_j4vz1d.png",
     text: "Every cup tells a story, every bite sparks joy.",
   },
   {
-    image: "/public/Blogimg/02Ourblog.jpg",
+    image:
+      "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757855600/02Ourblog_tl0oni.jpg",
     text: "Freshly brewed coffee & homemade bakes, made just for you.",
   },
   {
-    image: "/public/Blogimg/03Ourblog.jpg",
+    image:
+      "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757855602/01Ourblog_j4vz1d.png",
     text: "Good days start with good coffee—and a little sweetness.",
   },
   {
-    image: "/public/Blogimg/04Ourblog.png",
+    image:
+      "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757855603/04Ourblog_yvqtft.png",
     text: "Your vibe, your brew. Let’s make today special.",
   },
   {
-    image: "/public/Blogimg/05Ourblog.jpg",
+    image:
+      "https://res.cloudinary.com/dotn0xzuw/image/upload/v1757855597/05Ourblog_ujudey.jpg",
     text: "Because coffee isn’t just a drink, it’s an experience.",
   },
 ];

@@ -1,9 +1,14 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export const ForgotPassword = () => {
-  const navigate  = useNavigate();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  if (user === null) {
+    navigate("/login");
+  }
 
   return (
     <div class="bg-neutral-950 bg-opacity-50 bg-cover bg-center flex items-center justify-center min-h-screen">
@@ -36,13 +41,14 @@ export const ForgotPassword = () => {
             <button
               type="button"
               className="w-1/2 px-6 py-3 rounded-xl border border-[#c58c4ce6] text-[#c58c4ce6] font-medium shadow-lg hover:text-white hover:bg-gray-600 transition"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/menu")}
             >
               Back
             </button>
             <button
               type="submit"
               class="w-1/2 px-6 py-3 rounded-xl bg-[#c58c4ce6] text-black font-medium shadow-lg hover:bg-[#ddb07ee6] transition"
+              onClick={() => navigate("/menu")}
             >
               Reset Password
             </button>
@@ -51,4 +57,4 @@ export const ForgotPassword = () => {
       </div>
     </div>
   );
-}
+};

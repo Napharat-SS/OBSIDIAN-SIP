@@ -8,10 +8,9 @@ import {
 } from "lucide-react";
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import { useCart } from "../../context/CardContext";
 import { useFavorites } from "../FavoritesContext";
-import { AuthContext } from "../../context/AuthContext";
-
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,7 +18,7 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
   const { favorites } = useFavorites();
-  const {isLoggedIn, user, logout} = useContext(AuthContext);
+  const { isLoggedIn, user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const { cartItems } = useCart();
 
@@ -110,15 +109,16 @@ const Navbar = () => {
             ) : (
               <div className="flex items-center space-x-4">
                 <span className="text-sm hidden sm:inline">{user?.name}</span>
-                <Link
-                  to="/profile"
-                  className="w-10 h-10   rounded-full flex items-center justify-center text-lg font-bold cursor-pointer"
-                >
+                <Link to="/profile">
+                  <img
+                    src="/profile_avatar.png"
+                    className="w-10 h-10 bg-contain bg-no-repeat rounded-full flex items-center justify-center text-lg font-bold cursor-pointer"
+                  ></img>
                   {user?.name?.[0].toUpperCase()}
                 </Link>
                 <button
                   onClick={logout}
-                  className="text-gray-300 hover:text-white cursor-pointer"
+                  className="text-white hover:text-[#c58c4ce6] cursor-pointer"
                 >
                   Logout
                 </button>
@@ -140,7 +140,7 @@ const Navbar = () => {
 
           {/* Search icon */}
           <button onClick={() => setIsSearchOpen(!isSearchOpen)}>
-            <Search className="text-white w-7 h-7 mr-4 cursor-pointer" />
+            <Search className="text-white w-7 h-7 mr-4 hover:text-[#c58c4ce6] cursor-pointer" />
           </button>
           <div>
             {!isLoggedIn ? (
@@ -158,7 +158,7 @@ const Navbar = () => {
                 </Link>
                 <button
                   onClick={logout}
-                  className="text-gray-300 hover:text-white cursor-pointer"
+                  className="text-white  hover:text-[#c58c4ce6] cursor-pointer"
                 >
                   Logout
                 </button>
@@ -169,7 +169,7 @@ const Navbar = () => {
           {/* Toggle button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white"
+            className="text-white cursor-pointer"
           >
             {isMenuOpen ? <X /> : <AlignRight />}
           </button>
@@ -299,7 +299,7 @@ const Navbar = () => {
 
           {/* Favorite */}
           <button className="relative" onClick={() => setIsFavOpen(true)}>
-            <Heart className="text-white w-7 h-7" />
+            <Heart className="text-white w-7 h-7 hover:text-[#c58c4ce6] cursor-pointer" />
             {favorites.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-[#c58c4ce6] text-black text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
                 {favorites.length}
