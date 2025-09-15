@@ -29,7 +29,7 @@ export default function MyOrders() {
         setLoading(true);
         // ทำการเรียก API เพื่อดึงข้อมูลคำสั่งซื้อของผู้ใช้
         const response = await api.get("/orders");
-        
+
         // ตรวจสอบว่าข้อมูลที่ได้มามี orders และเป็น array หรือไม่
         if (response.data && Array.isArray(response.data.orders)) {
           // update state orders ด้วยข้อมูลที่ได้รับ
@@ -69,7 +69,7 @@ export default function MyOrders() {
     return null;
   }
 
-   // ส่วนการแสดงผลหลักของ component
+  // ส่วนการแสดงผลหลักของ component
   return (
     <div className="bg-gradient-to-r from-[#000000] to-[#341f01] min-h-screen">
       <div className="p-5 md:p-10">
@@ -121,7 +121,9 @@ export default function MyOrders() {
               />
             </div>
             {/* แสดงชื่อ user จริงจาก user object */}
-            <div className="text-xl text-[#E8D9C6] mb-6">{user?.firstname || 'Guest'}</div>
+            <div className="text-xl text-[#E8D9C6] mb-6">
+              {user?.username || "Guest"}
+            </div>
             <button className="bg-yellow-700 text-white font-medium py-3 px-6 rounded-md shadow-md hover:bg-[#a8751d] transition duration-300 ease-in-out">
               CHANGE AVATAR
             </button>
@@ -132,9 +134,11 @@ export default function MyOrders() {
             <div className="text-xl text-[#fdcf8e] font-medium pl-5 pb-5 border-b-[1px] border-[#403B36] md:pt-10">
               My Orders
             </div>
-            
+
             {/* จัดการกรณีที่เกิด error หรือไม่มี orders */}
-            {error && <div className="text-center p-6 text-red-500">{error}</div>}
+            {error && (
+              <div className="text-center p-6 text-red-500">{error}</div>
+            )}
             {/* ตรวจสอบว่ามีคำสั่งซื้อหรือไม่ */}
             {orders.length === 0 ? (
               // ถ้าไม่มีคำสั่งซื้อ ให้แสดงข้อความและปุ่ม Shop Now เพื่อให้ user กด link กลับไปหน้า home
@@ -151,12 +155,16 @@ export default function MyOrders() {
               // ถ้ามีคำสั่งซื้อ ให้วนลูปแสดงข้อมูล
               <div className="space-y-8 text-[#E8D9C6] p-6">
                 {orders.map((order) => (
-                  <div key={order._id} className="bg-[#2B1B17] shadow-md rounded-2xl p-6">
+                  <div
+                    key={order._id}
+                    className="bg-[#2B1B17] shadow-md rounded-2xl p-6"
+                  >
                     {/* ส่วนหัวของแต่ละคำสั่งซื้อ */}
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
                       <div>
                         <p className="text-lg">
-                          <strong>Date:</strong> {new Date(order.createdAt).toLocaleDateString()}
+                          <strong>Date:</strong>{" "}
+                          {new Date(order.createdAt).toLocaleDateString()}
                         </p>
                         <p className="text-lg">
                           <strong>Order Number:</strong> {order.orderNumber}
