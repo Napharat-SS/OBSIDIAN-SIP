@@ -58,13 +58,13 @@ export default function HeroSection() {
           transition={{ delay: 0.6, duration: 3, ease: "easeOut" }}
         >
           <button
-            className="px-6 py-3 rounded-3xl bg-[#c58c4ce6] text-white font-medium shadow-lg hover:bg-[##ddb07ee6] transition"
+            className="px-6 py-3 rounded-3xl bg-[#c58c4ce6] text-white font-medium shadow-lg hover:bg-[##ddb07ee6] transition cursor-pointer"
             onClick={() => navigate("/menu/morning-duo")}
           >
             Get Yours Today
           </button>
           <button
-            className="px-6 py-3 rounded-3xl bg-transparent border border-white text-white font-medium hover:bg-white/20 transition"
+            className="px-6 py-3 rounded-3xl bg-transparent border border-white text-white font-medium hover:bg-white/20 transition cursor-pointer"
             onClick={() => navigate("/menu")}
           >
             Browse Menu

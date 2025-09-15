@@ -36,13 +36,14 @@ export const ForgotPassword = () => {
             <button
               type="button"
               className="w-1/2 px-6 py-3 rounded-xl border border-[#c58c4ce6] text-[#c58c4ce6] font-medium shadow-lg hover:text-white hover:bg-gray-600 transition"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/menu")}
             >
               Back
             </button>
             <button
               type="submit"
               class="w-1/2 px-6 py-3 rounded-xl bg-[#c58c4ce6] text-black font-medium shadow-lg hover:bg-[#ddb07ee6] transition"
+              onClick={() => navigate("/menu")}
             >
               Reset Password
             </button>

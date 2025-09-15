@@ -77,7 +77,7 @@ const Ourcoffee = () => {
             savor the perfect pairing of flavors.
           </p>
           <button
-            className="bg-[#c58c4ce6] text-black px-6 py-2 mb-5 rounded-full hover:bg-[#ddb07ee6] transition font-bold "
+            className="bg-[#c58c4ce6] text-black px-6 py-2 mb-5 rounded-full hover:bg-[#ddb07ee6] transition font-bold cursor-pointer "
             onClick={toMenu}
           >
             Our Menu

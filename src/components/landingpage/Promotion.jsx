@@ -29,7 +29,7 @@ export const Promotion = () => {
             </p>
             <button
               href="/menus"
-              className="group inline-flex items-center gap-2 bg-[#c58c4ce6] text-black font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#ddb07ee6] transition-all duration-200 text-xs md:text-base"
+              className="group inline-flex items-center gap-2 bg-[#c58c4ce6] text-black font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#ddb07ee6] transition-all duration-200 text-xs md:text-base cursor-pointer"
               onClick={goToMorningDuo}
             >
               <span>Get Yours Day</span>
@@ -54,7 +54,7 @@ export const Promotion = () => {
             </p>
             <button
               href="/menus"
-              className="group inline-flex items-center gap-2 bg-[#c58c4ce6] text-black font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#ddb07ee6] transition-all duration-200 text-xs md:text-base"
+              className="group inline-flex items-center gap-2 bg-[#c58c4ce6] text-black font-bold px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-[#ddb07ee6] transition-all duration-200 text-xs md:text-base cursor-pointer"
               onClick={goToMenu}
             >
               <span>Order Now</span>
