@@ -1,9 +1,14 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export const ForgotPassword = () => {
-  const navigate  = useNavigate();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  if (user === null) {
+    navigate("/login");
+  }
 
   return (
     <div class="bg-neutral-950 bg-opacity-50 bg-cover bg-center flex items-center justify-center min-h-screen">
@@ -52,4 +57,4 @@ export const ForgotPassword = () => {
       </div>
     </div>
   );
-}
+};

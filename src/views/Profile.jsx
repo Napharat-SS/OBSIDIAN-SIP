@@ -1,40 +1,13 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import api from "../services/api";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await api.get("/auth/status");
-        setUser(res.data.user);
-      } catch (error) {
-        console.error("Failed to fetch user:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
-  if (loading) {
-    return <div className="text-white">Loading...</div>;
-  }
-
-  if (!user) {
-    return (
-      <div className="bg-gradient-to-r from-[#000000] to-[#341f01] min-h-screen flex items-center justify-center">
-        <div className="bg-neutral-900 p-8 rounded-xl shadow-lg w-full text-[#3F3C38] md:w-3/7 px-10 py-15">
-          <h4 className="text-3xl font-bold text-white text-center mb-4">
-            Please login first
-          </h4>
-        </div>
-      </div>
-    );
+  if (user === null) {
+    navigate("/login");
   }
 
   return (
