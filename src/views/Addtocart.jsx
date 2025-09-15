@@ -156,7 +156,7 @@
 
 
 import { FaTrash } from "react-icons/fa6";
-
+import { useEffect, useState } from "react";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 
 import { AnimatePresence, motion} from "framer-motion";
@@ -171,18 +171,31 @@ import { useCart } from "../context/CardContext";
 
 const Addtocart = () => {
   const { cartItems, addToCart } = useCart();
-  
+  const [cart, setCart] = useState([]);
+
+   // สร้าง state ใหม่ที่มี quantity
+  // const [cart, setCart] = useState(
+  //   cartItems.map(item => ({ ...item, quantity: item.quantity || 1 }))
+  // );
+
+  // sync cartItems → cart ทุกครั้งที่ cartItems เปลี่ยน
+  useEffect(() => {
+    setCart(cartItems.map(item => ({ ...item, quantity: item.quantity || 1 })));
+  }, [cartItems]);
+
+
 
   const handlePlusQty = (id) => {
-     addToCart((prev)=>
+     setCart(prev=>
       prev.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
 
+
   const handleMinusQty = (id) => {
-    addToCart((prev) =>
+    setCart( prev =>
       prev
         .map((item) =>
           item.id === id
@@ -194,7 +207,7 @@ const Addtocart = () => {
   };
 
    const handleRemove = (id) => {
-    addToCart(cartItems.filter((item) => item.id !== id));
+    setCart(prev => prev.filter(item => item.id !== id));
   };
 
 
@@ -212,12 +225,12 @@ return (
                   </div>
                 <hr className="border-[#92908d] pt-5" />
                 <p className="">shopping cart</p>
-                <p className="pb-5">You have {cartItems.length} items in your basket</p>
+                <p className="pb-5">You have {cart.length} items in your basket</p>
 
                 
               
                 <AnimatePresence>
-                  {cartItems.map((item)=> (
+                  {cart.map((item)=> (
                     
                     <motion.div key={item.id} className="flex bg-[#615d58] rounded-2xl p-5 mb-5  "
                     initial={{ opacity: 0, x: 50 }}      // in
@@ -250,18 +263,18 @@ return (
 
                   
                  </div>
-                 {cartItems.length === 0 ? (<div><Lottie className="p-8 w-120 h-120" animationData={animationData}/></div>) : (
+                 {cart.length === 0 ? (<div><Lottie className="p-8 w-120 h-120" animationData={animationData}/></div>) : (
                   <div className="bg-[#615d58] rounded-3xl  p-5  mr-3 flex-1 mb-5 mt-4 ">
               
                 <p className="text-center font-bold pt-5 pb-4">Summary</p>
                 <hr className="border-[#0a0a0a] py-3" />
                 <div className="flex justify-between ">
                   <p>Subtotal</p>
-                  <p>THB {cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)}</p>
+                  <p>THB {cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}</p>
                 </div>
                 <div className="flex justify-between gap-10">
                   <p className="pb-4 ">Total (Tax incl.)</p>
-                  <p>THB {cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)}</p>
+                  <p>THB {cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}</p>
                 </div>
                 <div className="bg-[#c58c4ce6] text-black py-2 rounded-xl hover:bg-[#5c3202e6] hover:text-white transition text-center duration-700 ease-in-out">
                   <button type="submit">Checkout</button>
