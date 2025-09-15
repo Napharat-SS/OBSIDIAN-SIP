@@ -83,7 +83,7 @@ const MenuCard = memo(({ id, name, desc, tag, img, price, inStock }) => {
 
           <div className="mt-auto">
             <button
-              className="w-full bg-[#c58c4ce6] text-black py-2 rounded-2xl hover:bg-[#ddb07ee6] transition-colors duration-300 text-sm font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-[#c58c4ce6] text-black py-2 rounded-2xl hover:bg-[#ddb07ee6] transition-colors duration-300 text-sm font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               disabled={!inStock}
               onClick={handleAddToCart}
             >
