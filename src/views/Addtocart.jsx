@@ -1,5 +1,4 @@
 import { FaTrash } from "react-icons/fa6";
-import { useEffect, useState } from "react";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -8,47 +7,27 @@ import animationData from "../assets/emptycart.json";
 import { useCart } from "../context/CardContext";
 
 const Addtocart = () => {
-  const { cartItems, addToCart } = useCart();
-  const [cart, setCart] = useState([]);
+  const { cartItems, addToCart, decreaseQty, removeFromCart } =
+    useCart();
+
   const navigate = useNavigate();
-  // สร้าง state ใหม่ที่มี quantity
-  // const [cart, setCart] = useState(
-  //   cartItems.map(item => ({ ...item, quantity: item.quantity || 1 }))
-  // );
 
-  // sync cartItems → cart ทุกครั้งที่ cartItems เปลี่ยน
-  useEffect(() => {
-    setCart(
-      cartItems.map((item) => ({ ...item, quantity: item.quantity || 1 }))
-    );
-  }, [cartItems]);
-
-  const handlePlusQty = (id) => {
-    setCart((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+  const handlePlusQty = (item) => {
+    addToCart({ ...item, quantity: 1 }); // ใช้ addToCart เพิ่มจำนวน
   };
 
-  const handleMinusQty = (id) => {
-    setCart((prev) =>
-      prev
-        .map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
+  const handleMinusQty = (item) => {
+    decreaseQty(item.id); // ✅ ลดทีละ 1
   };
 
   const handleRemove = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
+    removeFromCart(id); // ลบทั้ง item ออก
   };
 
   // สร้าง function สำหรับการนำทางไปยังหน้า Checkout
   const handleCheckout = () => {
     // ใช้ navigate เพื่อเปลี่ยนเส้นทางไปยังหน้า /checkout
-    navigate("/checkout", { state: { basket: cart } });
+    navigate("/checkout", { state: { basket: cartItems } });
   };
 
   return (
@@ -65,10 +44,10 @@ const Addtocart = () => {
             </button>
             <hr className="border-[#92908d] pt-5" />
             <p className="">shopping cart</p>
-            <p className="pb-5">You have {cart.length} items in your basket</p>
+            <p className="pb-5">You have {cartItems.length} items in your basket</p>
 
             <AnimatePresence>
-              {cart.map((item) => (
+              {cartItems.map((item) => (
                 <motion.div
                   key={item.id}
                   className="flex bg-[#615d58] rounded-2xl p-5 mb-5  "
@@ -83,14 +62,14 @@ const Addtocart = () => {
                     <div className=" flex justify-between gap-4">
                       <button
                         className="bg-[#c58c4ce6] text-black hover:bg-[#5c3202e6] hover:text-white transition text-center duration-700 ease-in-out w-6 h-6"
-                        onClick={() => handleMinusQty(item.id)}
+                        onClick={() => handleMinusQty(item)}
                       >
                         -
                       </button>
                       <span>{item.quantity}</span>
                       <button
                         className="bg-[#c58c4ce6] text-black hover:bg-[#5c3202e6] hover:text-white transition text-center duration-700 ease-in-out w-6 h-6"
-                        onClick={() => handlePlusQty(item.id)}
+                        onClick={() => handlePlusQty(item)}
                       >
                         +
                       </button>
@@ -108,7 +87,8 @@ const Addtocart = () => {
               ))}
             </AnimatePresence>
           </div>
-          {cart.length === 0 ? (
+
+          {cartItems.length === 0 ? (
             <div>
               <Lottie
                 className="p-8 w-120 h-120"
@@ -123,7 +103,7 @@ const Addtocart = () => {
                 <p>Subtotal</p>
                 <p>
                   THB{" "}
-                  {cart.reduce(
+                  {cartItems.reduce(
                     (sum, item) => sum + item.price * item.quantity,
                     0
                   )}
@@ -133,7 +113,7 @@ const Addtocart = () => {
                 <p className="pb-4 ">Total (Tax incl.)</p>
                 <p>
                   THB{" "}
-                  {cart.reduce(
+                  {cartItems.reduce(
                     (sum, item) => sum + item.price * item.quantity,
                     0
                   )}
