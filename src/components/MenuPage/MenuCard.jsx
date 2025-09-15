@@ -59,11 +59,11 @@ const MenuCard = memo(({ id, name, desc, tag, img, price, inStock }) => {
           )}
         </div>
 
-        <div className="p-4 space-y-3 flex flex-col flex-grow">
-          <h3 className="text-[20px] font-bold text-gray-100 line-clamp-2">
+        <div className="p-4 space-y-3 flex flex-col flex-grow ">
+          <h3 className="text-[20px] font-bold text-gray-100 line-clamp-1">
             {name}
           </h3>
-          <p className="text-gray-100">{desc}</p>
+          <p className="text-gray-100 line-clamp-3">{desc}</p>
           <div className="flex items-center justify-between">
             <div className="space-x-2">
               <span className="text-lg font-semibold text-gray-100">
