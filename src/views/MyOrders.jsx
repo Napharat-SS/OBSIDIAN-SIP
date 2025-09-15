@@ -1,73 +1,75 @@
 import { Link, useNavigate } from "react-router-dom";
+// นำเข้า useAuth hook เพื่อดึงข้อมูล user และสถานะการ login
 import { useAuth } from "../context/AuthContext";
 import { useState, useEffect } from "react";
-import axios from "axios"; // นำเข้า Axios
+import api from "../services/api";
 
 export default function MyOrders() {
+  // ใช้ hook เพื่อสร้าง Function สำหรับการเปลี่ยน path
   const navigate = useNavigate();
-  const { user, token } = useAuth(); // ดึง user และ token จาก AuthContext
+  // ดึงค่า user และ isLoggedIn จาก AuthContext
+  const { user, isLoggedIn } = useAuth();
 
-  // เพิ่ม State สำหรับเก็บรายการ orders, สถานะการโหลด, และข้อผิดพลาด
+  // สร้าง state สำหรับเก็บรายการคำสั่งซื้อ, สถานะการ load, และ error
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // useEffect เพื่อดึงข้อมูล orders เมื่อ component ถูก render
   useEffect(() => {
-    // ฟังก์ชันสำหรับดึงข้อมูล orders จาก API ด้วย Axios
+    // กำหนด fonction asynchronous เพื่อดึงข้อมูลคำสั่งซื้อ
     const fetchOrders = async () => {
-      // ตรวจสอบว่ามี user และ token ก่อนเรียก API
-      // ถ้าไม่มี ให้เปลี่ยนเส้นทางไปหน้า login และหยุดการทำงาน
-      if (!user || !token) {
-        setLoading(false); // ตั้งค่า loading เป็น false เพื่อไม่ให้หน้าค้าง
+      // ตรวจสอบว่าผู้ใช้ login หรือไม่ และ token พร้อมใช้งาน
+      if (!isLoggedIn) {
+        // ถ้ายังไม่ได้ login ให้เปลี่ยน path ไปหน้า /login ทันที
         navigate("/login");
         return;
       }
-
       try {
-        setLoading(true); // ตั้งค่า loading เป็น true ก่อนเริ่มเรียก API
-        const response = await axios.get(
-          "http://localhost:5000/api/orders", // แก้ไข URL ตาม API ของคุณ
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`, // ส่ง token ใน header เพื่อยืนยันตัวตน
-            },
-          }
-        );
-        // เมื่อได้รับข้อมูลสำเร็จ อัปเดต state orders
-        setOrders(response.data.orders);
-        setError(null);
+        // ตั้งค่า state loading เป็น true เพื่อแสดงหน้ากำลัง load
+        setLoading(true);
+        // ทำการเรียก API เพื่อดึงข้อมูลคำสั่งซื้อของผู้ใช้
+        const response = await api.get("/orders");
+        
+        // ตรวจสอบว่าข้อมูลที่ได้มามี orders และเป็น array หรือไม่
+        if (response.data && Array.isArray(response.data.orders)) {
+          // update state orders ด้วยข้อมูลที่ได้รับ
+          setOrders(response.data.orders);
+        } else {
+          // ถ้าข้อมูลไม่ถูกต้องหรือไม่มี ให้ตั้งค่า orders เป็น array ว่าง
+          setOrders([]);
+        }
+        setError(null); // ล้าง state error
       } catch (err) {
-        // หากมีข้อผิดพลาด
-        console.error("Failed to fetch orders:", err);
-        setError("ไม่สามารถดึงรายการคำสั่งซื้อได้ในขณะนี้ กรุณาลองใหม่ภายหลัง");
+        console.error("Error fetching orders:", err);
+        setError("Failed to load orders. Please try again."); // ตั้งค่า state error
       } finally {
-        setLoading(false); // ไม่ว่าจะสำเร็จหรือล้มเหลว ให้ตั้งค่า loading เป็น false
+        // ตั้งค่า loading เป็น false เมื่อการเรียก API เสร็จสิ้น ไม่ว่าจะ success หรือ fail
+        setLoading(false);
       }
     };
 
-    fetchOrders();
-  }, [user, token, navigate]); // กำหนด dependency array เพื่อให้ effect ทำงานเมื่อ user หรือ token เปลี่ยน
+    // เรียกใช้ฟังก์ชัน fetchOrders เมื่อ isLoggedIn เปลี่ยนสถานะเป็น true
+    if (isLoggedIn) {
+      fetchOrders();
+    }
+    // กำหนด dependency array เพื่อให้ useEffect ทำงานเมื่อ isLoggedIn หรือ navigate เปลี่ยน
+  }, [isLoggedIn, navigate]);
 
-  // แสดงผล loading state
+  // แสดงผลหน้า Loading ในระหว่างที่กำลังดึงข้อมูล
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gradient-to-r from-[#000000] to-[#341f01]">
-        <div className="text-white text-2xl animate-pulse">กำลังโหลด...</div>
+      <div className="flex items-center justify-center min-h-screen bg-black text-white">
+        Loading orders...
       </div>
     );
   }
 
-  // แสดงผล error state
-  if (error) {
-    return (
-      <div className="text-center p-10 text-red-500 bg-gradient-to-r from-[#000000] to-[#341f01] min-h-screen">
-        <p>{error}</p>
-      </div>
-    );
+  // ถ้าไม่มีข้อมูล user (เช่น user logout) จะไม่แสดงผลใดๆ
+  if (!user) {
+    return null;
   }
 
+   // ส่วนการแสดงผลหลักของ component
   return (
     <div className="bg-gradient-to-r from-[#000000] to-[#341f01] min-h-screen">
       <div className="p-5 md:p-10">
@@ -118,10 +120,8 @@ export default function MyOrders() {
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* แสดงชื่อผู้ใช้จาก context */}
-            <div className="text-xl text-[#E8D9C6] mb-6">
-              {user?.username || "Obisidian Sipper"}
-            </div>
+            {/* แสดงชื่อ user จริงจาก user object */}
+            <div className="text-xl text-[#E8D9C6] mb-6">{user?.firstname || 'Guest'}</div>
             <button className="bg-yellow-700 text-white font-medium py-3 px-6 rounded-md shadow-md hover:bg-[#a8751d] transition duration-300 ease-in-out">
               CHANGE AVATAR
             </button>
@@ -132,9 +132,12 @@ export default function MyOrders() {
             <div className="text-xl text-[#fdcf8e] font-medium pl-5 pb-5 border-b-[1px] border-[#403B36] md:pt-10">
               My Orders
             </div>
-
-            {/* ถ้าไม่มี orders ให้แสดงข้อความและปุ่ม Shop Now */}
+            
+            {/* จัดการกรณีที่เกิด error หรือไม่มี orders */}
+            {error && <div className="text-center p-6 text-red-500">{error}</div>}
+            {/* ตรวจสอบว่ามีคำสั่งซื้อหรือไม่ */}
             {orders.length === 0 ? (
+              // ถ้าไม่มีคำสั่งซื้อ ให้แสดงข้อความและปุ่ม Shop Now เพื่อให้ user กด link กลับไปหน้า home
               <div className="text-center p-6 rounded-xl text-[#E8D9C6]">
                 <p className="text-xl">You don’t have any orders yet.</p>
                 <button
@@ -145,20 +148,15 @@ export default function MyOrders() {
                 </button>
               </div>
             ) : (
-              // วนลูปแสดงข้อมูล orders ทั้งหมด
+              // ถ้ามีคำสั่งซื้อ ให้วนลูปแสดงข้อมูล
               <div className="space-y-8 text-[#E8D9C6] p-6">
                 {orders.map((order) => (
-                  <div
-                    key={order._id}
-                    className="bg-[#2B1B17] shadow-md rounded-2xl p-6"
-                  >
-                    {/* Header */}
+                  <div key={order._id} className="bg-[#2B1B17] shadow-md rounded-2xl p-6">
+                    {/* ส่วนหัวของแต่ละคำสั่งซื้อ */}
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
                       <div>
-                        {/* ปรับปรุงการแสดงผล Date, Order Number */}
                         <p className="text-lg">
-                          <strong>Date:</strong>{" "}
-                          {new Date(order.createdAt).toLocaleDateString()}
+                          <strong>Date:</strong> {new Date(order.createdAt).toLocaleDateString()}
                         </p>
                         <p className="text-lg">
                           <strong>Order Number:</strong> {order.orderNumber}
@@ -166,9 +164,7 @@ export default function MyOrders() {
                       </div>
                       <button
                         onClick={() =>
-                          navigate("/profile/notification", {
-                            state: { orderId: order._id }, // ส่ง ObjectId ไปแทน orderNumber
-                          })
+                          navigate(`/profile/notification?orderId=${order._id}`)
                         }
                         className="mt-4 sm:mt-0 bg-[#c58c4ce6] text-black px-5 py-2 rounded-xl hover:bg-[#ddb07ee6] transition-colors duration-300 font-medium"
                       >
@@ -178,10 +174,9 @@ export default function MyOrders() {
 
                     {/* Basket Items */}
                     <div className="border-t border-b divide-y divide-[#403B36]">
-                      {/* วนลูปแสดงรายการสินค้าในแต่ละ order */}
                       {order.basketItems.map((item) => (
                         <div
-                          key={item._id}
+                          key={item._id} // ใช้ _id ของ item
                           className="flex justify-between items-center py-3"
                         >
                           <div>
@@ -201,7 +196,7 @@ export default function MyOrders() {
                         <span>Subtotal</span>
                         <span>฿{order.subtotal}.00</span>
                       </div>
-                      {/* แสดงค่า deliveryFee เฉพาะในกรณีที่มากกว่า 0 */}
+                      {/* แสดงค่าจัดส่งเฉพาะเมื่อมีค่ามากกว่า 0 */}
                       {order.deliveryFee > 0 && (
                         <div className="flex justify-between">
                           <span>Delivery Fee</span>
