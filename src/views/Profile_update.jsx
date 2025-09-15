@@ -31,16 +31,8 @@ export default function Profile_update() {
     }
   };
 
-  if (!user) {
-    return (
-      <div className="bg-gradient-to-r from-[#000000] to-[#341f01] min-h-screen flex items-center justify-center">
-        <div className="bg-neutral-900 p-8 rounded-xl shadow-lg w-full text-[#3F3C38] md:w-3/7 px-10 py-15">
-          <h4 className="text-3xl font-bold text-white text-center mb-4">
-            Please login first
-          </h4>
-        </div>
-      </div>
-    );
+  if (user === null) {
+    navigate("/login");
   }
 
   return (
