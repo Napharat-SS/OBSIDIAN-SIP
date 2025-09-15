@@ -1,9 +1,18 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 // สร้าง Component ชื่อ Checkout เป็น function
 export const Checkout = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // ✅ รับ basket จากหน้า Addtocart ผ่าน navigate state
+  const initialBasket = location.state?.basket || [];
+
+  // --- ประกาศ State ต่างๆ สำหรับเก็บข้อมูลในหน้า Checkout ---
+
+  // state สำหรับ basket (ข้อมูลสินค้า)
+  const [basket, setBasket] = useState(initialBasket);
 
   // สร้าง Mock Data ของ User Profile (ที่รวมทั้งข้อมูลลูกค้าและที่อยู่)
   const userProfileData = {
@@ -14,20 +23,6 @@ export const Checkout = () => {
     savedAddress: "123/45 ซอยกาแฟ ถนนสุขุมวิท เขตวัฒนา กรุงเทพฯ 10110",
   };
 
-  // สร้าง Mock Data สำหรับ products for checkout
-  const coffeeData = [
-  { id: 1, name: "Hot Americano", price: 120 },
-  { id: 2, name: "Iced Latte", price: 130 },
-  { id: 3, name: "Croissant", price: 100 },
-];
-
-  // --- ประกาศ State ต่างๆ สำหรับเก็บข้อมูลในหน้า Checkout ---
-
-  // สร้าง state สำหรับตะกร้าสินค้า (basket)
-  // โดยใช้ข้อมูลจาก coffeeData มาสร้างเป็นตะกร้าเริ่มต้น และกำหนด quantity ให้ทุกชิ้นเท่ากับ 1
-  const [basket, setBasket] = useState(
-    coffeeData.map((item) => ({ ...item, quantity: 1 }))
-  );
   // สร้าง state สำหรับวิธีรับสินค้า (dinein, pickup, delivery) เริ่มต้นเป็น "dinein"
   const [orderMethod, setOrderMethod] = useState("dinein");
   // เพิ่ม state สำหรับจัดการตัวเลือก "Use saved details" เริ่มต้นเป็น "saved"
@@ -57,26 +52,8 @@ export const Checkout = () => {
 
   // --- ฟังก์ชันสำหรับจัดการการเปลี่ยนแปลงต่างๆ ---
 
-  // ฟังก์ชัน handleQuantityChange: ใช้สำหรับอัปเดตจำนวนสินค้าในตะกร้า
-  const handleQuantityChange = (itemId, newQuantity) => {
-    setBasket(
-      (
-        prevBasket // อัปเดต state basket โดยอิงจากค่าเก่า (prevBasket)
-      ) =>
-        prevBasket.map(
-          (
-            item // วนลูปในตะกร้าเก่าเพื่อหา item ที่ต้องการแก้ไข
-          ) =>
-            item.id === itemId
-              ? { ...item, quantity: Number(newQuantity) } // ถ้า item.id ตรงกับ itemId ที่ส่งมา ให้สร้าง object ใหม่ โดยอัปเดตแค่ quantity
-              : item // ถ้าไม่ตรง ก็คืนค่า item เดิม
-        )
-    );
-  };
-
   // ฟังก์ชัน สำหรับลบสินค้าออกจากตะกร้า
   const handleRemoveItem = (itemId) => {
-    // ใช้ filter เพื่อสร้างตะกร้าใหม่ที่มีเฉพาะ item ที่ id ไม่ตรงกับ itemId ที่ต้องการลบ
     setBasket((prevBasket) => prevBasket.filter((item) => item.id !== itemId));
   };
 
@@ -98,7 +75,7 @@ export const Checkout = () => {
         email: "",
       });
     }
-  }, [profileChoice]); // Dependency array: useEffect นี้จะทำงานเมื่อ profileChoice เปลี่ยนแปลงเท่านั้น
+  }, [profileChoice]);
 
   // Logic สำหรับการเติมข้อมูล Delivery Address เข้าไปใน field
   useEffect(() => {
@@ -107,52 +84,44 @@ export const Checkout = () => {
     } else {
       setDeliveryAddress("");
     }
-  }, [addressChoice]); // Dependency array: useEffect นี้จะทำงานเมื่อ addressChoice เปลี่ยนแปลงเท่านั้น
+  }, [addressChoice]);
 
   // useEffect Hook: ใช้สำหรับคำนวณราคารวม (subtotal) ใหม่ทุกครั้งที่ basket เปลี่ยนแปลง
   useEffect(() => {
     const calculatedSubtotal = basket.reduce(
       (sum, item) => sum + item.price * item.quantity,
-      // วนลูปในตะกร้า (basket) เพื่อคำนวณราคารวมของสินค้าทั้งหมด
-      0 // นำราคารวมปัจจุบัน (sum) มาบวกกับ (ราคา * จำนวน) ของสินค้าแต่ละชิ้น
+      0
     );
-    setSubtotal(calculatedSubtotal); // อัปเดต state subtotal ด้วยราคารวมที่คำนวณได้
-  }, [basket]); // Dependency array: useEffect จะทำงานใหม่เมื่อค่าใน basket เปลี่ยนแปลงเท่านั้น
+    setSubtotal(calculatedSubtotal);
+  }, [basket]);
 
   // ฟังก์ชัน handleConfirm: ทำงานเมื่อกดปุ่ม "Place Order"
   const handleConfirm = (event) => {
-    event.preventDefault(); // ป้องกันการ reload หน้าเว็บ เมื่อ form ถูก submit
+    event.preventDefault();
 
-    // คำนวณราคาสุทธิ (finalTotal) โดยตรวจสอบว่าถ้าเลือก "delivery" ให้บวกค่าจัดส่งเพิ่ม
     const finalTotal =
       orderMethod === "delivery" ? subtotal + deliveryFee : subtotal;
 
-    // ใช้ navigate เพื่อเปลี่ยนหน้าไปยัง "/OrderConfirmation"
     navigate("/order-confirmation", {
-      // ส่งข้อมูลทั้งหมดไปยังหน้า OrderConfirmation ผ่าน state
       state: {
-        basketItems: basket, // ส่งข้อมูล basket ไปทั้งก้อน
-        subtotal, // ราคารวมของสินค้า
-        deliveryFee: orderMethod === "delivery" ? deliveryFee : 0, // ค่าจัดส่ง (เป็น 0 ถ้าไม่ใช่ delivery)
-        total: finalTotal, // ราคาสุทธิทั้งหมด
-        customerInfo: customerInfo, // ข้อมูลลูกค้า
+        basketItems: basket,
+        subtotal,
+        deliveryFee: orderMethod === "delivery" ? deliveryFee : 0,
+        total: finalTotal,
+        customerInfo: customerInfo,
         address: orderMethod === "delivery" ? deliveryAddress : "N/A",
-        note: timeNote.note, // หมายเหตุจากลูกค้า
+        note: timeNote.note,
       },
     });
   };
 
   // --- การคำนวณค่าตัวแปรอื่นๆ สำหรับใช้ใน JSX ---
-
-  // คำนวณราคาสุทธิอีกครั้งสำหรับแสดงผลในหน้า Checkout
   const finalTotal =
     orderMethod === "delivery" ? subtotal + deliveryFee : subtotal;
 
-  // --- ส่วนของ JSX (หน้าตาของ Component) ---
+  // --- ส่วนของ JSX ---
   return (
-    // Container หลักของ Component
     <div className="bg-[#0f0f10]">
-      {/* ฟอร์มทั้งหมด ที่เมื่อกดปุ่ม Place Order จะเรียก handleConfirm */}
       <form
         onSubmit={handleConfirm}
         className="border border-gray-200 max-w-4xl mx-auto bg-amber- rounded-2xl p-4 sm:p-6 space-y-6 bg-[#2B1B00]"
@@ -171,35 +140,16 @@ export const Checkout = () => {
           </h2>
           <div className="bg-[#341f01]   p-4 rounded-lg space-y-2 text-gray-300">
             <ul className="space-y-1">
-              {/* วนลูปแสดงรายการสินค้าแต่ละชิ้นใน basket */}
               {basket.map((item) => (
                 <li
-                  // key ที่จำเป็นสำหรับ React เพื่อระบุแต่ละ element ที่ไม่ซ้ำกัน
                   key={item.id}
                   className="flex justify-between items-center text-sm sm:text-base"
                 >
-                  <div className="flex-grow">{item.name}</div>
+                  <div className="flex-grow">
+                    {item.name} (x{item.quantity})
+                  </div>
                   <div className="flex items-center gap-2">
-                    {/* Quantity dropdown สำหรับเพื่มลดจำนวนสินค้า */}
-                    <select
-                      // กำหนดค่าที่แสดงใน dropdown ตาม state
-                      value={item.quantity}
-                      onChange={
-                        (e) => handleQuantityChange(item.id, e.target.value) // เมื่อเปลี่ยนค่า ให้เรียกฟังก์ชันอัปเดตจำนวน
-                      }
-                      className="border rounded border-black p-1 text-sm bg-gray-300 text-black"
-                    >
-                      {/* วนลูปสร้าง option สำหรับจำนวน 1-10 */}
-                      {[...Array(10).keys()].map((q) => (
-                        <option key={q + 1} value={q + 1}>
-                          {q + 1}
-                        </option>
-                      ))}
-                    </select>
-                    {/* แสดงราคารวมของสินค้าชิ้นนั้นๆ */}
                     <span>{item.price * item.quantity}฿</span>
-
-                    {/* ปุ่มลบสินค้าเล็กๆ หากลูกค้าเปลี่ยนใจอยากลบบางรายการออก ก่อน place order */}
                     <button
                       type="button"
                       onClick={() => handleRemoveItem(item.id)}
@@ -213,23 +163,20 @@ export const Checkout = () => {
             </ul>
             <hr className="border-t-1 border-black" />
 
-            {/* แสดงค่าจัดส่งเฉพาะเมื่อเลือก delivery */}
-            <div
-              className={`flex justify-between font-medium ${
-                orderMethod === "delivery" ? "" : "hidden"
-              }`}
-            >
-              <span>Delivery Fee</span>
-              <span>{deliveryFee}฿</span>
-            </div>
+            {orderMethod === "delivery" && (
+              <div className="flex justify-between font-medium">
+                <span>Delivery Fee</span>
+                <span>{deliveryFee}฿</span>
+              </div>
+            )}
 
-            {/* แสดงราคารวมสุทธิ */}
             <div className="flex justify-between font-bold text-base sm:text-lg">
               <span>Subtotal</span>
               <span>{finalTotal}฿</span>
             </div>
           </div>
         </div>
+
 
         {/* Order Type Section ประเภทการสั่งซื้อ */}
         <div>
