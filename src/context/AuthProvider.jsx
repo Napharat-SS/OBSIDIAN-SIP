@@ -5,61 +5,44 @@ import api from "../services/api";
 import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!token);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null); // Store user information
+  const [loading, setLoading] = useState(true); // Track loading state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        setLoading(true); // เริ่มต้นการโหลด
-        // ถ้าไม่มี token ใน localStorage ไม่ต้องเรียก API
-        if (!token) {
-          setIsLoggedIn(false);
-          setUser(null);
-          return;
-        }
-
+        // This API call will automatically send the 'accessToken' cookie
         const res = await api.get("/auth/status");
         if (res.data.isLoggedIn) {
           setIsLoggedIn(true);
           setUser(res.data.user);
         } else {
-          // ถ้า token หมดอายุหรือ invalid ให้ลบออกจาก localStorage
-          localStorage.removeItem("token");
-          setToken(null);
           setIsLoggedIn(false);
           setUser(null);
         }
       } catch (error) {
         console.error("Authentication check failed:", error);
-        localStorage.removeItem("token");
-        setToken(null);
         setIsLoggedIn(false);
         setUser(null);
       } finally {
-        // ไม่ว่าจะสำเร็จหรือล้มเหลว ให้ตั้งค่า loading เป็น false เสมอ
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 4000);
       }
     };
-
     checkAuthStatus();
-  }, [token]);
+  }, []);
 
-  const login = (userData, accessToken) => {
-    localStorage.setItem("token", accessToken);
-    setToken(accessToken);
+  const login = (userData) => {
     setIsLoggedIn(true);
-    setUser(userData);
+    setUser(userData); // Save user info in the context
   };
 
   const logout = async () => {
     try {
       const res = await api.post("/auth/logout");
       if (res.status === 200) {
-        localStorage.removeItem("token");
-        setToken(null);
         setIsLoggedIn(false);
         setUser(null);
       }
@@ -78,7 +61,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, token, isLoggedIn, loading, login, logout }}
+      value={{ user, setUser, setLoading, isLoggedIn, login, logout }}
     >
       {children}
     </AuthContext.Provider>
