@@ -126,7 +126,7 @@ export const Checkout = () => {
 
   // --- JSX ---
   return (
-    <div className="bg-[#0f0f10]">
+    <div className="bg-[#0f0f10] pt-12 pb-12">
       <form
         onSubmit={handleConfirm}
         className="border border-gray-200 max-w-4xl mx-auto bg-amber- rounded-2xl p-4 sm:p-6 space-y-6 bg-[#2B1B00]"
@@ -184,7 +184,7 @@ export const Checkout = () => {
 
         {/* Order Type */}
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-300">
+          <h2 className="text-lg mt-4 sm:text-xl font-semibold mb-2 text-gray-300">
             📍 Order Type
           </h2>
           <div className="bg-[#341f01] text-gray-300 p-4 rounded-lg space-y-2">
