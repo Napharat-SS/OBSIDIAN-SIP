@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
       } finally {
         setTimeout(() => {
           setLoading(false);
-        }, 5000);
+        }, 4000);
       }
     };
     checkAuthStatus();

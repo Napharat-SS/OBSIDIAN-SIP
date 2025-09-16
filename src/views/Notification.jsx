@@ -57,7 +57,7 @@ export default function Notification() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="text-xl text-[#E8D9C6] mb-6">Obisidian Sipper</div>
+            <div className="text-xl text-[#E8D9C6] mb-6">{user.username}</div>
             <button className="bg-yellow-700 text-white font-medium py-3 px-6 rounded-md shadow-md hover:bg-[#a8751d] transition duration-300 ease-in-out">
               CHANGE AVATAR
             </button>
