@@ -13,8 +13,7 @@ export const SignupPage =() => {
   const [phone, setPhone] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
+  
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -39,16 +38,11 @@ export const SignupPage =() => {
     </div>
   );
 
-  const match = password && confirmPassword && password === confirmPassword;
+
 
   const handleSignup = async (e) => {
     e.preventDefault();
     setError("");
-
-    if (!match) {
-      alert("Your passwords do not match");
-      return;
-    }
 
 
     setLoading(true);
@@ -151,33 +145,6 @@ export const SignupPage =() => {
             </label>
           </div>
 
-          {/* address
-          <div className="mb-2">
-            <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
-              Address
-            </label>
-            <input
-              type="text"
-              id="address"
-              className="w-full px-3 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
-              placeholder="Address"
-            />
-            <input
-              type="text"
-              className="w-full px-3 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
-              placeholder="District"
-            />
-            <input
-              type="text"
-              className="w-full px-3 py-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
-              placeholder="City"
-            />
-            <input
-              type="text"
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#A69C8E]"
-              placeholder="Zip Code"
-            />
-          </div> */}
 
           <div className="relative py-2">
             {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
@@ -228,9 +195,6 @@ export const SignupPage =() => {
               </label>
             </div>
             <div className="relative py-2">
-              {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
-                Password
-              </label> */}
               <input
                 type="password"
                 className="w-full bg-transparent border-b border-neutral-600 focus:border-white outline-none py-2 peer"
@@ -272,42 +236,6 @@ export const SignupPage =() => {
                   text="Minimum length of 8 characters"
                 />
               </div>
-            </div>
-            <div className=" relative py-2">
-              {/* <label className="block text-[#3F3C38] mb-1 text-xl font-semibold">
-                Confirm Password
-              </label> */}
-              <input
-                type="password"
-                className="w-full bg-transparent border-b border-neutral-600 focus:border-white outline-none py-2 peer"
-                placeholder=" "
-                id="confirmpassword"
-                name="confirmpassword"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
-              <label
-                htmlFor="confirmpassword"
-                className="absolute left-0 top-2 text-gray-400 text-sm transition-all 
-                peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-500 
-                peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-xs peer-focus:text-[#c58c4ce6]
-                peer-valid:top-0 peer-valid:text-xs peer-valid:text-[#c58c4ce6]"
-              >
-                Confirm your password
-              </label>
-
-              {confirmPassword && (
-                <p
-                  className={`mt-1 text-sm ${
-                    match ? "text-green-600" : "text-red-700"
-                  }`}
-                >
-                  {match
-                    ? "Passwords match✔️"
-                    : "Your passwords do not match❌"}
-                </p>
-              )}
             </div>
           </div>
 

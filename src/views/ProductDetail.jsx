@@ -93,7 +93,7 @@ const ProductDetail = () => {
             <div
               key={rec.id}
               onClick={() => navigate(`/menu/${rec.id}`)}
-              className="cursor-pointer"
+              className="cursor-pointer flex flex-col"
             >
               <MenuCard {...rec} />
             </div>
