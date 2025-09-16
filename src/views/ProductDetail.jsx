@@ -71,7 +71,11 @@ const ProductDetail = () => {
             <Button
               className="bg-[#e2a053e6] hover:bg-[#ffffffe6] text-gray-800 px-6 py-3 rounded-2xl cursor-pointer"
               disabled={!product.inStock}
-              onClick={() => navigate("/checkout")}
+              onClick={() =>
+                navigate("/checkout", {
+                  state: { basket: [{ ...product, quantity: 1 }] },
+                })
+              }
             >
               Buy Now
             </Button>
