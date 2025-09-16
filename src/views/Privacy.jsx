@@ -55,7 +55,7 @@ export default function Privacy() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="text-xl text-[#E8D9C6] mb-6">Obisidian Sipper</div>
+            <div className="text-xl text-[#E8D9C6] mb-6">{user.username}</div>
             <button className="bg-yellow-700 text-white font-medium py-3 px-6 rounded-md shadow-md hover:bg-[#a8751d] transition duration-300 ease-in-out">
               CHANGE AVATAR
             </button>
@@ -71,7 +71,7 @@ export default function Privacy() {
               <Link to="/forgotpassword" className="change-button">
                 RESET PASSWORD
               </Link>
-              <button href="" target="_blank" className="change-button">
+              <button href="#" target="_blank" className="change-button">
                 CHANGE PAYMENT METHOD
               </button>
               <Link to="/profile/privacy/delete" className="change-button">
