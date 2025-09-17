@@ -44,7 +44,9 @@ const Addtocart = () => {
             </button>
             <hr className="border-[#92908d] pt-5" />
             <p className="">shopping cart</p>
-            <p className="pb-5">You have {cartItems.length} items in your basket</p>
+            <p className="pb-5">
+              You have {cartItems.length} items in your basket
+            </p>
 
             <AnimatePresence>
               {cartItems.map((item) => (
@@ -61,14 +63,14 @@ const Addtocart = () => {
                     <h3 className="w-[200px]">{item.name}</h3>
                     <div className=" flex justify-between gap-4">
                       <button
-                        className="bg-[#c58c4ce6] text-black hover:bg-[#5c3202e6] hover:text-white transition text-center duration-700 ease-in-out w-6 h-6"
+                        className="bg-[#c58c4ce6] text-black hover:bg-[#5c3202e6] hover:text-white transition text-center duration-700 ease-in-out w-6 h-6 cursor-pointer"
                         onClick={() => handleMinusQty(item)}
                       >
                         -
                       </button>
                       <span>{item.quantity}</span>
                       <button
-                        className="bg-[#c58c4ce6] text-black hover:bg-[#5c3202e6] hover:text-white transition text-center duration-700 ease-in-out w-6 h-6"
+                        className="bg-[#c58c4ce6] text-black hover:bg-[#5c3202e6] hover:text-white transition text-center duration-700 ease-in-out w-6 h-6 cursor-pointer"
                         onClick={() => handlePlusQty(item)}
                       >
                         +
@@ -77,7 +79,7 @@ const Addtocart = () => {
                     <p className="w-30">THB {item.price * item.quantity}</p>
                     <button
                       onClick={() => handleRemove(item.id)}
-                      className="text-[#C18343] hover:text-amber-900 transition-colors duration-200"
+                      className="text-[#C18343] hover:text-amber-900 transition-colors duration-200 cursor-pointer"
                       aria-label="ลบสินค้า"
                     >
                       <FaTrash size={25} />
@@ -122,7 +124,7 @@ const Addtocart = () => {
               <div>
                 <button
                   onClick={handleCheckout}
-                  className="w-full bg-[#c58c4ce6] text-black py-2 rounded-xl hover:bg-[#5c3202e6] hover:text-white transition text-center duration-700 ease-in-out"
+                  className="w-full bg-[#c58c4ce6] text-black py-2 rounded-xl hover:bg-[#5c3202e6] hover:text-white transition text-center duration-700 ease-in-out cursor-pointer"
                 >
                   Checkout
                 </button>
