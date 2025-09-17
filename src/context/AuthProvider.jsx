@@ -34,9 +34,9 @@ export const AuthProvider = ({ children }) => {
     checkAuthStatus();
   }, []);
 
-  const login = (userData) => {
+  const login = (user) => {
     setIsLoggedIn(true);
-    setUser(userData); // Save user info in the context
+    setUser(user); // Save user info in the context
   };
 
   const logout = async () => {
