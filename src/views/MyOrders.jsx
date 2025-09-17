@@ -174,7 +174,7 @@ export default function MyOrders() {
                         onClick={() =>
                           navigate(`/profile/notification?orderId=${order._id}`)
                         }
-                        className="mt-4 sm:mt-0 bg-[#c58c4ce6] text-black px-5 py-2 rounded-xl hover:bg-[#ddb07ee6] transition-colors duration-300 font-medium"
+                        className="mt-4 sm:mt-0 bg-[#c58c4ce6] text-black px-5 py-2 rounded-xl hover:bg-[#ddb07ee6] transition-colors duration-300 font-medium cursor-pointer"
                       >
                         Track Status
                       </button>

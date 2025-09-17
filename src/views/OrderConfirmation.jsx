@@ -33,15 +33,19 @@ export const OrderConfirmation = () => {
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* LEFT: Customer Info */}
         <div className="bg-[#341f01] shadow-md rounded-2xl p-6">
-          <h1 className="text-4xl font-bold mb-4">Thank you for your purchase!</h1>
+          <h1 className="text-4xl font-bold mb-4">
+            Thank you for your purchase!
+          </h1>
           <p className="pt-4 pb-7 mb-6 text-xl">
-            Your order will be processed based on the selected order type and your specified time.
+            Your order will be processed based on the selected order type and
+            your specified time.
           </p>
 
           <div className="mb-6">
             <h2 className="text-3xl font-semibold mb-2">Billing address</h2>
             <p className="text-xl">
-              <strong>Name:</strong> {order.customerInfo.firstName} {order.customerInfo.lastName}
+              <strong>Name:</strong> {order.customerInfo.firstName}{" "}
+              {order.customerInfo.lastName}
             </p>
             <p className="text-xl">
               <strong>Address:</strong> {isDelivery ? order.address : "N/A"}
@@ -59,7 +63,7 @@ export const OrderConfirmation = () => {
 
           <button
             onClick={() => navigate("/profile/my-orders")}
-            className="w-full bg-[#c58c4ce6] text-black py-2 rounded-2xl hover:bg-[#ddb07ee6] transition-colors duration-300 text-2xl font-medium"
+            className="w-full bg-[#c58c4ce6] text-black py-2 rounded-2xl hover:bg-[#ddb07ee6] transition-colors duration-300 text-2xl font-medium cursor-pointer"
           >
             Track Your Order
           </button>
@@ -72,7 +76,11 @@ export const OrderConfirmation = () => {
           <div className="grid grid-cols-3 text-sm mb-4">
             <div>
               <strong>Date</strong> <br />
-              {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+              {new Date().toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
             </div>
             <div>
               <strong>Order Number</strong> <br />
@@ -91,15 +99,21 @@ export const OrderConfirmation = () => {
                   <h3 className="font-semibold">{item.name}</h3>
                   <p className="text-sm">Qty: {item.quantity}</p>
                 </div>
-                <div className="font-semibold">{item.price * item.quantity}฿</div>
+                <div className="font-semibold">
+                  {item.price * item.quantity}฿
+                </div>
               </div>
             ))}
           </div>
 
           <div className="mt-4 space-y-1 text-gray-300">
             <div className="flex justify-between">
-              <span><strong>Sub Total</strong></span>
-              <span><strong>฿{order.subtotal}</strong></span>
+              <span>
+                <strong>Sub Total</strong>
+              </span>
+              <span>
+                <strong>฿{order.subtotal}</strong>
+              </span>
             </div>
             {isDelivery && (
               <div className="flex justify-between">
