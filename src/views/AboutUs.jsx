@@ -40,22 +40,14 @@ const AboutUs = () => {
             About Us
           </h2>
           <p>
-            Founded in the heart of Bangkok, Obsidian Sip began with a dream to
-            bring people together through coffee and pastries. From our very
-            first brew, we have stayed true to our mission: crafting beverages
-            and treats that warm the soul and spark connection.
+          At ObsidianSip, our story begins with teamwork. As a group of five (Noon, Arm, Yeen, Tee, Earth), we spent countless late nights working together on projects, with coffee as our constant source of energy and inspiration. Coffee was more than just a drink; it created the atmosphere that fueled our collaboration and became an essential part of every morning.
+
           </p>
           <p>
-            We believe in three values: quality, sustainability, and
-            hospitality. Every bean we roast and every pastry we bake is chosen
-            with care — ensuring that each sip and bite reflects our passion and
-            dedication. Whether it’s your morning latte, an afternoon croissant,
-            or a sweet indulgence, we’re here to make every moment special.
+           From this shared experience, we recognized a common challenge faced by many, especially busy office workers who need for quality coffee and bakery items that are both affordable and accessible amidst the fast pace of daily life.
           </p>
           <p>
-            At Obsidian Sip, it’s not just about coffee and pastries. It’s about
-            creating a welcoming space where stories are shared, friendships
-            grow, and memories are made.
+            That is why we created ObsidianSip, a web application designed to deliver convenience, quality, and value straight to you. The name itself reflects our vision: “Obsidian” captures the bold, dark elegance of coffee, mirroring the strength and style of our brand, while “Sip” symbolizes the small yet powerful moments that recharge and bring joy to each day. Together, our mission is to blend passion, teamwork, and innovation into every cup, making your coffee experience as meaningful as ours.
           </p>
         </div>
       </div>
