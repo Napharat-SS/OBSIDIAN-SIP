@@ -29,7 +29,7 @@ export const OrderConfirmation = () => {
   const isDelivery = order.deliveryFee > 0;
 
   return (
-    <div className="bg-[#0f0f10] min-h-screen px-4 py-10 text-gray-300">
+    <div className="bg-[#0f0f10] pt-40 min-h-screen px-4 py-10 text-gray-300">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* LEFT: Customer Info */}
         <div className="bg-[#341f01] shadow-md rounded-2xl p-6">
