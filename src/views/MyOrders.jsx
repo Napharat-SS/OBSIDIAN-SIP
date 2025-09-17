@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-// นำเข้า useAuth hook เพื่อดึงข้อมูล user และสถานะการ login
+// ใช้ useAuth เพื่อดึงข้อมูล user และสถานะการ login
 import { useAuth } from "../context/AuthContext";
 import { useState, useEffect } from "react";
 import api from "../services/api";
@@ -16,7 +16,7 @@ export default function MyOrders() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // กำหนด fonction asynchronous เพื่อดึงข้อมูลคำสั่งซื้อ
+    // กำหนด function asynchronous เพื่อดึงข้อมูลคำสั่งซื้อ
     const fetchOrders = async () => {
       // ตรวจสอบว่าผู้ใช้ login หรือไม่ และ token พร้อมใช้งาน
       if (!isLoggedIn) {
@@ -30,7 +30,7 @@ export default function MyOrders() {
         // ทำการเรียก API เพื่อดึงข้อมูลคำสั่งซื้อของผู้ใช้
         const response = await api.get("/orders");
 
-        // ตรวจสอบว่าข้อมูลที่ได้มามี orders และเป็น array หรือไม่
+        // ตรวจสอบว่าข้อมูลที่ได้มาว่า มี orders และเป็น array หรือไม่
         if (response.data && Array.isArray(response.data.orders)) {
           // update state orders ด้วยข้อมูลที่ได้รับ
           setOrders(response.data.orders);
@@ -48,7 +48,7 @@ export default function MyOrders() {
       }
     };
 
-    // เรียกใช้ฟังก์ชัน fetchOrders เมื่อ isLoggedIn เปลี่ยนสถานะเป็น true
+    // เรียกใช้ function fetchOrders เมื่อ isLoggedIn เปลี่ยนสถานะเป็น true
     if (isLoggedIn) {
       fetchOrders();
     }
@@ -69,7 +69,7 @@ export default function MyOrders() {
     return null;
   }
 
-  // ส่วนการแสดงผลหลักของ component
+  // ส่วนการแสดงผลหลักของ JSX component
   return (
     <div className="bg-gradient-to-r from-[#000000] to-[#341f01] min-h-screen">
       <div className="p-5 md:p-10">
@@ -120,7 +120,7 @@ export default function MyOrders() {
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* แสดงชื่อ user จริงจาก user object */}
+            {/* แสดงชื่อ username จริงจาก user object */}
             <div className="text-xl text-[#E8D9C6] mb-6">
               {user?.username || "Guest"}
             </div>
@@ -152,7 +152,7 @@ export default function MyOrders() {
                 </button>
               </div>
             ) : (
-              // ถ้ามีคำสั่งซื้อ ให้วนลูปแสดงข้อมูล
+              // ถ้ามีคำสั่งซื้อ ให้วน loop แสดงข้อมูล
               <div className="space-y-8 text-[#E8D9C6] p-6">
                 {orders.map((order) => (
                   <div
@@ -164,14 +164,19 @@ export default function MyOrders() {
                       <div>
                         <p className="text-lg">
                           <strong>Date:</strong>{" "}
+                          {/* แสดงวันที่สร้าง order โดยแปลงเป็นรูปแบบวันที่ที่อ่านง่าย */}
                           {new Date(order.createdAt).toLocaleDateString()}
                         </p>
                         <p className="text-lg">
+                          {/* แสดงหมายเลขคำสั่งซื้อ */}
                           <strong>Order Number:</strong> {order.orderNumber}
                         </p>
                       </div>
+
+                      {/* ปุ่มไปติดตามสถานะของ order */}
                       <button
                         onClick={() =>
+                          // เมื่อกดปุ่มแล้ว จะ link ไปหน้า /profile/notification พร้อมส่งค่า orderId ใน query string
                           navigate(`/profile/notification?orderId=${order._id}`)
                         }
                         className="mt-4 sm:mt-0 bg-[#c58c4ce6] text-black px-5 py-2 rounded-xl hover:bg-[#ddb07ee6] transition-colors duration-300 font-medium cursor-pointer"
@@ -182,9 +187,9 @@ export default function MyOrders() {
 
                     {/* Basket Items */}
                     <div className="border-t border-b divide-y divide-[#403B36]">
-                      {order.basketItems.map((item) => (
+                      {order.basketItems.map((item) => ( // วนลูปสินค้าแต่ละตัวใน basketItems
                         <div
-                          key={item._id} // ใช้ _id ของ item
+                          key={item._id} // ใช้ _id ของสินค้าเป็น key
                           className="flex justify-between items-center py-3"
                         >
                           <div>
@@ -192,6 +197,7 @@ export default function MyOrders() {
                             <p className="text-sm">Qty: {item.quantity}</p>
                           </div>
                           <div className="font-semibold">
+                            {/* แสดงราคาคูณด้วยจำนวน */}
                             ฿{item.price * item.quantity}.00
                           </div>
                         </div>
