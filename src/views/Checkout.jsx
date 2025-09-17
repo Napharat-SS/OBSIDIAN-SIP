@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
+import { useCart } from "../context/CardContext";
 
 // สร้าง Component ชื่อ Checkout เป็น function
 export const Checkout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
+  const {clearCart} = useCart();
 
   // ✅ รับ basket จากหน้า Addtocart ผ่าน navigate state
   const initialBasket = location.state?.basket || [];
@@ -94,7 +96,7 @@ export const Checkout = () => {
       orderMethod === "delivery" ? subtotal + deliveryFee : subtotal;
 
     try {
-      // ✅ ส่งข้อมูลไป backend
+      // ส่งข้อมูลไป backend
       const response = await api.post("/orders", {
         customerInfo,
         basketItems: basket,
@@ -106,10 +108,11 @@ export const Checkout = () => {
         note: timeNote.note,
       });
 
+      clearCart(); //เคลียร์ตระกร้าหลังกด place order
       // ถ้า success → ส่งต่อไป order-confirmation
       navigate("/order-confirmation", {
         state: {
-          order: response.data.order, // ✅ ได้ข้อมูล order จาก backend
+          order: response.data.order, // ได้ข้อมูล order จาก backend
         },
       });
     } catch (error) {
@@ -158,7 +161,7 @@ export const Checkout = () => {
                     <button
                       type="button"
                       onClick={() => handleRemoveItem(item.id)}
-                      className="text-gray-400 hover:text-black transition-colors p-1 rounded"
+                      className="text-gray-400 hover:text-black transition-colors p-1 rounded cursor-pointer"
                     >
                       x
                     </button>
@@ -292,6 +295,7 @@ export const Checkout = () => {
                 className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.firstName}
                 onChange={handleCustomerInfoChange}
+                readOnly={profileChoice === "saved"}
               />
               <input
                 type="text"
@@ -300,6 +304,7 @@ export const Checkout = () => {
                 className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.lastName}
                 onChange={handleCustomerInfoChange}
+                readOnly={profileChoice === "saved"}
               />
               <input
                 type="text"
@@ -308,6 +313,7 @@ export const Checkout = () => {
                 className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.phoneNumber}
                 onChange={handleCustomerInfoChange}
+                readOnly={profileChoice === "saved"}
               />
               <input
                 type="email"
@@ -316,6 +322,7 @@ export const Checkout = () => {
                 className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.email}
                 onChange={handleCustomerInfoChange}
+                readOnly={profileChoice === "saved"}
               />
             </div>
           </div>
@@ -333,6 +340,7 @@ export const Checkout = () => {
                 placeholder="Delivery Address"
                 value={deliveryAddress}
                 onChange={(e) => setDeliveryAddress(e.target.value)}
+                readOnly={addressChoice === "saved"}
               />
             </div>
           </div>
@@ -346,7 +354,7 @@ export const Checkout = () => {
           <div className="bg-[#341f01] text-gray-300 p-4 rounded-lg">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <select
-                className="border rounded-lg border-black p-2 text-sm sm:text-base bg-[#341f01] text-gray-300"
+                className="border rounded-lg border-black p-2 text-sm sm:text-base bg-[#341f01] text-gray-300 cursor-pointer"
                 value={timeNote.time}
                 onChange={(e) =>
                   setTimeNote({ ...timeNote, time: e.target.value })
@@ -373,7 +381,7 @@ export const Checkout = () => {
         {/* Submit */}
         <button
           type="submit"
-          className="bg-[#C18343] text-black text-2xl font-bold w-full p-3 rounded-xl mt-6 hover:bg-[#3E2723] ease-in-out sm:hover:text-2xl hover:font-bold hover:text-gray-300 transition-all"
+          className="bg-[#C18343] text-black text-2xl font-bold w-full p-3 rounded-xl mt-6 hover:bg-[#3E2723] ease-in-out sm:hover:text-2xl hover:font-bold hover:text-gray-300 transition-all cursor-pointer"
         >
           Place Order
         </button>

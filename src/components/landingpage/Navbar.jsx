@@ -263,9 +263,9 @@ const Navbar = () => {
         <div className="flex justify-around items-center py-2 relative">
           {/* Basket */}
           <Link
-            to="/cart"
+            to="/addtocart"
             className={`flex flex-col items-center text-xs transition-all ${
-              routeIsActive("/cart")
+              routeIsActive("/addtocart")
                 ? "text-amber-400 scale-110"
                 : "text-gray-300"
             }`}

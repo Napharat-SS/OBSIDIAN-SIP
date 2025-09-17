@@ -25,11 +25,12 @@ const LoginPage = () => {
       const response = await api.post("/auth/login", {
         username,
         password,
+        remember
       });
-      const { accessToken, refreshToken, user } = response.data;
+      const { user } = response.data;
 
       // เรียกใช้ฟังก์ชัน login จาก AuthContext เพื่อจัดการ state และเก็บ token
-      login(user, accessToken, refreshToken);
+      login(user);
       navigate("/");
     } catch (err) {
       console.error(err);
