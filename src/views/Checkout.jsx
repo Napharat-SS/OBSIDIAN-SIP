@@ -94,7 +94,7 @@ export const Checkout = () => {
       orderMethod === "delivery" ? subtotal + deliveryFee : subtotal;
 
     try {
-      // ✅ ส่งข้อมูลไป backend
+      // ส่งข้อมูลไป backend
       const response = await api.post("/orders", {
         customerInfo,
         basketItems: basket,
@@ -109,7 +109,7 @@ export const Checkout = () => {
       // ถ้า success → ส่งต่อไป order-confirmation
       navigate("/order-confirmation", {
         state: {
-          order: response.data.order, // ✅ ได้ข้อมูล order จาก backend
+          order: response.data.order, // ได้ข้อมูล order จาก backend
         },
       });
     } catch (error) {
