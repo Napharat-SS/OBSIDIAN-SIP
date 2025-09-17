@@ -295,6 +295,7 @@ export const Checkout = () => {
                 className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.firstName}
                 onChange={handleCustomerInfoChange}
+                readOnly={profileChoice === "saved"}
               />
               <input
                 type="text"
@@ -303,6 +304,7 @@ export const Checkout = () => {
                 className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.lastName}
                 onChange={handleCustomerInfoChange}
+                readOnly={profileChoice === "saved"}
               />
               <input
                 type="text"
@@ -311,6 +313,7 @@ export const Checkout = () => {
                 className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.phoneNumber}
                 onChange={handleCustomerInfoChange}
+                readOnly={profileChoice === "saved"}
               />
               <input
                 type="email"
@@ -319,6 +322,7 @@ export const Checkout = () => {
                 className="border rounded-lg border-black p-2 text-sm sm:text-base"
                 value={customerInfo.email}
                 onChange={handleCustomerInfoChange}
+                readOnly={profileChoice === "saved"}
               />
             </div>
           </div>
@@ -336,6 +340,7 @@ export const Checkout = () => {
                 placeholder="Delivery Address"
                 value={deliveryAddress}
                 onChange={(e) => setDeliveryAddress(e.target.value)}
+                readOnly={addressChoice === "saved"}
               />
             </div>
           </div>
